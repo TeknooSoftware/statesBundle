@@ -34,9 +34,10 @@ use Doctrine\ORM\Mapping as ORM;
  * @license     http://teknoo.it/states/license/gpl-3.0     GPL v3 License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  *
+ * @ORM\MappedSuperclass
  * @ORM\HasLifecycleCallbacks
  */
-class IntegratedEntity extends Integrated
+abstract class IntegratedEntity extends Integrated
 {
     /**
      * Constructor
