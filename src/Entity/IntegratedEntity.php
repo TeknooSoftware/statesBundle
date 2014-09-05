@@ -40,6 +40,12 @@ use Doctrine\ORM\Mapping as ORM;
 abstract class IntegratedEntity extends Integrated
 {
     /**
+     * Class name of the factory to use in set up to initialize this object in this construction
+     * @var string
+     */
+    protected static $_startupFactoryClassName = '\UniAlteri\Bundle\StatesBundle\Factory\StartupFactory';
+
+    /**
      * Constructor
      */
     public function __construct()
