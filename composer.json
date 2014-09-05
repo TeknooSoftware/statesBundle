@@ -2,7 +2,7 @@
     "name": "unialteri/states-bundle",
     "version": "0.9-beta",
     "type": "symfony-bundle",
-    "description": "Bundle of UniAlteri States to use it easily with Symfony 2",
+    "description": "Bundle of UniAlteri States to use it easily with Symfony 2 + Doctrine",
     "keywords": ["states","class","symfony","bundle"],
     "time": "2014-09-05",
     "homepage": "http://teknoo.it/states",
