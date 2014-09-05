@@ -26,7 +26,7 @@ use UniAlteri\States\Factory;
 use UniAlteri\States\Factory\Exception;
 
 /**
- * Class IntegratedFactory
+ * Class Integrated
  * Extends of \UniAlteri\States\Factory\Integrated to support Doctrine proxy
  *
  * @package     States
@@ -37,7 +37,7 @@ use UniAlteri\States\Factory\Exception;
  * @license     http://teknoo.it/states/license/gpl-3.0     GPL v3 License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
-class IntegratedFactory extends Factory\Integrated
+class Integrated extends Factory\Integrated
 {
     /**
      * Method called by the Loader to initialize the stated class :
