@@ -19,10 +19,11 @@
  * @version     0.9.9
  */
 
-namespace UniAlteri\States\Factory;
+namespace UniAlteri\Bundle\StatesBundle\Factory;
 
 use UniAlteri\States\Proxy;
 use UniAlteri\States\Factory;
+use UniAlteri\States\Factory\Exception;
 
 /**
  * Class StartupFactory
@@ -41,7 +42,7 @@ class StartupFactory extends Factory\StandardStartupFactory
 {
     /**
      * Registry of factory to use to initialize proxy object
-     * @var FactoryInterface[]|\ArrayObject
+     * @var Factory\FactoryInterface[]|\ArrayObject
      */
     protected static $_factoryRegistry = null;
 
