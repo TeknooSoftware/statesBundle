@@ -1,6 +1,6 @@
 {
     "name": "unialteri/states-bundle",
-    "version": "0.9-beta",
+    "version": "0.9.1-beta",
     "type": "symfony-bundle",
     "description": "Bundle of UniAlteri States to use it easily with Symfony 2 + Doctrine",
     "keywords": ["states","class","symfony","bundle"],
