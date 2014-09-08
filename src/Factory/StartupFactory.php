@@ -61,10 +61,12 @@ class StartupFactory extends Factory\StandardStartupFactory
             throw new Exception\InvalidArgument('Error the proxy does not implement the Proxy\ProxyInterface');
         }
 
+        //If the entity object if a doctrine proxy, retrieve the proxy class name from its parent
         $factoryIdentifier = null;
         if ($proxyObject instanceof \Doctrine\ORM\Proxy\Proxy) {
             $factoryIdentifier = get_parent_class($proxyObject);
         } else {
+            //Normal behavior
             $factoryIdentifier = get_class($proxyObject);
         }
 

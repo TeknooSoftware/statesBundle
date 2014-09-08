@@ -37,7 +37,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "UniAlteri\\Bundle\\StatesBundle\\Tests\\": "tests/"
+            "UniAlteri\\Tests\\Bundle\\StatesBundle\\": "tests/"
         }
     },
     "archive": {

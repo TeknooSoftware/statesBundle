@@ -21,6 +21,7 @@
 
 namespace UniAlteri\Bundle\StatesBundle;
 
+use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 use UniAlteri\States\DI;
 use UniAlteri\States\Loader;
@@ -87,9 +88,11 @@ class UniAlteriStatesBundle extends Bundle
         spl_autoload_register(
             array($loader, 'loadClass'),
             true,
-            true
+            true //Prepend to the autoloader stack
         );
 
-        $this->container->set('unialteri.states.loader', $loader);
+        if ($this->container instanceof Container) {
+            $this->container->set('unialteri.states.loader', $loader);
+        }
     }
 }
