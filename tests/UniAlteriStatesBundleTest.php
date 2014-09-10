@@ -21,7 +21,80 @@
 
 namespace UniAlteri\Tests\Bundle\StatesBundle;
 
+use Symfony\Component\DependencyInjection\Container;
+use UniAlteri\Bundle\StatesBundle\UniAlteriStatesBundle;
+use UniAlteri\States;
+use UniAlteri\States\Loader;
+use UniAlteri\States\Factory;
+use UniAlteri\States\Exception;
+use UniAlteri\Tests\Support;
+
 class UniAlteriStatesBundleTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * @var Container
+     */
+    protected $_container = null;
 
+    protected function setUp()
+    {
+        if (!$this->_container instanceof Container) {
+            $this->_container = new Container();
+        }
+        parent::setUp();
+    }
+
+    protected function tearDown()
+    {
+        if ($this->_container->has('unialteri.states.loader')) {
+            spl_autoload_unregister(
+                array($this->_container->get('unialteri.states.loader'), 'loadClass')
+            );
+
+            $this->_container->set('unialteri.states.loader', null);
+        }
+
+        parent::tearDown();
+    }
+
+    public function testLoaderInitialisation()
+    {
+        //Initialize container
+        $bundle = new UniAlteriStatesBundle();
+        $bundle->setContainer($this->_container);
+
+        $bundle->boot();
+
+        $this->assertTrue($this->_container->has('unialteri.states.loader'));
+        $loader = $this->_container->get('unialteri.states.loader');
+
+        //Check if the loader implements the good interface
+        $this->assertInstanceOf('\\UniAlteri\\States\\Loader\\LoaderInterface', $loader);
+
+        //Check if the loader is initialized with a di container
+        $container = $loader->getDIContainer();
+        $this->assertInstanceOf('\\UniAlteri\\States\\DI\\ContainerInterface', $container);
+
+        //Check if required services are present into the di container
+        $this->assertTrue($container->testEntry(Loader\FinderInterface::DI_FINDER_SERVICE));
+        $this->assertTrue($container->testEntry(States\States\StateInterface::INJECTION_CLOSURE_SERVICE_IDENTIFIER));
+
+        $fail = false;
+        try {
+            $container->get(Loader\FinderInterface::DI_FINDER_SERVICE);
+        } catch (Exception\UnavailableFactory $e) {
+            $fail = true;
+        } catch (\Exception $e) {}
+
+        $this->assertTrue($fail, 'Error, the service to create finder must throw exception if the DI Container for the class has not registered factory object');
+
+        //Test behavior of the service to create finder for a stated class
+        $container->registerInstance(Factory\FactoryInterface::DI_FACTORY_NAME, new Support\MockFactory());
+        $finder = $container->get(Loader\FinderInterface::DI_FINDER_SERVICE);
+        $this->assertInstanceOf('\\UniAlteri\\States\\Loader\\FinderInterface', $finder);
+
+        //Test behavior of the service to create injection closure
+        $injectionClosure = $container->get(States\States\StateInterface::INJECTION_CLOSURE_SERVICE_IDENTIFIER);
+        $this->assertInstanceOf('\\UniAlteri\\States\\DI\\InjectionClosureInterface', $injectionClosure);
+    }
 }

@@ -21,7 +21,130 @@
 
 namespace UniAlteri\Tests\Bundle\StatesBundle;
 
+use \UniAlteri\Bundle\StatesBundle\Factory;
+use \UniAlteri\States\Factory\Exception;
+use UniAlteri\Tests\Bundle\StatesBundle\Support\DoctrineMockProxy;
+use \UniAlteri\Tests\Support;
+
 class StartupFactoryTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * Prepare test, reinitialize the StartupFactory
+     */
+    protected function setUp()
+    {
+        Factory\StartupFactory::reset();
+        parent::setUp();
+    }
 
+    /**
+     * The startup factory must throw an exception when the proxy does not implement the proxy interface
+     */
+    public function testForwardStartupInvalidProxy()
+    {
+        try {
+            Factory\StartupFactory::forwardStartup(new \stdClass());
+        } catch (Exception\InvalidArgument $e) {
+            return;
+        } catch (\Exception $e) { }
+
+        $this->fail('Error, the startup factory must throw an exception when the proxy does not implement the proxy interface');
+    }
+
+    /**
+     * The startup factory must throw an exception when the proxy cannot be initialized
+     */
+    public function testForwardStartupProxyNotInitialized()
+    {
+        try {
+            Factory\StartupFactory::forwardStartup(new Support\MockProxy(null));
+        } catch (Exception\UnavailableFactory $e) {
+            return;
+        } catch (\Exception $e) { }
+
+        $this->fail('Error, the startup factory must throw an exception when the proxy cannot be initialized');
+    }
+
+    /**
+     * Test normal behavior of forward startup
+     */
+    public function testForwardStartup()
+    {
+        $factory = new Support\MockFactory();
+        Factory\StartupFactory::registerFactory('UniAlteri\Tests\Support\MockProxy', $factory);
+        $proxy = new Support\MockProxy(null);
+        Factory\StartupFactory::forwardStartup($proxy);
+        $this->assertSame($factory->getStartupProxy(), $proxy);
+    }
+
+    /**
+     * Test normal behavior of forward startup
+     */
+    public function testForwardStartupFromProxy()
+    {
+        $factory = new Support\MockFactory();
+        Factory\StartupFactory::registerFactory('UniAlteri\Tests\Support\MockProxy', $factory);
+        $proxy = new DoctrineMockProxy(null);
+        Factory\StartupFactory::forwardStartup($proxy);
+        $this->assertSame($factory->getStartupProxy(), $proxy);
+    }
+
+    /**
+     * The startup factory class must throw an exception when the identifier is not a valid string
+     */
+    public function testRegisterFactoryInvalidIdentifier()
+    {
+        try {
+            Factory\StartupFactory::registerFactory(array(), new Support\MockFactory());
+        } catch (Exception\InvalidArgument $exception) {
+            return;
+        } catch (\Exception $e) { }
+
+        $this->fail('Error, the startup factory class must throw an exception when the identifier is not a valid string');
+    }
+
+    /**
+     * The startup factory class must throw an exception when the registering factory does not implement the factory interface.
+     */
+    public function testRegisterFactoryInvalidFactory()
+    {
+        try {
+            Factory\StartupFactory::registerFactory('bar', new \stdClass());
+        } catch (Exception\IllegalFactory $exception) {
+            return;
+        } catch (\Exception $e) { }
+
+        $this->fail('Error, the startup factory class must throw an exception when the registering factory does not implement the factory interface');
+    }
+
+    /**
+     * Test Factory\StartupFactory::listRegisteredFactory if its return all initialized factory
+     */
+    public function testListRegisteredFactory()
+    {
+        $factory = new Support\MockFactory();
+        Factory\StartupFactory::registerFactory('UniAlteri\Tests\Support\MockProxy1', $factory);
+        Factory\StartupFactory::reset();
+        Factory\StartupFactory::registerFactory('UniAlteri\Tests\Support\MockProxy2', $factory);
+        Factory\StartupFactory::registerFactory('UniAlteri\Tests\Support\MockProxy3', $factory);
+        $this->assertEquals(
+            array(
+                'UniAlteri\Tests\Support\MockProxy2',
+                'UniAlteri\Tests\Support\MockProxy3'
+            ),
+            Factory\StartupFactory::listRegisteredFactory()
+        );
+    }
+
+    /**
+     * Test Factory\StartupFactory::listRegisteredFactory if its return all initialized factory
+     */
+    public function testListRegisteredFactoryEmpty()
+    {
+        Factory\StartupFactory::reset();
+        $this->assertEquals(
+            array(),
+            Factory\StartupFactory::listRegisteredFactory()
+        );
+    }
 }

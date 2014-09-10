@@ -21,7 +21,40 @@
 
 namespace UniAlteri\Tests\Bundle\StatesBundle;
 
-class IntegratedTest extends \PHPUnit_Framework_TestCase
-{
+use \UniAlteri\Bundle\StatesBundle\Factory;
+use UniAlteri\States\Factory\FactoryInterface;
 
+
+class IntegratedTest extends \UniAlteri\Tests\States\Factory\IntegratedTest
+{
+    /**
+     * Return the Factory Object Interface
+     * @param  boolean                  $populateContainer to populate di container of this factory
+     * @return FactoryInterface
+     */
+    public function getFactoryObject($populateContainer=true)
+    {
+        $factory = new Factory\Integrated();
+        if (true === $populateContainer) {
+            $factory->setDIContainer($this->_container);
+        }
+
+        return $factory;
+    }
+
+    /**
+     * Test if the factory Integrated initialize the StartupFactory
+     */
+    public function testInitialization()
+    {
+        Factory\StartupFactory::reset();
+        $factory = $this->getFactoryObject(true);
+        $factory->initialize('foo', 'bar');
+        $this->assertEquals(
+            array(
+                'foo\\foo'
+            ),
+            Factory\StartupFactory::listRegisteredFactory()
+        );
+    }
 }

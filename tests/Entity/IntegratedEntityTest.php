@@ -19,9 +19,53 @@
  * @version     0.9.9
  */
 
-namespace UniAlteri\Tests\Bundle\StatesBundle;
+namespace UniAlteri\Tests\Bundle\StatesBundle\Entity;
 
-class IntegratedEntityTest extends \PHPUnit_Framework_TestCase
+use UniAlteri\States\Proxy\ProxyInterface;
+use UniAlteri\Tests\Bundle\StatesBundle\Support;
+use UniAlteri\Tests\States\Proxy\IntegratedTest;
+use UniAlteri\Tests\Support\MockStartupFactory;
+
+class IntegratedEntityTest extends IntegratedTest
 {
+    /**
+     * Build a proxy object, into $this->_proxy to test it
+     * @return ProxyInterface
+     */
+    protected function _buildProxy()
+    {
+        $this->_proxy = new Support\IntegratedEntity();
 
+        return $this->_proxy;
+    }
+
+    public function testIsset()
+    {
+        $proxy = $this->_buildProxy();
+        $this->assertFalse(isset($proxy->foo));
+    }
+
+    /**
+     * Test exception behavior of the proxy when __set is not implemented into in actives states
+     */
+    public function testIssetNonImplemented()
+    {
+        //Isset is always implemented here
+    }
+
+    /**
+     * Test if the class initialize its vars from the trait constructor
+     */
+    public function testPostLoadDoctrine()
+    {
+        $proxyReflectionClass = new \ReflectionClass('\UniAlteri\Tests\Bundle\StatesBundle\Support\IntegratedEntity');
+        $proxy = $proxyReflectionClass->newInstanceWithoutConstructor();
+        MockStartupFactory::$calledProxyObject = null;
+        $this->assertNull(MockStartupFactory::$calledProxyObject);
+        $proxy->postLoadDoctrine();
+        $this->assertSame(array(), $proxy->listAvailableStates());
+        $this->assertSame($proxy, MockStartupFactory::$calledProxyObject);
+
+        return;
+    }
 }

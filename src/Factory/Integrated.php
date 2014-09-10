@@ -27,7 +27,8 @@ use UniAlteri\States\Factory\Exception;
 
 /**
  * Class Integrated
- * Extends of \UniAlteri\States\Factory\Integrated to support Doctrine proxy
+ * Extends of \UniAlteri\States\Factory\Integrated to support Doctrine proxy :
+ * Use the \UniAlteri\Bundle\StatesBundle\Factory\StartupFactory instead of \UniAlteri\States\Factory\StartupFactory
  *
  * @package     States
  * @subpackage  StatesBundle
@@ -58,6 +59,8 @@ class Integrated extends Factory\Integrated
         $parts = explode('\\', $statedClassName);
         $statedClassName .= '\\'.array_pop($parts);
         //Register this factory into the startup factory
+        //(Use the \UniAlteri\Bundle\StatesBundle\Factory\StartupFactory instead
+        //  of \UniAlteri\States\Factory\StartupFactory)
         StartupFactory::registerFactory($statedClassName, $this);
     }
 }
