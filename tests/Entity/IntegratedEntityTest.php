@@ -68,4 +68,36 @@ class IntegratedEntityTest extends IntegratedTest
 
         return;
     }
+
+    public function testInStateNotString()
+    {
+        $proxy = $this->_buildProxy();
+
+        try {
+            $proxy->inState(new \stdClass());
+        } catch (\Exception $e) {
+            return;
+        }
+
+        $this->fail('Error, the method must throw an exception when the argument is not valid');
+    }
+
+    public function testInStateNotInitialized()
+    {
+        $proxyReflectionClass = new \ReflectionClass('\UniAlteri\Tests\Bundle\StatesBundle\Support\IntegratedEntity');
+        $proxy = $proxyReflectionClass->newInstanceWithoutConstructor();
+        $this->assertFalse($proxy->inState('foo'));
+    }
+
+    public function testInState()
+    {
+        $proxy = $this->getMock('\UniAlteri\Tests\Bundle\StatesBundle\Support\IntegratedEntity', array('listEnabledStates'), array(), '', false);
+        $proxy->expects($this->any())
+            ->method('listEnabledStates')
+            ->withAnyParameters()
+            ->willReturn(array('foo', 'bar'));
+
+        $this->assertFalse($proxy->inState('hello'));
+        $this->assertTrue($proxy->inState('foo'));
+    }
 }

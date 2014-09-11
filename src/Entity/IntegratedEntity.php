@@ -21,6 +21,7 @@
 
 namespace UniAlteri\Bundle\StatesBundle\Entity;
 
+use UniAlteri\States\Exception\InvalidArgument;
 use UniAlteri\States\Proxy\Integrated;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -87,5 +88,29 @@ abstract class IntegratedEntity extends Integrated
     public function __isset($name)
     {
         return false;
+    }
+
+    /**
+     * Check if the current entity is in the required state defined by $stateName
+     * @param string $stateName
+     * @return bool
+     * @throws InvalidArgument when $stateName is not a valid string
+     */
+    public function inState($stateName)
+    {
+        if (!is_string($stateName) && (is_object($stateName) && !is_callable(array($stateName, '__toString')))) {
+            throw new InvalidArgument('Error, $stateName is not valid');
+        }
+
+        $stateName = (string) $stateName;
+        $enabledStatesList = $this->listEnabledStates();
+
+        if (is_array($enabledStatesList) && !empty($enabledStatesList)) {
+            //array_flip + isset is more efficient than in_array
+            $enabledStatesList = array_flip($enabledStatesList);
+            return isset($enabledStatesList[$stateName]);
+        } else {
+            return false;
+        }
     }
 }
