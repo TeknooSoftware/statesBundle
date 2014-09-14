@@ -23,7 +23,7 @@ To use this extension, your entities must extend the class `\UniAlteri\Bundle\St
 The factory of your stated class must also inherit the class `\UniAlteri\Bundle\StatesBundle\Factory\Integrated`.
 
 Proxy with Twig
-------------------------------
+---------------
 
 Before test an call the specific getter of a required entity's attribute, `Twig` tests with `isset()` if the attribute
 is available directly. So, PHP will call the method `__isset` of the proxy even if the method is not available in
