@@ -21,7 +21,7 @@ States library bootstrapping
 
 The states library need a bootloader to initialize the library :
 
-*   initialize a autoloader if no autoloader is available.
+*   initialize an autoloader if no autoloader is available.
 *   initialize the DI Container to use with the library (default `States` use `Pimple`).
 *   instantiate the finder service to find and initialize all stated class's components (factory, proxy and states).
 *   initialize the injection closure service
@@ -31,8 +31,8 @@ The states library need a bootloader to initialize the library :
 An implementation of these operations is available in the file `/UniAlteri/States/bootstrap.php` provided by the library.
 
 This bundle implements its own bootstrap in the class `UniAlteriStatesBundle`. It is executed when the bundle is
-initialized by Symfony. The behavior of this implementation is like the default implementation, but, the stated class
-loader is registerd in the DI container of Symfony.
+ initialized by Symfony. The behavior of this implementation is like the default implementation, but the stated class
+ loader is registered in the DI container of Symfony.
 
 The stated class loader is available under the key `unialteri.states.loader`.
 

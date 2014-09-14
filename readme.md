@@ -2,7 +2,7 @@ Uni Alteri - States bundle
 ===========================
 
 Welcome and thank you to having downloaded this bundle. It allows you to write PHP classes more readable and
-more usable thanks to by cutting your code according to states of your objects. This an adaptation of the library
+more usable thanks by cutting your code according to states of your objects. This an adaptation of the library
 [`States`](http://teknoo.it/states) for Symfony 2+.
 
 Installation with symfony
@@ -11,7 +11,7 @@ Instruction to install the States bundle with Symfony 2+ : [Install](docs/instal
 
 Symfony adaptation
 ------------------
-Adaptation of States library to use it with Symfony 2+ : [Install](docs/symfony.md).
+Adaptation of States library to use it with Symfony 2+ : [Symfony](docs/symfony.md).
 
 Quick startup
 -------------
