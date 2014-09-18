@@ -95,9 +95,9 @@ class IntegratedEntityTest extends IntegratedTest
         $proxy->expects($this->any())
             ->method('listEnabledStates')
             ->withAnyParameters()
-            ->willReturn(array('foo', 'bar'));
+            ->willReturn(array('Foo', 'Bar'));
 
         $this->assertFalse($proxy->inState('hello'));
-        $this->assertTrue($proxy->inState('foo'));
+        $this->assertTrue($proxy->inState('fOo'));
     }
 }
