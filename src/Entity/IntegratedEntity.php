@@ -89,31 +89,4 @@ abstract class IntegratedEntity extends Integrated
     {
         return false;
     }
-
-    /**
-     * Check if the current entity is in the required state defined by $stateName
-     * @param string $stateName
-     * @return bool
-     * @throws InvalidArgument when $stateName is not a valid string
-     */
-    public function inState($stateName)
-    {
-        if (!is_string($stateName) && (is_object($stateName) && !is_callable(array($stateName, '__toString')))) {
-            throw new InvalidArgument('Error, $stateName is not valid');
-        }
-
-        $stateName = (string) $stateName;
-        $enabledStatesList = $this->listEnabledStates();
-
-        if (is_array($enabledStatesList) && !empty($enabledStatesList)) {
-            //array_flip + isset is more efficient than in_array
-            $stateName = str_replace('_', '', strtolower($stateName));
-            $enabledStatesList = array_flip(
-                array_map('strtolower', $enabledStatesList)
-            );
-            return isset($enabledStatesList[$stateName]);
-        } else {
-            return false;
-        }
-    }
 }
