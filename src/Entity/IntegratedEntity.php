@@ -107,7 +107,7 @@ abstract class IntegratedEntity extends Integrated
 
         if (is_array($enabledStatesList) && !empty($enabledStatesList)) {
             //array_flip + isset is more efficient than in_array
-            $stateName = strtolower($stateName);
+            $stateName = str_replace('_', '', strtolower($stateName));
             $enabledStatesList = array_flip(
                 array_map('strtolower', $enabledStatesList)
             );
