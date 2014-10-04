@@ -15,16 +15,16 @@ Adaptation of States library to use it with Symfony 2+ : [Symfony](docs/symfony.
 
 Quick startup
 -------------
-Quick How-to to learn how use this library : [Startup](docs/howto/quick-startup.md).
+Quick How-to to learn how use this library : [Startup](https://github.com/UniAlteri/states/blob/master/docs/howto/quick-startup.md).
 
 Example
 -------
-An example of using this library is available in the folder : [Demo](demo/demo.php).
+An example of using this library is available in the folder : [Demo](https://github.com/UniAlteri/states/blob/master/demo/demo_article.php).
 
 API Documentation
 -----------------
-Generated documentation from the library with PhpDocumentor : [Open](docs/api/index.html).
+Generated documentation from the library with PhpDocumentor : [Open](https://cdn.rawgit.com/UniAlteri/states/master/docs/api/index.html).
 
 Behavior Documentation
 ----------------------
-Documentation to explain how this library works : [Behavior](Documentation to explain how this library works : [Behavior](Behavior).).
+Documentation to explain how this library works : [Behavior](https://github.com/UniAlteri/states/blob/master/docs/howto/behavior.md).
