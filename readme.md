@@ -1,8 +1,8 @@
 Uni Alteri - States bundle
 ===========================
 
-Welcome and thank you to having downloaded this bundle. It allows you to write PHP classes more readable and
-more usable thanks by cutting your code according to states of your objects. This an adaptation of the library
+Welcome and thank you to having downloaded this bundle. It allows you to write more readable and usable PHP classes,
+by cutting your code according to states of your objects. This an adaptation of the library
 [`States`](http://teknoo.it/states) for Symfony 2+.
 
 Installation with symfony
