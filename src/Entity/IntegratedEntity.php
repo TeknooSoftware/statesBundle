@@ -21,7 +21,6 @@
 
 namespace UniAlteri\Bundle\StatesBundle\Entity;
 
-use UniAlteri\States\Exception\InvalidArgument;
 use UniAlteri\States\Proxy\Integrated;
 use Doctrine\ORM\Mapping as ORM;
 
