@@ -23,7 +23,6 @@
         "unialteri/states": "*"
     },
     "require-dev": {
-        "symfony/validator": ">=2.3@dev",
         "phpunit/phpunit": ">=3.7.0",
         "phpunit/phpunit-mock-objects": "*",
         "phpunit/phpunit-selenium": "*",
