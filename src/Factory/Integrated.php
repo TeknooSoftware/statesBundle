@@ -21,7 +21,6 @@
 
 namespace UniAlteri\Bundle\StatesBundle\Factory;
 
-use UniAlteri\States\DI;
 use UniAlteri\States\Factory;
 use UniAlteri\States\Factory\Exception;
 
