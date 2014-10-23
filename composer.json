@@ -20,7 +20,7 @@
         "symfony/console": ">=2.3",
         "symfony/validator": ">=2.3",
         "doctrine/orm": ">=2.2.3",
-        "unialteri/states": "dev-master"
+        "unialteri/states": ">=0.9"
     },
     "require-dev": {
         "phpunit/phpunit": ">=3.7.0",
