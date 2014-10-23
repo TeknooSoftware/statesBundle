@@ -56,7 +56,7 @@ class UniAlteriStatesBundle extends Bundle
          * @return Loader\FinderIntegrated
          * @throws Exception\UnavailableFactory if the local factory is not available
          */
-        $finderService = function ($container) {
+        $finderService = function (DI\ContainerInterface $container) {
             if (false === $container->testEntry(Factory\FactoryInterface::DI_FACTORY_NAME)) {
                 throw new Exception\UnavailableFactory('Error, the factory is not available into container');
             }

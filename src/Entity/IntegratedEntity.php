@@ -66,9 +66,9 @@ abstract class IntegratedEntity extends Integrated
     public function postLoadDoctrine()
     {
         //Call the method of the trait to initialize local attributes of the proxy
-        $this->_initializeProxy();
+        $this->initializeProxy();
         //Call the startup factory to initialize this proxy
-        $this->_initializeObjectWithFactory();
+        $this->initializeObjectWithFactory();
         $this->updateState();
     }
 
