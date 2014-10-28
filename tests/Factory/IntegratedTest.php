@@ -36,7 +36,7 @@ class IntegratedTest extends \UniAlteri\Tests\States\Factory\IntegratedTest
     {
         $factory = new Factory\Integrated();
         if (true === $populateContainer) {
-            $factory->setDIContainer($this->_container);
+            $factory->setDIContainer($this->container);
         }
 
         return $factory;

@@ -32,16 +32,16 @@ class IntegratedEntityTest extends IntegratedTest
      * Build a proxy object, into $this->_proxy to test it
      * @return ProxyInterface
      */
-    protected function _buildProxy()
+    protected function buildProxy()
     {
-        $this->_proxy = new Support\IntegratedEntity();
+        $this->proxy = new Support\IntegratedEntity();
 
-        return $this->_proxy;
+        return $this->proxy;
     }
 
     public function testIsset()
     {
-        $proxy = $this->_buildProxy();
+        $proxy = $this->buildProxy();
         $this->assertFalse(isset($proxy->foo));
     }
 
@@ -71,7 +71,7 @@ class IntegratedEntityTest extends IntegratedTest
 
     public function testInStateNotStringBundle()
     {
-        $proxy = $this->_buildProxy();
+        $proxy = $this->buildProxy();
 
         try {
             $proxy->inState(new \stdClass());

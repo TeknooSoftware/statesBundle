@@ -44,7 +44,7 @@ class StartupFactory extends Factory\StandardStartupFactory
      * Registry of factory to use to initialize proxy object
      * @var Factory\FactoryInterface[]|\ArrayObject
      */
-    protected static $_factoryRegistry = null;
+    protected static $factoryRegistry = null;
 
     /**
      * To find the factory to use for the new proxy object to initialize it with its container and states.
@@ -70,10 +70,10 @@ class StartupFactory extends Factory\StandardStartupFactory
             $factoryIdentifier = get_class($proxyObject);
         }
 
-        if (!static::$_factoryRegistry instanceof \ArrayObject || !isset(static::$_factoryRegistry[$factoryIdentifier])) {
+        if (!static::$factoryRegistry instanceof \ArrayObject || !isset(static::$factoryRegistry[$factoryIdentifier])) {
             throw new Exception\UnavailableFactory('Error, the factory "'.$factoryIdentifier.'" is not available');
         }
 
-        return static::$_factoryRegistry[$factoryIdentifier]->startup($proxyObject, $stateName);
+        return static::$factoryRegistry[$factoryIdentifier]->startup($proxyObject, $stateName);
     }
 }

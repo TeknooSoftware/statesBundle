@@ -53,7 +53,7 @@ class IntegratedEntity extends AbstractIntegratedEntity implements
      * It is a virtual factory, it does nothing except logs actions
      * @var string
      */
-    protected static $_startupFactoryClassName = '\UniAlteri\Tests\Support\MockStartupFactory';
+    protected static $startupFactoryClassName = '\UniAlteri\Tests\Support\MockStartupFactory';
 
     /**
      * Method to update static::$_startupFactoryClassName to run some unit tests
@@ -61,6 +61,6 @@ class IntegratedEntity extends AbstractIntegratedEntity implements
      */
     public static function defineStartupFactoryClassName($className)
     {
-        static::$_startupFactoryClassName = $className;
+        static::$startupFactoryClassName = $className;
     }
 }
