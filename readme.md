@@ -1,6 +1,8 @@
 Uni Alteri - States bundle
 ===========================
 
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/37eae306-21fc-4181-be04-9c758e1239bb/mini.png)](https://insight.sensiolabs.com/projects/37eae306-21fc-4181-be04-9c758e1239bb)
+
 Welcome and thank you to having downloaded this bundle. It allows you to write more readable and usable PHP classes,
 by cutting your code according to states of your objects. This an adaptation of the library
 [`States`](http://teknoo.it/states) for Symfony 2+.
