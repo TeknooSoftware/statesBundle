@@ -71,7 +71,9 @@ class StartupFactory extends Factory\StandardStartupFactory
         }
 
         if (!static::$factoryRegistry instanceof \ArrayObject || !isset(static::$factoryRegistry[$factoryIdentifier])) {
-            throw new Exception\UnavailableFactory('Error, the factory "'.$factoryIdentifier.'" is not available');
+            throw new Exception\UnavailableFactory(
+                sprintf('Error, the factory "%s" is not available', $factoryIdentifier)
+            );
         }
 
         return static::$factoryRegistry[$factoryIdentifier]->startup($proxyObject, $stateName);
