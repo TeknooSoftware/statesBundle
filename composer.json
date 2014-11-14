@@ -1,6 +1,6 @@
 {
     "name": "unialteri/states-bundle",
-    "version": "0.9.1-beta",
+    "version": "0.9.2-beta",
     "type": "symfony-bundle",
     "description": "Bundle of UniAlteri States to use it easily with Symfony 2 + Doctrine",
     "keywords": ["states","class","symfony","bundle"],
@@ -23,7 +23,7 @@
         "unialteri/states": ">=0.9,<2.0"
     },
     "require-dev": {
-        "phpunit/phpunit": ">=3.7.0",
+        "phpunit/phpunit": ">=4.0.0,<5.0",
         "phpunit/phpunit-mock-objects": "*",
         "phpunit/phpunit-selenium": "*",
         "phpunit/phpunit-story": "*"
