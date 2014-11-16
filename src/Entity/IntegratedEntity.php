@@ -81,7 +81,7 @@ abstract class IntegratedEntity extends Integrated
     /**
      * No use magic getter/setter here. Add this to be compliant with twig...
      *
-     * @param string $name
+     * @param  string     $name
      * @return bool|mixed
      */
     public function __isset($name)
