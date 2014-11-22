@@ -90,6 +90,48 @@ class StartupFactoryTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test normal behavior of forward startup when the class has been loaded by doctrine and not by the loaded of the library
+     */
+    public function testForwardStartupClassLoadedByDoctrine()
+    {
+        $factory = new Support\MockFactory();
+        $proxy = new DoctrineMockProxy(null);
+        $loaderMock = $this->getMock('UniAlteri\States\Loader\LoaderStandard', ['loadClass'], [], '', false);
+        $loaderMock->expects($this->once())
+            ->method('loadClass')
+            ->with($this->equalTo('UniAlteri\Tests\Support\MockProxy'))
+            ->willReturnCallback(function () use ($factory) {
+                Factory\StartupFactory::registerFactory('UniAlteri\Tests\Support\MockProxy', $factory);
+            });
+
+        Factory\StartupFactory::registerLoader($loaderMock);
+        Factory\StartupFactory::forwardStartup($proxy);
+        $this->assertSame($factory->getStartupProxy(), $proxy);
+    }
+
+    /**
+     * Test normal behavior of forward startup when the class has been loaded by doctrine and not by the loaded of the library
+     */
+    public function testForwardStartupClassLoadedByDoctrineLoaderFail()
+    {
+        $proxy = new DoctrineMockProxy(null);
+        $loaderMock = $this->getMock('UniAlteri\States\Loader\LoaderStandard', ['loadClass'], [], '', false);
+        $loaderMock->expects($this->once())
+            ->method('loadClass')
+            ->with($this->equalTo('UniAlteri\Tests\Support\MockProxy'));
+
+        Factory\StartupFactory::registerLoader($loaderMock);
+
+        try {
+            Factory\StartupFactory::forwardStartup($proxy);
+        } catch (Exception\UnavailableFactory $e) {
+            return;
+        } catch (\Exception $e) { }
+
+        $this->fail('Error, the startup factory must throw an exception when the proxy cannot be initialized');
+    }
+
+    /**
      * The startup factory class must throw an exception when the identifier is not a valid string
      */
     public function testRegisterFactoryInvalidIdentifier()
