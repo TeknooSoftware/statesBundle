@@ -21,6 +21,7 @@
 
 namespace UniAlteri\Bundle\StatesBundle\Factory;
 
+use UniAlteri\States\Loader\LoaderInterface;
 use UniAlteri\States\Proxy;
 use UniAlteri\States\Factory;
 use UniAlteri\States\Factory\Exception;
@@ -41,10 +42,25 @@ use UniAlteri\States\Factory\Exception;
 class StartupFactory extends Factory\StandardStartupFactory
 {
     /**
+     * @var LoaderInterface
+     */
+    protected static $statesLoader;
+
+    /**
      * Registry of factory to use to initialize proxy object
      * @var Factory\FactoryInterface[]|\ArrayObject
      */
     protected static $factoryRegistry = null;
+
+    /**
+     * @param $statedClassName
+     */
+    protected function reloadStatedClass($statedClassName)
+    {
+        if (self::$statesLoader instanceof LoaderInterface) {
+            self::$statesLoader->loadClass($statedClassName);
+        }
+    }
 
     /**
      * To find the factory to use for the new proxy object to initialize it with its container and states.
@@ -70,7 +86,20 @@ class StartupFactory extends Factory\StandardStartupFactory
             $factoryIdentifier = get_class($proxyObject);
         }
 
-        if (!static::$factoryRegistry instanceof \ArrayObject || !isset(static::$factoryRegistry[$factoryIdentifier])) {
+        if (!static::$factoryRegistry instanceof \ArrayObject) {
+            //Startup not initialized
+            throw new Exception\UnavailableFactory(
+                sprintf('Error, the factory "%s" is not available', $factoryIdentifier)
+            );
+        }
+
+        if (!isset(static::$factoryRegistry[$factoryIdentifier])) {
+            //Stated class has been partially loaded by doctrine, finish to load it
+            self::reloadStatedClass($factoryIdentifier);
+        }
+
+        if (!isset(static::$factoryRegistry[$factoryIdentifier])) {
+            //we can not found definitely the factory for this stated class
             throw new Exception\UnavailableFactory(
                 sprintf('Error, the factory "%s" is not available', $factoryIdentifier)
             );
