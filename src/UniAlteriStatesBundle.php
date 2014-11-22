@@ -23,6 +23,7 @@ namespace UniAlteri\Bundle\StatesBundle;
 
 use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
+use UniAlteri\Bundle\StatesBundle\Factory\StartupFactory;
 use UniAlteri\States\DI;
 use UniAlteri\States\Loader;
 use UniAlteri\States\Exception;
@@ -43,6 +44,10 @@ use UniAlteri\States\States;
  */
 class UniAlteriStatesBundle extends Bundle
 {
+    /**
+     * To initialize the states library with symfony
+     * @throws DI\Exception\ClassNotFound
+     */
     public function boot()
     {
         parent::boot();
@@ -94,5 +99,7 @@ class UniAlteriStatesBundle extends Bundle
         if ($this->container instanceof Container) {
             $this->container->set('unialteri.states.loader', $loader);
         }
+
+        StartupFactory::registerLoader($loader);
     }
 }

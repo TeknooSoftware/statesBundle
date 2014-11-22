@@ -53,9 +53,19 @@ class StartupFactory extends Factory\StandardStartupFactory
     protected static $factoryRegistry = null;
 
     /**
+     * To register the loader in the startup factory to allow it to finish to load on demand a stated class loaded by doctrine
+     * @param LoaderInterface $loader
+     */
+    public static function registerLoader(LoaderInterface $loader)
+    {
+        self::$statesLoader = $loader;
+    }
+
+    /**
+     * To finish to load on demand a stated class loaded by doctrine
      * @param $statedClassName
      */
-    protected function reloadStatedClass($statedClassName)
+    protected static function reloadStatedClass($statedClassName)
     {
         if (self::$statesLoader instanceof LoaderInterface) {
             self::$statesLoader->loadClass($statedClassName);
