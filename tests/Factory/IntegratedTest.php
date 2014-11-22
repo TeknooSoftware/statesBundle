@@ -24,15 +24,14 @@ namespace UniAlteri\Tests\Bundle\StatesBundle;
 use \UniAlteri\Bundle\StatesBundle\Factory;
 use UniAlteri\States\Factory\FactoryInterface;
 
-
 class IntegratedTest extends \UniAlteri\Tests\States\Factory\IntegratedTest
 {
     /**
      * Return the Factory Object Interface
-     * @param  boolean                  $populateContainer to populate di container of this factory
+     * @param  boolean          $populateContainer to populate di container of this factory
      * @return FactoryInterface
      */
-    public function getFactoryObject($populateContainer=true)
+    public function getFactoryObject($populateContainer = true)
     {
         $factory = new Factory\Integrated();
         if (true === $populateContainer) {
@@ -52,7 +51,7 @@ class IntegratedTest extends \UniAlteri\Tests\States\Factory\IntegratedTest
         $factory->initialize('foo', 'bar');
         $this->assertEquals(
             array(
-                'foo\\foo'
+                'foo\\foo',
             ),
             Factory\StartupFactory::listRegisteredFactory()
         );

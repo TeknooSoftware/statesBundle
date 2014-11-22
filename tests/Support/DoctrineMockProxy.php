@@ -24,7 +24,8 @@ namespace UniAlteri\Tests\Bundle\StatesBundle\Support;
 use Closure;
 use UniAlteri\Tests\Support\MockProxy;
 
-class DoctrineMockProxy extends MockProxy implements \Doctrine\ORM\Proxy\Proxy{
+class DoctrineMockProxy extends MockProxy implements \Doctrine\ORM\Proxy\Proxy
+{
     /**
      * Retrieves the callback to be used when cloning the proxy.
      *
@@ -113,4 +114,4 @@ class DoctrineMockProxy extends MockProxy implements \Doctrine\ORM\Proxy\Proxy{
     public function __load()
     {
     }
-} 
+}

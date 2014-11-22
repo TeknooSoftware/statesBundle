@@ -46,7 +46,8 @@ class StartupFactoryTest extends \PHPUnit_Framework_TestCase
             Factory\StartupFactory::forwardStartup(new \stdClass());
         } catch (Exception\InvalidArgument $e) {
             return;
-        } catch (\Exception $e) { }
+        } catch (\Exception $e) {
+        }
 
         $this->fail('Error, the startup factory must throw an exception when the proxy does not implement the proxy interface');
     }
@@ -60,7 +61,8 @@ class StartupFactoryTest extends \PHPUnit_Framework_TestCase
             Factory\StartupFactory::forwardStartup(new Support\MockProxy(null));
         } catch (Exception\UnavailableFactory $e) {
             return;
-        } catch (\Exception $e) { }
+        } catch (\Exception $e) {
+        }
 
         $this->fail('Error, the startup factory must throw an exception when the proxy cannot be initialized');
     }
@@ -126,7 +128,8 @@ class StartupFactoryTest extends \PHPUnit_Framework_TestCase
             Factory\StartupFactory::forwardStartup($proxy);
         } catch (Exception\UnavailableFactory $e) {
             return;
-        } catch (\Exception $e) { }
+        } catch (\Exception $e) {
+        }
 
         $this->fail('Error, the startup factory must throw an exception when the proxy cannot be initialized');
     }
@@ -140,7 +143,8 @@ class StartupFactoryTest extends \PHPUnit_Framework_TestCase
             Factory\StartupFactory::registerFactory(array(), new Support\MockFactory());
         } catch (Exception\InvalidArgument $exception) {
             return;
-        } catch (\Exception $e) { }
+        } catch (\Exception $e) {
+        }
 
         $this->fail('Error, the startup factory class must throw an exception when the identifier is not a valid string');
     }
@@ -154,7 +158,8 @@ class StartupFactoryTest extends \PHPUnit_Framework_TestCase
             Factory\StartupFactory::registerFactory('bar', new \stdClass());
         } catch (Exception\IllegalFactory $exception) {
             return;
-        } catch (\Exception $e) { }
+        } catch (\Exception $e) {
+        }
 
         $this->fail('Error, the startup factory class must throw an exception when the registering factory does not implement the factory interface');
     }
@@ -172,7 +177,7 @@ class StartupFactoryTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(
             array(
                 'UniAlteri\Tests\Support\MockProxy2',
-                'UniAlteri\Tests\Support\MockProxy3'
+                'UniAlteri\Tests\Support\MockProxy3',
             ),
             Factory\StartupFactory::listRegisteredFactory()
         );

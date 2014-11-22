@@ -84,7 +84,8 @@ class UniAlteriStatesBundleTest extends \PHPUnit_Framework_TestCase
             $container->get(Loader\FinderInterface::DI_FINDER_SERVICE);
         } catch (Exception\UnavailableFactory $e) {
             $fail = true;
-        } catch (\Exception $e) {}
+        } catch (\Exception $e) {
+        }
 
         $this->assertTrue($fail, 'Error, the service to create finder must throw exception if the DI Container for the class has not registered factory object');
 
