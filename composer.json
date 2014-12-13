@@ -3,7 +3,7 @@
     "type": "symfony-bundle",
     "description": "Bundle of UniAlteri States to use it easily with Symfony 2 + Doctrine",
     "keywords": ["states","class","symfony","bundle"],
-    "time": "2014-11-17",
+    "time": "2014-12-13",
     "homepage": "http://teknoo.it/states",
     "license": ["MIT","GPL-3.0+"],
     "authors": [
@@ -40,10 +40,5 @@
     },
     "archive": {
         "exclude": ["demo", "vendor", ".idea"]
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "0.9-dev"
-        }
     }
 }
