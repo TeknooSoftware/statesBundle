@@ -16,16 +16,15 @@
  * @license     http://teknoo.it/states/license/mit         MIT License
  * @license     http://teknoo.it/states/license/gpl-3.0     GPL v3 License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
- * @version     1.0.0
+ * @version     1.0.1
  */
-
 defined('RUN_CLI_MODE')
     || define('RUN_CLI_MODE', true);
 
 defined('PHPUNIT')
     || define('PHPUNIT', true);
 
-ini_set('memory_limit', '32M');
+ini_set('memory_limit', '16M');
 
 date_default_timezone_set('UTC');
 
