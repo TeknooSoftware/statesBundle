@@ -1,6 +1,6 @@
 <?php
 /**
- * States
+ * StatesBundle
  *
  * LICENSE
  *
@@ -16,7 +16,7 @@
  * @license     http://teknoo.it/states/license/mit         MIT License
  * @license     http://teknoo.it/states/license/gpl-3.0     GPL v3 License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
- * @version     0.9.9
+ * @version     1.0.0
  */
 
 namespace UniAlteri\Tests\Bundle\StatesBundle\Support;
@@ -40,7 +40,7 @@ use \UniAlteri\Bundle\StatesBundle\Entity\IntegratedEntity as AbstractIntegrated
  * @license     http://teknoo.it/states/license/mit         MIT License
  * @license     http://teknoo.it/states/license/gpl-3.0     GPL v3 License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
- * @version     0.9.9
+ * @version     1.0.0
  */
 class IntegratedEntity extends AbstractIntegratedEntity implements
     \Serializable,
