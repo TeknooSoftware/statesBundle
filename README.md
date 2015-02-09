@@ -30,3 +30,8 @@ Generated documentation from the library with PhpDocumentor : [Open](https://cdn
 Behavior Documentation
 ----------------------
 Documentation to explain how this library works : [Behavior](https://github.com/UniAlteri/states/blob/master/docs/howto/behavior.md).
+
+Contribute :)
+-------------
+
+You are welcome to contribute to this project. [Fork it on Github](CONTRIBUTING.md)
