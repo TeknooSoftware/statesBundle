@@ -26,6 +26,7 @@ An example of using this library is available in the folder : [Demo](https://git
 API Documentation
 -----------------
 Generated documentation from the library with PhpDocumentor : [Open](https://cdn.rawgit.com/UniAlteri/states/master/docs/api/index.html).
+Generated documentation from the library with PhpDocumentor : [Open](https://cdn.rawgit.com/UniAlteri/statesBundle/master/docs/api/index.html).
 
 Behavior Documentation
 ----------------------
