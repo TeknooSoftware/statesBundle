@@ -3,13 +3,22 @@ Uni Alteri - States bundle
 
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/37eae306-21fc-4181-be04-9c758e1239bb/mini.png)](https://insight.sensiolabs.com/projects/37eae306-21fc-4181-be04-9c758e1239bb)
 
-Welcome and thank you to having downloaded this bundle. It allows you to write more readable and usable PHP classes,
-by cutting your code according to states of your objects. This an adaptation of the library
-[`States`](http://teknoo.it/states) for Symfony 2+.
+Welcome and thank you to having downloaded this library. It allows you to create easily and cleanly classes with 
+several states, writed in distinct codes blocks, but never used "if conditions" with PHP 5.4+.
+ This an adaptation of the library [`States`](http://teknoo.it/states) for Symfony 2+.
 
 Installation with symfony
 -------------------------
 Instruction to install the States bundle with Symfony 2+ : [Install](docs/install.md).
+
+Requirements
+------------
+This library requires :
+
+    * PHP 5.4+
+    * Pimple ~3.0
+
+Although highly recommended, Composer is not needed, this library can be used with its own psr0 autoloader.
 
 Symfony adaptation
 ------------------
@@ -31,6 +40,15 @@ Generated documentation from the library with PhpDocumentor : [Open](https://cdn
 Behavior Documentation
 ----------------------
 Documentation to explain how this library works : [Behavior](https://github.com/UniAlteri/states/blob/master/docs/howto/behavior.md).
+
+Credits
+-------
+Richard Déloge - <r.deloge@uni-alteri.com> - Lead developer.
+Uni Alteri - <http://agence.net.ua> - <http://teknoo.it>
+
+License
+-------
+States is licensed under the MIT and GPL3+ Licenses - see the licenses folder for details
 
 Contribute :)
 -------------

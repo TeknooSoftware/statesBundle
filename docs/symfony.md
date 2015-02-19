@@ -1,6 +1,12 @@
 Uni Alteri - States bundle
 ===========================
 
+Installation
+------------
+To install this library with composer, run this command :
+
+    composer require unialteri/states-bundle
+
 Integrated entities and factories with doctrine
 -----------------------------------------------
 
