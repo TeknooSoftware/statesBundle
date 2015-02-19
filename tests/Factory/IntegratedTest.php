@@ -1,6 +1,6 @@
 <?php
 /**
- * StatesBundle
+ * StatesBundle.
  *
  * LICENSE
  *
@@ -10,14 +10,17 @@
  * obtain it through the world-wide-web, please send an email
  * to contact@uni-alteri.com so we can send you a copy immediately.
  *
- * @subpackage  StatesBundle
  * @copyright   Copyright (c) 2009-2015 Uni Alteri (http://agence.net.ua)
+ *
  * @link        http://teknoo.it/states Project website
+ *
  * @license     http://teknoo.it/states/license/mit         MIT License
  * @license     http://teknoo.it/states/license/gpl-3.0     GPL v3 License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
- * @version     1.0.1
+ *
+ * @version     1.0.3
  */
+
 namespace UniAlteri\Tests\Bundle\StatesBundle;
 
 use UniAlteri\Bundle\StatesBundle\Factory;
@@ -26,8 +29,10 @@ use UniAlteri\States\Factory\FactoryInterface;
 class IntegratedTest extends \UniAlteri\Tests\States\Factory\IntegratedTest
 {
     /**
-     * Return the Factory Object Interface
-     * @param  boolean          $populateContainer to populate di container of this factory
+     * Return the Factory Object Interface.
+     *
+     * @param boolean $populateContainer to populate di container of this factory
+     *
      * @return FactoryInterface
      */
     public function getFactoryObject($populateContainer = true)
@@ -41,7 +46,7 @@ class IntegratedTest extends \UniAlteri\Tests\States\Factory\IntegratedTest
     }
 
     /**
-     * Test if the factory Integrated initialize the StartupFactory
+     * Test if the factory Integrated initialize the StartupFactory.
      */
     public function testInitialization()
     {

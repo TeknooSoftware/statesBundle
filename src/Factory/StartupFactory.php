@@ -1,6 +1,6 @@
 <?php
 /**
- * StatesBundle
+ * StatesBundle.
  *
  * LICENSE
  *
@@ -10,14 +10,17 @@
  * obtain it through the world-wide-web, please send an email
  * to contact@uni-alteri.com so we can send you a copy immediately.
  *
- * @subpackage  StatesBundle
  * @copyright   Copyright (c) 2009-2015 Uni Alteri (http://agence.net.ua)
+ *
  * @link        http://teknoo.it/states Project website
+ *
  * @license     http://teknoo.it/states/license/mit         MIT License
  * @license     http://teknoo.it/states/license/gpl-3.0     GPL v3 License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
- * @version     1.0.1
+ *
+ * @version     1.0.3
  */
+
 namespace UniAlteri\Bundle\StatesBundle\Factory;
 
 use UniAlteri\States\Loader\LoaderInterface;
@@ -27,15 +30,16 @@ use UniAlteri\States\Factory\Exception;
 
 /**
  * Class StartupFactory
- * Extends of \UniAlteri\States\Factory\StandardStartupFactory to support Doctrine proxy
+ * Extends of \UniAlteri\States\Factory\StandardStartupFactory to support Doctrine proxy.
  *
- * @package     States
- * @subpackage  StatesBundle
  * @copyright   Copyright (c) 2009-2015 Uni Alteri (http://agence.net.ua)
+ *
  * @link        http://teknoo.it/states Project website
+ *
  * @license     http://teknoo.it/states/license/mit         MIT License
  * @license     http://teknoo.it/states/license/gpl-3.0     GPL v3 License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
+ *
  * @api
  */
 class StartupFactory extends Factory\StandardStartupFactory
@@ -46,13 +50,15 @@ class StartupFactory extends Factory\StandardStartupFactory
     protected static $statesLoader;
 
     /**
-     * Registry of factory to use to initialize proxy object
+     * Registry of factory to use to initialize proxy object.
+     *
      * @var Factory\FactoryInterface[]|\ArrayObject
      */
     protected static $factoryRegistry = null;
 
     /**
-     * To register the loader in the startup factory to allow it to finish to load on demand a stated class loaded by doctrine
+     * To register the loader in the startup factory to allow it to finish to load on demand a stated class loaded by doctrine.
+     *
      * @param LoaderInterface $loader
      */
     public static function registerLoader(LoaderInterface $loader)
@@ -61,7 +67,8 @@ class StartupFactory extends Factory\StandardStartupFactory
     }
 
     /**
-     * To finish to load on demand a stated class loaded by doctrine
+     * To finish to load on demand a stated class loaded by doctrine.
+     *
      * @param $statedClassName
      */
     protected static function reloadStatedClass($statedClassName)
@@ -73,10 +80,13 @@ class StartupFactory extends Factory\StandardStartupFactory
 
     /**
      * To find the factory to use for the new proxy object to initialize it with its container and states.
-     * This method is called by the constructor of the stated object
-     * @param  Proxy\ProxyInterface         $proxyObject
-     * @param  string                       $stateName
+     * This method is called by the constructor of the stated object.
+     *
+     * @param Proxy\ProxyInterface $proxyObject
+     * @param string               $stateName
+     *
      * @return boolean
+     *
      * @throws Exception\InvalidArgument    when $factoryIdentifier is not an object
      * @throws Exception\UnavailableFactory when the required factory was not found
      */

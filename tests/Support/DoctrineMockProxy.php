@@ -1,6 +1,6 @@
 <?php
 /**
- * StatesBundle
+ * StatesBundle.
  *
  * LICENSE
  *
@@ -10,14 +10,17 @@
  * obtain it through the world-wide-web, please send an email
  * to contact@uni-alteri.com so we can send you a copy immediately.
  *
- * @subpackage  StatesBundle
  * @copyright   Copyright (c) 2009-2015 Uni Alteri (http://agence.net.ua)
+ *
  * @link        http://teknoo.it/states Project website
+ *
  * @license     http://teknoo.it/states/license/mit         MIT License
  * @license     http://teknoo.it/states/license/gpl-3.0     GPL v3 License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
- * @version     1.0.1
+ *
+ * @version     1.0.3
  */
+
 namespace UniAlteri\Tests\Bundle\StatesBundle\Support;
 
 use Closure;
@@ -48,7 +51,7 @@ class DoctrineMockProxy extends MockProxy implements \Doctrine\ORM\Proxy\Proxy
     }
 
     /**
-     * Retrieves the list of lazy loaded properties for a given proxy
+     * Retrieves the list of lazy loaded properties for a given proxy.
      *
      * @return array Keys are the property names, and values are the default values
      *               for those properties.
@@ -71,8 +74,6 @@ class DoctrineMockProxy extends MockProxy implements \Doctrine\ORM\Proxy\Proxy
      * a single parameter, which is the cloned proxy instance itself.
      *
      * @param Closure|null $cloner
-     *
-     * @return void
      */
     public function __setCloner(Closure $cloner = null)
     {
@@ -82,8 +83,6 @@ class DoctrineMockProxy extends MockProxy implements \Doctrine\ORM\Proxy\Proxy
      * Marks the proxy as initialized or not.
      *
      * @param boolean $initialized
-     *
-     * @return void
      */
     public function __setInitialized($initialized)
     {
@@ -96,8 +95,6 @@ class DoctrineMockProxy extends MockProxy implements \Doctrine\ORM\Proxy\Proxy
      * that triggered initialization and the parameters passed to that method.
      *
      * @param Closure|null $initializer
-     *
-     * @return void
      */
     public function __setInitializer(Closure $initializer = null)
     {
@@ -107,8 +104,6 @@ class DoctrineMockProxy extends MockProxy implements \Doctrine\ORM\Proxy\Proxy
      * Initializes this proxy if its not yet initialized.
      *
      * Acts as a no-op if already initialized.
-     *
-     * @return void
      */
     public function __load()
     {

@@ -1,6 +1,6 @@
 <?php
 /**
- * StatesBundle
+ * StatesBundle.
  *
  * LICENSE
  *
@@ -10,14 +10,17 @@
  * obtain it through the world-wide-web, please send an email
  * to contact@uni-alteri.com so we can send you a copy immediately.
  *
- * @subpackage  StatesBundle
  * @copyright   Copyright (c) 2009-2015 Uni Alteri (http://agence.net.ua)
+ *
  * @link        http://teknoo.it/states Project website
+ *
  * @license     http://teknoo.it/states/license/mit         MIT License
  * @license     http://teknoo.it/states/license/gpl-3.0     GPL v3 License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
- * @version     1.0.1
+ *
+ * @version     1.0.3
  */
+
 namespace UniAlteri\Tests\Bundle\StatesBundle;
 
 use UniAlteri\Bundle\StatesBundle\Factory;
@@ -28,7 +31,7 @@ use UniAlteri\Tests\Support;
 class StartupFactoryTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * Prepare test, reinitialize the StartupFactory
+     * Prepare test, reinitialize the StartupFactory.
      */
     protected function setUp()
     {
@@ -37,7 +40,7 @@ class StartupFactoryTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * The startup factory must throw an exception when the proxy does not implement the proxy interface
+     * The startup factory must throw an exception when the proxy does not implement the proxy interface.
      */
     public function testForwardStartupInvalidProxy()
     {
@@ -52,7 +55,7 @@ class StartupFactoryTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * The startup factory must throw an exception when the proxy cannot be initialized
+     * The startup factory must throw an exception when the proxy cannot be initialized.
      */
     public function testForwardStartupProxyNotInitialized()
     {
@@ -67,7 +70,7 @@ class StartupFactoryTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test normal behavior of forward startup
+     * Test normal behavior of forward startup.
      */
     public function testForwardStartup()
     {
@@ -79,7 +82,7 @@ class StartupFactoryTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test normal behavior of forward startup
+     * Test normal behavior of forward startup.
      */
     public function testForwardStartupFromProxy()
     {
@@ -91,7 +94,7 @@ class StartupFactoryTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test normal behavior of forward startup when the class has been loaded by doctrine and not by the loaded of the library
+     * Test normal behavior of forward startup when the class has been loaded by doctrine and not by the loaded of the library.
      */
     public function testForwardStartupClassLoadedByDoctrine()
     {
@@ -111,7 +114,7 @@ class StartupFactoryTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test normal behavior of forward startup when the class has been loaded by doctrine and not by the loaded of the library
+     * Test normal behavior of forward startup when the class has been loaded by doctrine and not by the loaded of the library.
      */
     public function testForwardStartupClassLoadedByDoctrineLoaderFail()
     {
@@ -134,7 +137,7 @@ class StartupFactoryTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * The startup factory class must throw an exception when the identifier is not a valid string
+     * The startup factory class must throw an exception when the identifier is not a valid string.
      */
     public function testRegisterFactoryInvalidIdentifier()
     {
@@ -164,7 +167,7 @@ class StartupFactoryTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test Factory\StartupFactory::listRegisteredFactory if its return all initialized factory
+     * Test Factory\StartupFactory::listRegisteredFactory if its return all initialized factory.
      */
     public function testListRegisteredFactory()
     {
@@ -183,7 +186,7 @@ class StartupFactoryTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test Factory\StartupFactory::listRegisteredFactory if its return all initialized factory
+     * Test Factory\StartupFactory::listRegisteredFactory if its return all initialized factory.
      */
     public function testListRegisteredFactoryEmpty()
     {

@@ -1,6 +1,6 @@
 <?php
 /**
- * StatesBundle
+ * StatesBundle.
  *
  * LICENSE
  *
@@ -10,14 +10,17 @@
  * obtain it through the world-wide-web, please send an email
  * to contact@uni-alteri.com so we can send you a copy immediately.
  *
- * @subpackage  StatesBundle
  * @copyright   Copyright (c) 2009-2015 Uni Alteri (http://agence.net.ua)
+ *
  * @link        http://teknoo.it/states Project website
+ *
  * @license     http://teknoo.it/states/license/mit         MIT License
  * @license     http://teknoo.it/states/license/gpl-3.0     GPL v3 License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
- * @version     1.0.1
+ *
+ * @version     1.0.3
  */
+
 namespace UniAlteri\Bundle\StatesBundle;
 
 use Symfony\Component\DependencyInjection\Container;
@@ -31,12 +34,12 @@ use UniAlteri\States\States;
 
 /**
  * UniAlteriStatesBundle
- * Bundle to use easily the library UniAlteri States with Symfony 2 + Doctrine
+ * Bundle to use easily the library UniAlteri States with Symfony 2 + Doctrine.
  *
- * @package     States
- * @subpackage  StatesBundle
  * @copyright   Copyright (c) 2009-2015 Uni Alteri (http://agence.net.ua)
+ *
  * @link        http://teknoo.it/states Project website
+ *
  * @license     http://teknoo.it/states/license/mit         MIT License
  * @license     http://teknoo.it/states/license/gpl-3.0     GPL v3 License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
@@ -44,7 +47,8 @@ use UniAlteri\States\States;
 class UniAlteriStatesBundle extends Bundle
 {
     /**
-     * To initialize the states library with symfony
+     * To initialize the states library with symfony.
+     *
      * @throws DI\Exception\ClassNotFound
      */
     public function boot()
@@ -55,7 +59,7 @@ class UniAlteriStatesBundle extends Bundle
         $diContainer = new DI\Container();
 
         //Service to generate a finder for Stated class factory
-        /**
+        /*
          * @param DI\ContainerInterface $container
          * @return Loader\FinderIntegrated
          * @throws Exception\UnavailableFactory if the local factory is not available

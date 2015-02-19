@@ -1,6 +1,6 @@
 <?php
 /**
- * StatesBundle
+ * StatesBundle.
  *
  * LICENSE
  *
@@ -10,14 +10,17 @@
  * obtain it through the world-wide-web, please send an email
  * to contact@uni-alteri.com so we can send you a copy immediately.
  *
- * @subpackage  StatesBundle
  * @copyright   Copyright (c) 2009-2015 Uni Alteri (http://agence.net.ua)
+ *
  * @link        http://teknoo.it/states Project website
+ *
  * @license     http://teknoo.it/states/license/mit         MIT License
  * @license     http://teknoo.it/states/license/gpl-3.0     GPL v3 License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
- * @version     1.0.1
+ *
+ * @version     1.0.3
  */
+
 namespace UniAlteri\Tests\Bundle\StatesBundle\Entity;
 
 use UniAlteri\States\Proxy\ProxyInterface;
@@ -28,7 +31,8 @@ use UniAlteri\Tests\Support\MockStartupFactory;
 class IntegratedEntityTest extends IntegratedTest
 {
     /**
-     * Build a proxy object, into $this->_proxy to test it
+     * Build a proxy object, into $this->_proxy to test it.
+     *
      * @return ProxyInterface
      */
     protected function buildProxy()
@@ -45,7 +49,7 @@ class IntegratedEntityTest extends IntegratedTest
     }
 
     /**
-     * Test exception behavior of the proxy when __set is not implemented into in actives states
+     * Test exception behavior of the proxy when __set is not implemented into in actives states.
      */
     public function testIssetNonImplemented()
     {
@@ -53,7 +57,7 @@ class IntegratedEntityTest extends IntegratedTest
     }
 
     /**
-     * Test if the class initialize its vars from the trait constructor
+     * Test if the class initialize its vars from the trait constructor.
      */
     public function testPostLoadDoctrine()
     {
