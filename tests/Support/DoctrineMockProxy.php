@@ -1,4 +1,5 @@
 <?php
+
 /**
  * StatesBundle.
  *
@@ -82,7 +83,7 @@ class DoctrineMockProxy extends MockProxy implements \Doctrine\ORM\Proxy\Proxy
     /**
      * Marks the proxy as initialized or not.
      *
-     * @param boolean $initialized
+     * @param bool $initialized
      */
     public function __setInitialized($initialized)
     {

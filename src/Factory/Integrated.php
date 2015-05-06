@@ -1,4 +1,5 @@
 <?php
+
 /**
  * StatesBundle.
  *
@@ -50,7 +51,7 @@ class Integrated extends Factory\Integrated
      * @param string $statedClassName the name of the stated class
      * @param string $path            of the stated class
      *
-     * @return boolean
+     * @return bool
      *
      * @throws Exception\UnavailableLoader      if any finder are available for this stated class
      * @throws Exception\UnavailableDIContainer if there are no di container

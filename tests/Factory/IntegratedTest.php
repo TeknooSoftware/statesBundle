@@ -1,4 +1,5 @@
 <?php
+
 /**
  * StatesBundle.
  *
@@ -31,7 +32,7 @@ class IntegratedTest extends \UniAlteri\Tests\States\Factory\IntegratedTest
     /**
      * Return the Factory Object Interface.
      *
-     * @param boolean $populateContainer to populate di container of this factory
+     * @param bool $populateContainer to populate di container of this factory
      *
      * @return FactoryInterface
      */
