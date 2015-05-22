@@ -1,5 +1,16 @@
 #Uni Alteri - States Bundle - Change Log
 
+##[1.0.4] - 2015-05-06
+###Fixed
+- Documentation
+
+##[1.0.3] - 2015-02-15
+###Fixed
+- Api Documentation
+
+###Changed
+- Update Composer dependencies
+
 ##[1.0.2] - 2015-02-09
 ###Changed
 - Documentation updated
