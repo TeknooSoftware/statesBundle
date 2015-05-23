@@ -10,7 +10,7 @@ php:
 
 install:
     - composer self-update
-    - composer update --prefer-dist
+    - composer install --dev --no-interaction
 
 script:
   - phpunit
