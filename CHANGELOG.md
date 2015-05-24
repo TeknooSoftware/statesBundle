@@ -1,5 +1,10 @@
 #Uni Alteri - States Bundle - Change Log
 
+##[1.0.5] - 2015-05-24
+###Added
+- Support of PHP7 (States is 7x faster than with PHP5.5)
+- Add travis file to support IC outside Uni Alteri's server
+
 ##[1.0.4] - 2015-05-06
 ###Fixed
 - Documentation
