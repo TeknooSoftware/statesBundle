@@ -2,7 +2,7 @@
     "name": "unialteri/states-bundle",
     "type": "symfony-bundle",
     "description": "Bundle of UniAlteri States to use it easily with Symfony 2 + Doctrine, Library to create easily and cleanly classes with several states, writed in distinct codes blocks, but never used \"if conditions\" with PHP 5.4+.",
-    "keywords": ["states","class","symfony","bundle"],
+    "keywords": ["states","class","symfony","bundle","state pattern","pattern","behavioral software design pattern"],
     "homepage": "http://teknoo.it/states",
     "license": ["MIT","GPL-3.0+"],
     "authors": [
