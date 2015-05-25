@@ -3,8 +3,10 @@ Uni Alteri - States bundle
 
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/37eae306-21fc-4181-be04-9c758e1239bb/mini.png)](https://insight.sensiolabs.com/projects/37eae306-21fc-4181-be04-9c758e1239bb) [![Build Status](https://travis-ci.org/UniAlteri/statesBundle.svg?branch=master)](https://travis-ci.org/UniAlteri/statesBundle)
 
-Welcome and thank you to having downloaded this library. It allows you to create easily and cleanly classes with 
-several states, writed in distinct codes blocks, but never used "if conditions" with PHP 5.4+.
+Welcome and thank you to having downloaded this library. It allows you to follow and implement the 
+ [State Pattern](http://en.wikipedia.org/wiki/State_pattern)
+ and to create easily and cleanly classes with several states, writed in distinct codes blocks, 
+ but never used "if conditions" with PHP 5.4+.
  This an adaptation of the library [`States`](http://teknoo.it/states) for Symfony 2+.
 
 Installation with symfony
