@@ -59,6 +59,13 @@ class UniAlteriStatesBundle extends Bundle
         //Initial DI Container
         $diContainer = new DI\Container();
 
+        //Create the factory registry in the container for States library >= 1.2 or >= 2.0
+        $factoryReflection = new \ReflectionClass('UniAlteri\States\Factory\FactoryInterface');
+        if ($factoryReflection->hasConstant('DI_FACTORY_REPOSITORY')) {
+            //Initialize the Factory Repository
+            $diContainer->registerInstance(Factory\FactoryInterface::DI_FACTORY_REPOSITORY, new DI\Container());
+        }
+
         //Service to generate a finder for Stated class factory
         /*
          * @param DI\ContainerInterface $container
