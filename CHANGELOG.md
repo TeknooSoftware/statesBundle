@@ -1,5 +1,10 @@
 #Uni Alteri - States Bundle - Change Log
 
+##[1.0.6] - 2015-06-10
+###Added
+- Support of States 2.x
+- Support of States 1.2
+
 ##[1.0.5] - 2015-05-24
 ###Added
 - Support of PHP7 (States is 7x faster than with PHP5.5)
