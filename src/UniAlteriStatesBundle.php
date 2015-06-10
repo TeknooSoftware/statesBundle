@@ -85,12 +85,21 @@ class UniAlteriStatesBundle extends Bundle
         //Register finder generator
         $diContainer->registerService(Loader\FinderInterface::DI_FINDER_SERVICE, $finderService);
 
-        //Register injection closure generator
-        $injectionClosureService = function () {
-            return new DI\InjectionClosure();
-        };
+        //Register injection closure generator only for States library 1.x versions
+        if (interface_exists('UniAlteri\States\DI\InjectionClosureInterface')) {
+            $injectionClosureService = function () {
+                if (!defined('DISABLE_PHP_FLOC_OPERATOR')
+                    && '5.6' <= PHP_VERSION
+                    && class_exists('UniAlteri\States\DI\InjectionClosurePHP56')) {
+                    //Use Injection closure designed for PHP5.6+ if it's available and not disable with the constant DISABLE_PHP_FLOC_OPERATOR
+                    return new DI\InjectionClosurePHP56();
+                } else {
+                    return new DI\InjectionClosure();
+                }
+            };
 
-        $diContainer->registerService(States\StateInterface::INJECTION_CLOSURE_SERVICE_IDENTIFIER, $injectionClosureService);
+            $diContainer->registerService(States\StateInterface::INJECTION_CLOSURE_SERVICE_IDENTIFIER, $injectionClosureService);
+        }
 
         //Stated class loader, initialize
         $includePathManager = new Loader\IncludePathManager();
