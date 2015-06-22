@@ -24,8 +24,6 @@
 
 namespace UniAlteri\Bundle\StatesBundle\Entity;
 
-use UniAlteri\States\Proxy as Proxy;
-
 /**
  * Trait IntegratedTrait
  * Trait adapt integrated proxies to doctrine
