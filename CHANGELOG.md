@@ -1,5 +1,9 @@
 #Uni Alteri - States Bundle - Change Log
 
+##[1.1.0-beta1] - 2015-06-22
+###Changed
+- Define a new complementary trait to write easier new integrated proxies.
+
 ##[1.0.6] - 2015-06-10
 ###Added
 - Support of States 2.x

@@ -24,11 +24,11 @@
 
 namespace UniAlteri\Bundle\StatesBundle\Entity;
 
-use UniAlteri\States\Proxy\Integrated;
-use Doctrine\ORM\Mapping as ORM;
+use UniAlteri\States\Proxy as Proxy;
 
 /**
- * Class IntegratedEntity.
+ * Trait IntegratedTrait
+ * Trait adapt integrated proxies to doctrine
  *
  * @copyright   Copyright (c) 2009-2015 Uni Alteri (http://agence.net.ua)
  *
@@ -37,30 +37,33 @@ use Doctrine\ORM\Mapping as ORM;
  * @license     http://teknoo.it/states/license/mit         MIT License
  * @license     http://teknoo.it/states/license/gpl-3.0     GPL v3 License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
- *
- * @ORM\MappedSuperclass
- * @ORM\HasLifecycleCallbacks
  */
-abstract class IntegratedEntity extends Integrated
+trait IntegratedTrait
 {
-    use IntegratedTrait;
-
     /**
-     * Constructor.
+     * Doctrine does not call the construction and create a new instance without it....
+     * This callback reinitialize proxy.
+     *
+     * @ORM\PostLoad()
      */
-    public function __construct()
+    public function postLoadDoctrine()
     {
-        //Initialize proxy
-        parent::__construct();
-
-        //Select good state
+        //Call the method of the trait to initialize local attributes of the proxy
+        $this->initializeProxy();
+        //Call the startup factory to initialize this proxy
+        $this->initializeObjectWithFactory();
         $this->updateState();
     }
 
     /**
-     * Callback to extends in your entity to apply states according to your entity's value.
+     * No use magic getter/setter here. Add this to be compliant with twig...
+     *
+     * @param string $name
+     *
+     * @return bool|mixed
      */
-    public function updateState()
+    public function __isset($name)
     {
+        return false;
     }
 }
