@@ -1,5 +1,9 @@
 #Uni Alteri - States Bundle - Change Log
 
+##[1.1.0-beta2] - 2015-07-02
+###Added
+- Support of Doctrine ODM Proxy
+
 ##[1.1.0-beta1] - 2015-06-22
 ###Changed
 - Define a new complementary trait to write easier new integrated proxies.
