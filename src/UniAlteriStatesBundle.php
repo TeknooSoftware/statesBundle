@@ -47,7 +47,8 @@ use UniAlteri\States\States;
 class UniAlteriStatesBundle extends Bundle
 {
     /**
-     * To retrieve the composer loader instance from the __autoload stack with PHP's spl function
+     * To retrieve the composer loader instance from the __autoload stack with PHP's spl function.
+     *
      * @return ClassLoader
      */
     protected function getComposerInstance()
@@ -88,7 +89,7 @@ class UniAlteriStatesBundle extends Bundle
             $diContainer->registerInstance(Factory\FactoryInterface::DI_FACTORY_REPOSITORY, new DI\Container());
         }
 
-        /**
+        /*
          * Service to generate a finder for Stated class factory
          * @param DI\ContainerInterface $container
          * @return Loader\FinderComposerIntegrated

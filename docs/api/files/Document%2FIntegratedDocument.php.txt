@@ -22,11 +22,14 @@
 
 namespace UniAlteri\Bundle\StatesBundle\Document;
 
-use UniAlteri\States\Proxy;
+use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
+use UniAlteri\States\Proxy\Exception\IllegalFactory;
+use UniAlteri\States\Proxy\Exception\UnavailableFactory;
+use UniAlteri\States\Proxy\IntegratedInterface;
+use UniAlteri\States\Proxy\ProxyInterface;
 
 /**
- * Trait IntegratedTrait
- * Trait adapt integrated proxies to doctrine.
+ * Class IntegratedDocument.
  *
  * @copyright   Copyright (c) 2009-2015 Uni Alteri (http://agence.net.ua)
  *
@@ -35,47 +38,36 @@ use UniAlteri\States\Proxy;
  * @license     http://teknoo.it/states/license/mit         MIT License
  * @license     http://teknoo.it/states/license/gpl-3.0     GPL v3 License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
+ *
+ * @MongoDB\MappedSuperclass
+ * @MongoDB\HasLifecycleCallbacks
  */
-trait IntegratedTrait
+abstract class IntegratedDocument implements ProxyInterface, IntegratedInterface
 {
-    use Proxy\ProxyTrait,
-        Proxy\IntegratedTrait;
+    use IntegratedTrait;
 
     /**
-     * Doctrine does not call the construction and create a new instance without it....
-     * This callback reinitialize proxy.
+     * Class name of the factory to use in set up to initialize this object in this construction.
      *
-     * @MongoDB\PostLoad()
+     * @var string
      */
-    public function postLoadDoctrine()
+    protected static $startupFactoryClassName = '\UniAlteri\Bundle\StatesBundle\Factory\MongoStartupFactory';
+
+    /**
+     * Default constructor used to initialize the stated object with its factory.
+     *
+     * @throws IllegalFactory
+     * @throws UnavailableFactory
+     */
+    public function __construct()
     {
         //Call the method of the trait to initialize local attributes of the proxy
         $this->initializeProxy();
         //Call the startup factory to initialize this proxy
         $this->initializeObjectWithFactory();
-        //Update states
+
+        //Select good state
         $this->updateState();
     }
-
-    /**
-     * No use magic getter/setter here. Add this to be compliant with twig...
-     *
-     * @param string $name
-     *
-     * @return bool|mixed
-     */
-    public function __isset($name)
-    {
-        return false;
-    }
-
-    /**
-     * Callback to extends in your entity to apply states according to your entity's value.
-     *
-     * @return $this
-     */
-    public function updateState()
-    {
-        return $this;
-    }
 }
+

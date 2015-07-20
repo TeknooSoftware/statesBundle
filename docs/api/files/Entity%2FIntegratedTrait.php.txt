@@ -20,13 +20,13 @@
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
-namespace UniAlteri\Bundle\StatesBundle\Document;
+namespace UniAlteri\Bundle\StatesBundle\Entity;
 
 use UniAlteri\States\Proxy;
 
 /**
  * Trait IntegratedTrait
- * Trait adapt integrated proxies to doctrine.
+ * Trait adapt integrated proxies to doctrine
  *
  * @copyright   Copyright (c) 2009-2015 Uni Alteri (http://agence.net.ua)
  *
@@ -45,7 +45,7 @@ trait IntegratedTrait
      * Doctrine does not call the construction and create a new instance without it....
      * This callback reinitialize proxy.
      *
-     * @MongoDB\PostLoad()
+     * @ORM\PostLoad()
      */
     public function postLoadDoctrine()
     {
@@ -53,7 +53,6 @@ trait IntegratedTrait
         $this->initializeProxy();
         //Call the startup factory to initialize this proxy
         $this->initializeObjectWithFactory();
-        //Update states
         $this->updateState();
     }
 
@@ -79,3 +78,4 @@ trait IntegratedTrait
         return $this;
     }
 }
+

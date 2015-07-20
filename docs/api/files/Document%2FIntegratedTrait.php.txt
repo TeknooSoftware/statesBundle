@@ -26,7 +26,7 @@ use UniAlteri\States\Proxy;
 
 /**
  * Trait IntegratedTrait
- * Trait adapt integrated proxies to doctrine.
+ * Trait adapt integrated proxies to doctrine
  *
  * @copyright   Copyright (c) 2009-2015 Uni Alteri (http://agence.net.ua)
  *

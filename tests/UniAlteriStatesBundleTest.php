@@ -154,7 +154,7 @@ class UniAlteriStatesBundleTest extends \PHPUnit_Framework_TestCase
     public function testLoaderBehaviorIfComposerIsNotAvailable()
     {
         //Fake autoload method to simulate an not empty autoload stack
-        spl_autoload_register(function($className) {return false;});
+        spl_autoload_register(function ($className) {return false;});
 
         //Initialize container
         $bundle = new UniAlteriStatesBundle();
@@ -181,8 +181,10 @@ class UniAlteriStatesBundleTest extends \PHPUnit_Framework_TestCase
             if (is_callable($composerAutoloaderCallback)) {
                 spl_autoload_register($composerAutoloaderCallback, true, true);
             }
+
             return;
-        } catch (\Exception $e) { /* ... */ }
+        } catch (\Exception $e) { /* ... */
+        }
 
         $this->fail('Error, the boot method must throw an exception when the Composer Loader is not available');
 
@@ -218,8 +220,10 @@ class UniAlteriStatesBundleTest extends \PHPUnit_Framework_TestCase
             if (is_callable($composerAutoloaderCallback)) {
                 spl_autoload_register($composerAutoloaderCallback, true, true);
             }
+
             return;
-        } catch (\Exception $e) { /* ... */ }
+        } catch (\Exception $e) { /* ... */
+        }
 
         $this->fail('Error, the boot method must throw an exception when the Composer Loader is not available');
 
