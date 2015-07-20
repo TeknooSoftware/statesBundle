@@ -22,7 +22,6 @@
 
 namespace UniAlteri\Bundle\StatesBundle\Factory;
 
-use UniAlteri\States\Loader\LoaderInterface;
 use UniAlteri\States\Proxy;
 use UniAlteri\States\Factory;
 use UniAlteri\States\Factory\Exception;
@@ -41,42 +40,8 @@ use UniAlteri\States\Factory\Exception;
  *
  * @api
  */
-class MongoStartupFactory extends Factory\StandardStartupFactory
+class MongoStartupFactory extends StartupFactory
 {
-    /**
-     * @var LoaderInterface
-     */
-    protected static $statesLoader;
-
-    /**
-     * Registry of factory to use to initialize proxy object.
-     *
-     * @var Factory\FactoryInterface[]|\ArrayObject
-     */
-    protected static $factoryRegistry = null;
-
-    /**
-     * To register the loader in the startup factory to allow it to finish to load on demand a stated class loaded by doctrine.
-     *
-     * @param LoaderInterface $loader
-     */
-    public static function registerLoader(LoaderInterface $loader)
-    {
-        self::$statesLoader = $loader;
-    }
-
-    /**
-     * To finish to load on demand a stated class loaded by doctrine.
-     *
-     * @param $statedClassName
-     */
-    protected static function reloadStatedClass($statedClassName)
-    {
-        if (self::$statesLoader instanceof LoaderInterface) {
-            self::$statesLoader->loadClass($statedClassName);
-        }
-    }
-
     /**
      * To find the factory to use for the new proxy object to initialize it with its container and states.
      * This method is called by the constructor of the stated object.
