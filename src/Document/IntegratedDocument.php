@@ -22,16 +22,16 @@
  * @version     1.0.3
  */
 
-namespace UniAlteri\Bundle\StatesBundle\Entity;
+namespace UniAlteri\Bundle\StatesBundle\Document;
 
+use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
 use UniAlteri\States\Proxy\Exception\IllegalFactory;
 use UniAlteri\States\Proxy\Exception\UnavailableFactory;
-use Doctrine\ORM\Mapping as ORM;
 use UniAlteri\States\Proxy\IntegratedInterface;
 use UniAlteri\States\Proxy\ProxyInterface;
 
 /**
- * Class IntegratedEntity.
+ * Class IntegratedDocument.
  *
  * @copyright   Copyright (c) 2009-2015 Uni Alteri (http://agence.net.ua)
  *
@@ -41,10 +41,10 @@ use UniAlteri\States\Proxy\ProxyInterface;
  * @license     http://teknoo.it/states/license/gpl-3.0     GPL v3 License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  *
- * @ORM\MappedSuperclass
- * @ORM\HasLifecycleCallbacks
+ * @MongoDB\MappedSuperclass
+ * @MongoDB\HasLifecycleCallbacks
  */
-abstract class IntegratedEntity implements ProxyInterface, IntegratedInterface
+abstract class IntegratedDocument implements ProxyInterface, IntegratedInterface
 {
     use IntegratedTrait;
 
@@ -53,7 +53,7 @@ abstract class IntegratedEntity implements ProxyInterface, IntegratedInterface
      *
      * @var string
      */
-    protected static $startupFactoryClassName = '\UniAlteri\Bundle\StatesBundle\Factory\StartupFactory';
+    protected static $startupFactoryClassName = '\UniAlteri\Bundle\StatesBundle\Factory\MongoStartupFactory';
 
     /**
      * Default constructor used to initialize the stated object with its factory.

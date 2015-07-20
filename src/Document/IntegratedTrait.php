@@ -22,7 +22,7 @@
  * @version     1.0.3
  */
 
-namespace UniAlteri\Bundle\StatesBundle\Entity;
+namespace UniAlteri\Bundle\StatesBundle\Document;
 
 use UniAlteri\States\Proxy;
 
@@ -47,7 +47,7 @@ trait IntegratedTrait
      * Doctrine does not call the construction and create a new instance without it....
      * This callback reinitialize proxy.
      *
-     * @ORM\PostLoad()
+     * @MongoDB\PostLoad()
      */
     public function postLoadDoctrine()
     {
@@ -55,6 +55,7 @@ trait IntegratedTrait
         $this->initializeProxy();
         //Call the startup factory to initialize this proxy
         $this->initializeObjectWithFactory();
+        //Update states
         $this->updateState();
     }
 

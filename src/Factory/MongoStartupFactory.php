@@ -43,7 +43,7 @@ use UniAlteri\States\Factory\Exception;
  *
  * @api
  */
-class StartupFactory extends Factory\StandardStartupFactory
+class MongoStartupFactory extends Factory\StandardStartupFactory
 {
     /**
      * @var LoaderInterface
@@ -99,7 +99,7 @@ class StartupFactory extends Factory\StandardStartupFactory
 
         //If the entity object if a doctrine proxy, retrieve the proxy class name from its parent
         $factoryIdentifier = null;
-        if ($proxyObject instanceof \Doctrine\ORM\Proxy\Proxy) {
+        if ($proxyObject instanceof \Doctrine\ODM\MongoDB\Proxy\Proxy) {
             $factoryIdentifier = get_parent_class($proxyObject);
         } else {
             //Normal behavior
