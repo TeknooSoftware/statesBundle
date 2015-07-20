@@ -8,7 +8,8 @@ php:
   - 5.6
   - 7
 
-before_script: phpenv config-add php-config.ini
+before_script:
+  - echo "extension = mongo.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
 
 install:
   - composer self-update
