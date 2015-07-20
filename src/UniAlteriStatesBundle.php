@@ -64,6 +64,11 @@ class UniAlteriStatesBundle extends Bundle
             }
         }
 
+        $path = __DIR__.'/../../../autoload.php';
+        if (file_exists($path)) {
+            return include $path;
+        }
+
         throw new \RuntimeException('Error, the Composer loader component is not available');
     }
 
