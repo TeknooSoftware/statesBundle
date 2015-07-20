@@ -23,6 +23,7 @@
 namespace UniAlteri\Bundle\StatesBundle;
 
 use Composer\Autoload\ClassLoader;
+use Symfony\Component\Debug\DebugClassLoader;
 use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 use UniAlteri\Bundle\StatesBundle\Factory\StartupFactory;
@@ -57,16 +58,19 @@ class UniAlteriStatesBundle extends Bundle
 
         if (!empty($autoloadCallbackList)) {
             foreach ($autoloadCallbackList as $autoloadCallback) {
-                if (is_array($autoloadCallback) && isset($autoloadCallback[0])
-                    && $autoloadCallback[0] instanceof ClassLoader) {
-                    return $autoloadCallback[0];
+                if (is_array($autoloadCallback) && isset($autoloadCallback[0])) {
+                    if ($autoloadCallback[0] instanceof ClassLoader) {
+                        return $autoloadCallback[0];
+                    }
+
+                    if ($autoloadCallback[0] instanceof DebugClassLoader) {
+                        $classLoader = $autoloadCallback[0]->getClassLoader();
+                        if (is_array($classLoader) && $classLoader[0] instanceof ClassLoader) {
+                            return $classLoader[0];
+                        }
+                    }
                 }
             }
-        }
-
-        $path = __DIR__.'/../../../autoload.php';
-        if (file_exists($path)) {
-            return include $path;
         }
 
         throw new \RuntimeException('Error, the Composer loader component is not available');
