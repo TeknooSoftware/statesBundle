@@ -1,5 +1,12 @@
 #Uni Alteri - States Bundle - Change Log
 
+##[1.1.0-beta3] - 2015-07-02
+###Changed
+- Split Entity and Document support in two traits
+
+###Added
+- Added support of LoaderComposer instead of LoaderStandard in bundle to avoid multiple autoloading mapping
+
 ##[1.1.0-beta2] - 2015-07-02
 ###Added
 - Support of Doctrine ODM Proxy
