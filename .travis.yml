@@ -9,7 +9,7 @@ php:
   - 7
 
 install:
-  - pecl install -f mongo-1.2.12
+  - pecl install mongo
   - composer self-update
   - composer install --dev --prefer-source --no-interaction
 
