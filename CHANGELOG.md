@@ -1,6 +1,10 @@
 #Uni Alteri - States Bundle - Change Log
 
-##[1.1.0-beta3] - 2015-07-02
+##[1.1.0-beta4] - 2015-07-23
+###Fixed
+- Some tests issues
+
+##[1.1.0-beta3] - 2015-07-19
 ###Changed
 - Split Entity and Document support in two traits
 
