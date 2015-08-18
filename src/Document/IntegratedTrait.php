@@ -58,18 +58,6 @@ trait IntegratedTrait
     }
 
     /**
-     * No use magic getter/setter here. Add this to be compliant with twig...
-     *
-     * @param string $name
-     *
-     * @return bool|mixed
-     */
-    public function __isset($name)
-    {
-        return false;
-    }
-
-    /**
      * Callback to extends in your entity to apply states according to your entity's value.
      *
      * @return $this

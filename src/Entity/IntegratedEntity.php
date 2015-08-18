@@ -61,12 +61,6 @@ abstract class IntegratedEntity implements ProxyInterface, IntegratedInterface
      */
     public function __construct()
     {
-        //Call the method of the trait to initialize local attributes of the proxy
-        $this->initializeProxy();
-        //Call the startup factory to initialize this proxy
-        $this->initializeObjectWithFactory();
-
-        //Select good state
-        $this->updateState();
+        $this->postLoadDoctrine();
     }
 }

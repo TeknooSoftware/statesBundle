@@ -44,11 +44,6 @@ use UniAlteri\States\Factory\Exception;
 class StartupFactory extends Factory\StandardStartupFactory
 {
     /**
-     * @var LoaderInterface
-     */
-    protected static $statesLoader;
-
-    /**
      * Registry of factory to use to initialize proxy object.
      *
      * @var Factory\FactoryInterface[]|\ArrayObject
@@ -56,45 +51,10 @@ class StartupFactory extends Factory\StandardStartupFactory
     protected static $factoryRegistry = null;
 
     /**
-     * To register the loader in the startup factory to allow it to finish to load on demand a stated class loaded by doctrine.
-     *
-     * @param LoaderInterface $loader
+     * {@inheritdoc}
      */
-    public static function registerLoader(LoaderInterface $loader)
+    public static function forwardStartup(Proxy\ProxyInterface $proxyObject, \string $stateName = null): FactoryInterface
     {
-        self::$statesLoader = $loader;
-    }
-
-    /**
-     * To finish to load on demand a stated class loaded by doctrine.
-     *
-     * @param $statedClassName
-     */
-    protected static function reloadStatedClass($statedClassName)
-    {
-        if (self::$statesLoader instanceof LoaderInterface) {
-            self::$statesLoader->loadClass($statedClassName);
-        }
-    }
-
-    /**
-     * To find the factory to use for the new proxy object to initialize it with its container and states.
-     * This method is called by the constructor of the stated object.
-     *
-     * @param Proxy\ProxyInterface $proxyObject
-     * @param string               $stateName
-     *
-     * @return bool
-     *
-     * @throws Exception\InvalidArgument    when $factoryIdentifier is not an object
-     * @throws Exception\UnavailableFactory when the required factory was not found
-     */
-    public static function forwardStartup($proxyObject, $stateName = null)
-    {
-        if (!$proxyObject instanceof Proxy\ProxyInterface) {
-            throw new Exception\InvalidArgument('Error the proxy does not implement the Proxy\ProxyInterface');
-        }
-
         //If the entity object if a doctrine proxy, retrieve the proxy class name from its parent
         $factoryIdentifier = null;
         if ($proxyObject instanceof \Doctrine\ORM\Proxy\Proxy) {
@@ -102,11 +62,6 @@ class StartupFactory extends Factory\StandardStartupFactory
         } else {
             //Normal behavior
             $factoryIdentifier = get_class($proxyObject);
-        }
-
-        if (!static::$factoryRegistry instanceof \ArrayObject || !isset(static::$factoryRegistry[$factoryIdentifier])) {
-            //Stated class has been partially loaded by doctrine, finish to load it
-            self::reloadStatedClass($factoryIdentifier);
         }
 
         if (!static::$factoryRegistry instanceof \ArrayObject || !isset(static::$factoryRegistry[$factoryIdentifier])) {

@@ -41,29 +41,20 @@ use UniAlteri\States\Factory\Exception;
 class Integrated extends Factory\Integrated
 {
     /**
-     * Method called by the Loader to initialize the stated class :
-     * It registers the class name and its path, retrieves the DI Container,
-     * register the factory in the DI Container, it retrieves the finder object and load the proxy
-     * from the finder.
-     *
-     * @param string $statedClassName the name of the stated class
-     * @param string $path            of the stated class
-     *
-     * @return bool
-     *
-     * @throws Exception\UnavailableLoader      if any finder are available for this stated class
-     * @throws Exception\UnavailableDIContainer if there are no di container
+     * {@inheritdoc}
      */
-    public function initialize($statedClassName, $path)
+    protected function initialize(\string $statedClassName): FactoryInterface
     {
         //Call trait's method to initialize this stated class
-        $this->traitInitialize($statedClassName, $path);
+        $this->traitInitialize($statedClassName);
+
         //Build the factory identifier (the proxy class name)
         $parts = explode('\\', $statedClassName);
         $statedClassName .= '\\'.array_pop($parts);
+
         //Register this factory into the startup factory
-        //(Use the \UniAlteri\Bundle\StatesBundle\Factory\StartupFactory instead
-        //  of \UniAlteri\States\Factory\StartupFactory)
         StartupFactory::registerFactory($statedClassName, $this);
+
+        return $this;
     }
 }

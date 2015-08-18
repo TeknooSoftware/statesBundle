@@ -53,19 +53,8 @@ trait IntegratedTrait
         $this->initializeProxy();
         //Call the startup factory to initialize this proxy
         $this->initializeObjectWithFactory();
+        //Select good state
         $this->updateState();
-    }
-
-    /**
-     * No use magic getter/setter here. Add this to be compliant with twig...
-     *
-     * @param string $name
-     *
-     * @return bool|mixed
-     */
-    public function __isset($name)
-    {
-        return false;
     }
 
     /**

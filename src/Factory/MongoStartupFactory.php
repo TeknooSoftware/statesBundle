@@ -43,23 +43,10 @@ use UniAlteri\States\Factory\Exception;
 class MongoStartupFactory extends StartupFactory
 {
     /**
-     * To find the factory to use for the new proxy object to initialize it with its container and states.
-     * This method is called by the constructor of the stated object.
-     *
-     * @param Proxy\ProxyInterface $proxyObject
-     * @param string               $stateName
-     *
-     * @return bool
-     *
-     * @throws Exception\InvalidArgument    when $factoryIdentifier is not an object
-     * @throws Exception\UnavailableFactory when the required factory was not found
+     * {@inheritdoc}
      */
-    public static function forwardStartup($proxyObject, $stateName = null)
+    public static function forwardStartup(Proxy\ProxyInterface $proxyObject, \string $stateName = null): FactoryInterface
     {
-        if (!$proxyObject instanceof Proxy\ProxyInterface) {
-            throw new Exception\InvalidArgument('Error the proxy does not implement the Proxy\ProxyInterface');
-        }
-
         //If the entity object if a doctrine proxy, retrieve the proxy class name from its parent
         $factoryIdentifier = null;
         if ($proxyObject instanceof \Doctrine\ODM\MongoDB\Proxy\Proxy) {
@@ -74,8 +61,7 @@ class MongoStartupFactory extends StartupFactory
             self::reloadStatedClass($factoryIdentifier);
         }
 
-        if (!static::$factoryRegistry instanceof \ArrayObject || !isset(static::$factoryRegistry[$factoryIdentifier])) {
-            //we can not found definitely the factory for this stated class
+        if (!static::$factoryRegistry instanceof \ArrayAccess || !isset(static::$factoryRegistry[$factoryIdentifier])) {
             throw new Exception\UnavailableFactory(
                 sprintf('Error, the factory "%s" is not available', $factoryIdentifier)
             );
