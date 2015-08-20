@@ -20,16 +20,13 @@
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
-namespace UniAlteri\Bundle\StatesBundle\Document;
+namespace UniAlteri\Bundle\StatesBundle\Doctrine;
 
-use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
-use UniAlteri\States\Proxy\Exception\IllegalFactory;
-use UniAlteri\States\Proxy\Exception\UnavailableFactory;
-use UniAlteri\States\Proxy\IntegratedInterface;
-use UniAlteri\States\Proxy\ProxyInterface;
+use Doctrine\Common\Persistence\Event\LoadClassMetadataEventArgs;
+use UniAlteri\States\Loader\LoaderInterface;
 
 /**
- * Class IntegratedDocument.
+ * Class LoadClassMetaListener
  *
  * @copyright   Copyright (c) 2009-2015 Uni Alteri (http://uni-alteri.com)
  *
@@ -38,29 +35,29 @@ use UniAlteri\States\Proxy\ProxyInterface;
  * @license     http://teknoo.it/license/mit         MIT License
  * @license     http://teknoo.it/license/gpl-3.0     GPL v3 License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
- *
- * @MongoDB\MappedSuperclass
- * @MongoDB\HasLifecycleCallbacks
  */
-abstract class IntegratedDocument implements ProxyInterface, IntegratedInterface
+class LoadClassMetaListener
 {
-    use IntegratedTrait;
+    /**
+     * @var LoaderInterface
+     */
+    protected $loader;
 
     /**
-     * Class name of the factory to use in set up to initialize this object in this construction.
-     *
-     * @var string
+     * @param LoaderInterface $loader
      */
-    protected static $startupFactoryClassName = '\UniAlteri\Bundle\StatesBundle\Factory\MongoStartupFactory';
-
-    /**
-     * Default constructor used to initialize the stated object with its factory.
-     *
-     * @throws IllegalFactory
-     * @throws UnavailableFactory
-     */
-    public function __construct()
+    public function __construct(LoaderInterface $loader)
     {
-        $this->postLoadDoctrine();
+        $this->loader = $loader;
+    }
+
+    /**
+     * @param LoadClassMetadataEventArgs $eventArgs
+     */
+    public function loadClassMetadata(LoadClassMetadataEventArgs $eventArgs)
+    {
+        $classMeta = $eventArgs->getClassMetadata();
+        $canonicalClassName = $classMeta->getName();
+        $this->loader->loadClass($canonicalClassName);
     }
 }

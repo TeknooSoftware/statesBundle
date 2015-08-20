@@ -11,21 +11,24 @@
  * obtain it through the world-wide-web, please send an email
  * to contact@uni-alteri.com so we can send you a copy immediately.
  *
- * @copyright   Copyright (c) 2009-2015 Uni Alteri (http://agence.net.ua)
+ * @copyright   Copyright (c) 2009-2015 Uni Alteri (http://uni-alteri.com)
  *
  * @link        http://teknoo.it/states Project website
  *
- * @license     http://teknoo.it/states/license/mit         MIT License
- * @license     http://teknoo.it/states/license/gpl-3.0     GPL v3 License
+ * @license     http://teknoo.it/license/mit         MIT License
+ * @license     http://teknoo.it/license/gpl-3.0     GPL v3 License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
 namespace UniAlteri\Bundle\StatesBundle;
 
 use Composer\Autoload\ClassLoader;
+use Doctrine\Common\EventManager;
+use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\Debug\DebugClassLoader;
 use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
+use UniAlteri\Bundle\StatesBundle\Doctrine\LoadClassMetaListener;
 use UniAlteri\Bundle\StatesBundle\Factory\StartupFactory;
 use UniAlteri\States\DI;
 use UniAlteri\States\Loader;
@@ -37,12 +40,12 @@ use UniAlteri\States\States;
  * UniAlteriStatesBundle
  * Bundle to use easily the library UniAlteri States with Symfony 2 + Doctrine.
  *
- * @copyright   Copyright (c) 2009-2015 Uni Alteri (http://agence.net.ua)
+ * @copyright   Copyright (c) 2009-2015 Uni Alteri (http://uni-alteri.com)
  *
  * @link        http://teknoo.it/states Project website
  *
- * @license     http://teknoo.it/states/license/mit         MIT License
- * @license     http://teknoo.it/states/license/gpl-3.0     GPL v3 License
+ * @license     http://teknoo.it/license/mit         MIT License
+ * @license     http://teknoo.it/license/gpl-3.0     GPL v3 License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 class UniAlteriStatesBundle extends Bundle
@@ -77,6 +80,18 @@ class UniAlteriStatesBundle extends Bundle
     }
 
     /**
+     * @param LoaderInterface $loader
+     */
+    protected function registerLoadClassMetaListener(LoaderInterface $loader)
+    {
+        $loadClassMetaListener = new LoadClassMetaListener($loader);
+        $eventListener = $this->container->get('doctrine.event_listener');
+        if ($eventListener instanceof EventManager) {
+            $eventListener->addEventListener('loadClassMetadata', $loadClassMetaListener);
+        }
+    }
+
+    /**
      * To initialize the states library with Symfony.
      *
      * @throws DI\Exception\ClassNotFound
@@ -101,13 +116,6 @@ class UniAlteriStatesBundle extends Bundle
 
         $factoryRepository = new \ArrayObject();
         $loader = new Loader\LoaderComposer($composerInstance, $finderFactory, $factoryRepository);
-
-        //Register autoload function in the spl autoloader stack
-        spl_autoload_register(
-            array($loader, 'loadClass'),
-            true,
-            true
-        );
 
         //Register autoload function in the spl autoloader stack
         spl_autoload_register(
