@@ -17,8 +17,10 @@ Requirements
 ------------
 This library requires :
 
-    * PHP 5.4+
-    * Pimple ~3.0
+    * PHP 7+
+    * Composer
+    * Symfony 2.7+
+    * Doctrine (Orm or Odm/Mongo)
 
 Symfony adaptation
 ------------------

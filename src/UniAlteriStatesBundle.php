@@ -24,17 +24,13 @@ namespace UniAlteri\Bundle\StatesBundle;
 
 use Composer\Autoload\ClassLoader;
 use Doctrine\Common\EventManager;
-use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\Debug\DebugClassLoader;
 use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 use UniAlteri\Bundle\StatesBundle\Doctrine\LoadClassMetaListener;
-use UniAlteri\Bundle\StatesBundle\Factory\StartupFactory;
-use UniAlteri\States\DI;
-use UniAlteri\States\Loader;
-use UniAlteri\States\Exception;
-use UniAlteri\States\Factory;
-use UniAlteri\States\States;
+use UniAlteri\States\Loader\LoaderInterface;
+use UniAlteri\States\Loader\FinderComposerIntegrated;
+use UniAlteri\States\Loader\LoaderComposer;
 
 /**
  * UniAlteriStatesBundle
@@ -93,8 +89,6 @@ class UniAlteriStatesBundle extends Bundle
 
     /**
      * To initialize the states library with Symfony.
-     *
-     * @throws DI\Exception\ClassNotFound
      */
     public function boot()
     {
@@ -107,15 +101,14 @@ class UniAlteriStatesBundle extends Bundle
          * Service to generate a finder for Stated class factory
          * @param string $statedClassName
          * @param string $path
-         * @return Loader\FinderComposerIntegrated
-         * @throws Exception\UnavailableFactory if the local factory is not available
+         * @return FinderComposerIntegrated
          */
         $finderFactory = function (\string $statedClassName, \string $path) use ($composerInstance) {
-            return new Loader\FinderComposerIntegrated($statedClassName, $path, $composerInstance);
+            return new FinderComposerIntegrated($statedClassName, $path, $composerInstance);
         };
 
         $factoryRepository = new \ArrayObject();
-        $loader = new Loader\LoaderComposer($composerInstance, $finderFactory, $factoryRepository);
+        $loader = new LoaderComposer($composerInstance, $finderFactory, $factoryRepository);
 
         //Register autoload function in the spl autoloader stack
         spl_autoload_register(
@@ -123,6 +116,8 @@ class UniAlteriStatesBundle extends Bundle
             true,
             true
         );
+
+        $this->registerLoadClassMetaListener($loader);
 
         if ($this->container instanceof Container) {
             $this->container->set('unialteri.states.loader', $loader);

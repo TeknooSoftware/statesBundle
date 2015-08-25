@@ -56,11 +56,6 @@ class MongoStartupFactory extends StartupFactory
             $factoryIdentifier = get_class($proxyObject);
         }
 
-        if (!static::$factoryRegistry instanceof \ArrayObject || !isset(static::$factoryRegistry[$factoryIdentifier])) {
-            //Stated class has been partially loaded by doctrine, finish to load it
-            self::reloadStatedClass($factoryIdentifier);
-        }
-
         if (!static::$factoryRegistry instanceof \ArrayAccess || !isset(static::$factoryRegistry[$factoryIdentifier])) {
             throw new Exception\UnavailableFactory(
                 sprintf('Error, the factory "%s" is not available', $factoryIdentifier)
