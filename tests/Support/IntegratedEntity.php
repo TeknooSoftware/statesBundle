@@ -56,7 +56,7 @@ class IntegratedEntity extends AbstractIntegratedEntity implements
     use ArrayAccessTrait,
         MagicCallTrait,
         IteratorTrait,
-        SerializableTrait
+        SerializableTrait;
 
     /**
      * Class name of the factory to use during set up to initialize this object.

@@ -41,20 +41,6 @@ class IntegratedEntityTest extends IntegratedTest
         return $this->proxy;
     }
 
-    public function testIsset()
-    {
-        $proxy = $this->buildProxy();
-        $this->assertFalse(isset($proxy->foo));
-    }
-
-    /**
-     * Test exception behavior of the proxy when __set is not implemented into in actives states.
-     */
-    public function testIssetNonImplemented()
-    {
-        //Isset is always implemented here
-    }
-
     /**
      * Test if the class initialize its vars from the trait constructor.
      */
@@ -69,19 +55,6 @@ class IntegratedEntityTest extends IntegratedTest
         $this->assertSame($proxy, MockStartupFactory::$calledProxyObject);
 
         return;
-    }
-
-    public function testInStateNotStringBundle()
-    {
-        $proxy = $this->buildProxy();
-
-        try {
-            $proxy->inState(new \stdClass());
-        } catch (\Exception $e) {
-            return;
-        }
-
-        $this->fail('Error, the method must throw an exception when the argument is not valid');
     }
 
     public function testInStateNotInitializedBundle()

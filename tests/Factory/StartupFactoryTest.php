@@ -39,21 +39,6 @@ class StartupFactoryTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * The startup factory must throw an exception when the proxy does not implement the proxy interface.
-     */
-    public function testForwardStartupInvalidProxy()
-    {
-        try {
-            Factory\StartupFactory::forwardStartup(new \stdClass());
-        } catch (Exception\InvalidArgument $e) {
-            return;
-        } catch (\Exception $e) {
-        }
-
-        $this->fail('Error, the startup factory must throw an exception when the proxy does not implement the proxy interface');
-    }
-
-    /**
      * The startup factory must throw an exception when the proxy cannot be initialized.
      */
     public function testForwardStartupProxyNotInitialized()
@@ -73,7 +58,7 @@ class StartupFactoryTest extends \PHPUnit_Framework_TestCase
      */
     public function testForwardStartup()
     {
-        $factory = new Support\MockFactory();
+        $factory = new Support\MockFactory('My\Stated\Class', new Support\MockFinder('My\Stated\Class', 'path/to/class'), new \ArrayObject());
         Factory\StartupFactory::registerFactory('UniAlteri\Tests\Support\MockProxy', $factory);
         $proxy = new Support\MockProxy(null);
         Factory\StartupFactory::forwardStartup($proxy);
@@ -85,7 +70,7 @@ class StartupFactoryTest extends \PHPUnit_Framework_TestCase
      */
     public function testForwardStartupFromProxy()
     {
-        $factory = new Support\MockFactory();
+        $factory = new Support\MockFactory('My\Stated\Class', new Support\MockFinder('My\Stated\Class', 'path/to/class'), new \ArrayObject());
         Factory\StartupFactory::registerFactory('UniAlteri\Tests\Support\MockProxy', $factory);
         $proxy = new DoctrineMockProxy(null);
         Factory\StartupFactory::forwardStartup($proxy);
@@ -93,84 +78,11 @@ class StartupFactoryTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test normal behavior of forward startup when the class has been loaded by doctrine and not by the loaded of the library.
-     */
-    public function testForwardStartupClassLoadedByDoctrine()
-    {
-        $factory = new Support\MockFactory();
-        $proxy = new DoctrineMockProxy(null);
-        $loaderMock = $this->getMock('UniAlteri\States\Loader\LoaderStandard', ['loadClass'], [], '', false);
-        $loaderMock->expects($this->once())
-            ->method('loadClass')
-            ->with($this->equalTo('UniAlteri\Tests\Support\MockProxy'))
-            ->willReturnCallback(function () use ($factory) {
-                Factory\StartupFactory::registerFactory('UniAlteri\Tests\Support\MockProxy', $factory);
-            });
-
-        Factory\StartupFactory::registerLoader($loaderMock);
-        Factory\StartupFactory::forwardStartup($proxy);
-        $this->assertSame($factory->getStartupProxy(), $proxy);
-    }
-
-    /**
-     * Test normal behavior of forward startup when the class has been loaded by doctrine and not by the loaded of the library.
-     */
-    public function testForwardStartupClassLoadedByDoctrineLoaderFail()
-    {
-        $proxy = new DoctrineMockProxy(null);
-        $loaderMock = $this->getMock('UniAlteri\States\Loader\LoaderStandard', ['loadClass'], [], '', false);
-        $loaderMock->expects($this->once())
-            ->method('loadClass')
-            ->with($this->equalTo('UniAlteri\Tests\Support\MockProxy'));
-
-        Factory\StartupFactory::registerLoader($loaderMock);
-
-        try {
-            Factory\StartupFactory::forwardStartup($proxy);
-        } catch (Exception\UnavailableFactory $e) {
-            return;
-        } catch (\Exception $e) {
-        }
-
-        $this->fail('Error, the startup factory must throw an exception when the proxy cannot be initialized');
-    }
-
-    /**
-     * The startup factory class must throw an exception when the identifier is not a valid string.
-     */
-    public function testRegisterFactoryInvalidIdentifier()
-    {
-        try {
-            Factory\StartupFactory::registerFactory(array(), new Support\MockFactory());
-        } catch (Exception\InvalidArgument $exception) {
-            return;
-        } catch (\Exception $e) {
-        }
-
-        $this->fail('Error, the startup factory class must throw an exception when the identifier is not a valid string');
-    }
-
-    /**
-     * The startup factory class must throw an exception when the registering factory does not implement the factory interface.
-     */
-    public function testRegisterFactoryInvalidFactory()
-    {
-        try {
-            Factory\StartupFactory::registerFactory('bar', new \stdClass());
-        } catch (Exception\IllegalFactory $exception) {
-            return;
-        } catch (\Exception $e) {
-        }
-
-        $this->fail('Error, the startup factory class must throw an exception when the registering factory does not implement the factory interface');
-    }
-
-    /**
      * Test Factory\StartupFactory::listRegisteredFactory if its return all initialized factory.
      */
     public function testListRegisteredFactory()
     {
-        $factory = new Support\MockFactory();
+        $factory = new Support\MockFactory('My\Stated\Class', new Support\MockFinder('My\Stated\Class', 'path/to/class'), new \ArrayObject());
         Factory\StartupFactory::registerFactory('UniAlteri\Tests\Support\MockProxy1', $factory);
         Factory\StartupFactory::reset();
         Factory\StartupFactory::registerFactory('UniAlteri\Tests\Support\MockProxy2', $factory);

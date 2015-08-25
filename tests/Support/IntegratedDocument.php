@@ -55,7 +55,8 @@ class IntegratedDocument extends AbstractIntegratedDocument implements
     use ArrayAccessTrait,
         MagicCallTrait,
         IteratorTrait,
-        SerializableTrait
+        SerializableTrait;
+
     /**
      * Class name of the factory to use during set up to initialize this object.
      * It is a virtual factory, it does nothing except logs actions.
