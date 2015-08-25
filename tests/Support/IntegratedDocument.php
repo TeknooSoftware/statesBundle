@@ -42,11 +42,7 @@ use UniAlteri\Bundle\StatesBundle\Document\IntegratedDocument as AbstractIntegra
  * @license     http://teknoo.it/license/gpl-3.0     GPL v3 License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
-class IntegratedDocument extends AbstractIntegratedDocument implements
-    \Serializable,
-    \ArrayAccess,
-    \SeekableIterator,
-    \Countable
+class IntegratedDocument extends AbstractIntegratedDocument
 {
     /**
      * Class name of the factory to use during set up to initialize this object.

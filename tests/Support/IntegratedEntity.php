@@ -42,11 +42,7 @@ use UniAlteri\Bundle\StatesBundle\Entity\IntegratedEntity as AbstractIntegratedE
  * @license     http://teknoo.it/license/gpl-3.0     GPL v3 License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
-class IntegratedEntity extends AbstractIntegratedEntity implements
-    \Serializable,
-    \ArrayAccess,
-    \SeekableIterator,
-    \Countable
+class IntegratedEntity extends AbstractIntegratedEntity
 {
     /**
      * Class name of the factory to use during set up to initialize this object.
