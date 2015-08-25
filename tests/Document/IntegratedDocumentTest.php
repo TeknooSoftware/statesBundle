@@ -57,7 +57,6 @@ class IntegratedDocumentTest extends IntegratedTest
         return;
     }
 
-
     public function testInStateNotInitializedBundle()
     {
         $proxyReflectionClass = new \ReflectionClass('\UniAlteri\Tests\Bundle\StatesBundle\Support\IntegratedDocument');

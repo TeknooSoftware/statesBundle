@@ -28,7 +28,7 @@ use UniAlteri\States\Loader\LoaderInterface;
 /**
  * Class LoadClassMetaListener
  * Class to implement a doctrine listener on classmetadata event to check if the current stated class
- * manipulate by doctrine is fully loaded
+ * manipulate by doctrine is fully loaded.
  *
  * @copyright   Copyright (c) 2009-2015 Uni Alteri (http://uni-alteri.com)
  *
@@ -55,7 +55,8 @@ class LoadClassMetaListener
 
     /**
      * Notified by doctine of the event, retrieve the stated class name and check load with the
-     * States library's loader
+     * States library's loader.
+     *
      * @param LoadClassMetadataEventArgs $eventArgs
      */
     public function loadClassMetadata(LoadClassMetadataEventArgs $eventArgs)

@@ -29,6 +29,7 @@ class IntegratedTest extends \UniAlteri\Tests\States\Factory\IntegratedTest
 {
     /**
      * @param FinderInterface $finder
+     *
      * @return Factory\Integrated
      */
     public function getFactoryObject(FinderInterface $finder)

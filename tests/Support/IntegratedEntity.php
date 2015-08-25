@@ -52,7 +52,6 @@ class IntegratedEntity extends AbstractIntegratedEntity implements
     \SeekableIterator,
     \Countable
 {
-
     use ArrayAccessTrait,
         MagicCallTrait,
         IteratorTrait,

@@ -22,14 +22,10 @@
 
 namespace UniAlteri\Tests\Bundle\StatesBundle;
 
-use Composer\Autoload\ClassLoader;
 use Symfony\Component\DependencyInjection\Container;
 use UniAlteri\Bundle\StatesBundle\UniAlteriStatesBundle;
 use UniAlteri\States;
 use UniAlteri\States\Loader;
-use UniAlteri\States\Factory;
-use UniAlteri\States\Exception;
-use UniAlteri\Tests\Support;
 
 class UniAlteriStatesBundleTest extends \PHPUnit_Framework_TestCase
 {
