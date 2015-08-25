@@ -22,7 +22,6 @@
 
 namespace UniAlteri\Bundle\StatesBundle\Factory;
 
-use UniAlteri\States\Factory\Exception;
 use UniAlteri\States\Factory\FactoryInterface;
 use UniAlteri\States\Factory\Integrated as StatesIntegrated;
 
