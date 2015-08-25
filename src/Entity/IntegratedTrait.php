@@ -22,7 +22,8 @@
 
 namespace UniAlteri\Bundle\StatesBundle\Entity;
 
-use UniAlteri\States\Proxy;
+use UniAlteri\States\Proxy\ProxyTrait;
+use UniAlteri\States\Proxy\IntegratedTrait as ProxyIntegratedTrait;
 
 /**
  * Trait IntegratedTrait
@@ -38,8 +39,8 @@ use UniAlteri\States\Proxy;
  */
 trait IntegratedTrait
 {
-    use Proxy\ProxyTrait,
-        Proxy\IntegratedTrait;
+    use ProxyTrait,
+        ProxyIntegratedTrait;
 
     /**
      * Doctrine does not call the construction and create a new instance without it....

@@ -22,10 +22,11 @@
 
 namespace UniAlteri\Bundle\StatesBundle\Factory;
 
-use UniAlteri\States\Loader\LoaderInterface;
-use UniAlteri\States\Proxy;
-use UniAlteri\States\Factory;
-use UniAlteri\States\Factory\Exception;
+use UniAlteri\States\Factory\Exception\UnavailableFactory;
+use UniAlteri\States\Factory\FactoryInterface;
+use UniAlteri\States\Factory\StandardStartupFactory;
+use UniAlteri\States\Proxy\ProxyInterface;
+use Doctrine\ORM\Proxy\Proxy;
 
 /**
  * Class StartupFactory
@@ -41,23 +42,23 @@ use UniAlteri\States\Factory\Exception;
  *
  * @api
  */
-class StartupFactory extends Factory\StandardStartupFactory
+class StartupFactory extends StandardStartupFactory
 {
     /**
      * Registry of factory to use to initialize proxy object.
      *
-     * @var Factory\FactoryInterface[]|\ArrayObject
+     * @var FactoryInterface[]|\ArrayObject
      */
     protected static $factoryRegistry = null;
 
     /**
      * {@inheritdoc}
      */
-    public static function forwardStartup(Proxy\ProxyInterface $proxyObject, \string $stateName = null): FactoryInterface
+    public static function forwardStartup(ProxyInterface $proxyObject, \string $stateName = null): FactoryInterface
     {
         //If the entity object if a doctrine proxy, retrieve the proxy class name from its parent
         $factoryIdentifier = null;
-        if ($proxyObject instanceof \Doctrine\ORM\Proxy\Proxy) {
+        if ($proxyObject instanceof Proxy) {
             $factoryIdentifier = get_parent_class($proxyObject);
         } else {
             //Normal behavior
@@ -66,7 +67,7 @@ class StartupFactory extends Factory\StandardStartupFactory
 
         if (!static::$factoryRegistry instanceof \ArrayObject || !isset(static::$factoryRegistry[$factoryIdentifier])) {
             //we can not found definitely the factory for this stated class
-            throw new Exception\UnavailableFactory(
+            throw new UnavailableFactory(
                 sprintf('Error, the factory "%s" is not available', $factoryIdentifier)
             );
         }

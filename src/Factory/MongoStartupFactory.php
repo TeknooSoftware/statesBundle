@@ -22,9 +22,10 @@
 
 namespace UniAlteri\Bundle\StatesBundle\Factory;
 
-use UniAlteri\States\Proxy;
-use UniAlteri\States\Factory;
-use UniAlteri\States\Factory\Exception;
+use Doctrine\ODM\MongoDB\Proxy\Proxy;
+use UniAlteri\States\Factory\Exception\UnavailableFactory;
+use UniAlteri\States\Factory\FactoryInterface;
+use UniAlteri\States\Proxy\ProxyInterface;
 
 /**
  * Class StartupFactory
@@ -45,11 +46,11 @@ class MongoStartupFactory extends StartupFactory
     /**
      * {@inheritdoc}
      */
-    public static function forwardStartup(Proxy\ProxyInterface $proxyObject, \string $stateName = null): FactoryInterface
+    public static function forwardStartup(ProxyInterface $proxyObject, \string $stateName = null): FactoryInterface
     {
         //If the entity object if a doctrine proxy, retrieve the proxy class name from its parent
         $factoryIdentifier = null;
-        if ($proxyObject instanceof \Doctrine\ODM\MongoDB\Proxy\Proxy) {
+        if ($proxyObject instanceof Proxy) {
             $factoryIdentifier = get_parent_class($proxyObject);
         } else {
             //Normal behavior
@@ -57,7 +58,7 @@ class MongoStartupFactory extends StartupFactory
         }
 
         if (!static::$factoryRegistry instanceof \ArrayAccess || !isset(static::$factoryRegistry[$factoryIdentifier])) {
-            throw new Exception\UnavailableFactory(
+            throw new UnavailableFactory(
                 sprintf('Error, the factory "%s" is not available', $factoryIdentifier)
             );
         }

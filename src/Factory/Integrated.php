@@ -22,8 +22,9 @@
 
 namespace UniAlteri\Bundle\StatesBundle\Factory;
 
-use UniAlteri\States\Factory;
 use UniAlteri\States\Factory\Exception;
+use UniAlteri\States\Factory\FactoryInterface;
+use UniAlteri\States\Factory\Integrated as StatesIntegrated;
 
 /**
  * Class Integrated
@@ -38,7 +39,7 @@ use UniAlteri\States\Factory\Exception;
  * @license     http://teknoo.it/license/gpl-3.0     GPL v3 License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
-class Integrated extends Factory\Integrated
+class Integrated extends StatesIntegrated
 {
     /**
      * {@inheritdoc}
