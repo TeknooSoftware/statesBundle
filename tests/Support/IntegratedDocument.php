@@ -23,6 +23,10 @@
 namespace UniAlteri\Tests\Bundle\StatesBundle\Support;
 
 use UniAlteri\Bundle\StatesBundle\Document\IntegratedDocument as AbstractIntegratedDocument;
+use UniAlteri\States\Proxy\ArrayAccessTrait;
+use UniAlteri\States\Proxy\IteratorTrait;
+use UniAlteri\States\Proxy\MagicCallTrait;
+use UniAlteri\States\Proxy\SerializableTrait;
 
 /**
  * Class IntegratedDocument
@@ -42,8 +46,16 @@ use UniAlteri\Bundle\StatesBundle\Document\IntegratedDocument as AbstractIntegra
  * @license     http://teknoo.it/license/gpl-3.0     GPL v3 License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
-class IntegratedDocument extends AbstractIntegratedDocument
+class IntegratedDocument extends AbstractIntegratedDocument implements
+    \Serializable,
+    \ArrayAccess,
+    \SeekableIterator,
+    \Countable
 {
+    use ArrayAccessTrait,
+        MagicCallTrait,
+        IteratorTrait,
+        SerializableTrait
     /**
      * Class name of the factory to use during set up to initialize this object.
      * It is a virtual factory, it does nothing except logs actions.
