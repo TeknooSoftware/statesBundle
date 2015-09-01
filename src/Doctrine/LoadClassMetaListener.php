@@ -46,14 +46,6 @@ class LoadClassMetaListener
     protected $loader;
 
     /**
-     * @param LoaderInterface $loader
-     */
-    public function __construct(LoaderInterface $loader)
-    {
-        $this->loader = $loader;
-    }
-
-    /**
      * Notified by doctine of the event, retrieve the stated class name and check load with the
      * States library's loader.
      *
@@ -64,5 +56,16 @@ class LoadClassMetaListener
         $classMeta = $eventArgs->getClassMetadata();
         $canonicalClassName = $classMeta->getName();
         $this->loader->loadClass($canonicalClassName);
+    }
+
+    /**
+     * @param LoaderInterface $loader
+     * @return $this
+     */
+    public function registerLoader(LoaderInterface $loader)
+    {
+        $this->loader = $loader;
+
+        return $this;
     }
 }

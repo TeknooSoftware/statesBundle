@@ -1,0 +1,40 @@
+# src/Resources/config/services.yml
+parameters:
+  #services class names
+  unialteri.states.service.composer.finder.class: UniAlteri\Bundle\StatesBundle\Service\ComposerFinderService
+  unialteri.states.service.factory.repository.class: \ArrayObject
+  unialteri.states.service.bootstrap.class: UniAlteri\Bundle\StatesBundle\Service\BootstrapService
+
+  #listener
+  unialteri.states.listener.doctrine.load.class.meta.class: UniAlteri\Bundle\StatesBundle\Doctrine\LoadClassMetaListener
+
+  #states lodaer
+  unialteri.states.loader.class: UniAlteri\States\Loader\LoaderComposer
+  unialteri.states.finder.class: UniAlteri\States\Loader\FinderComposerIntegrated
+
+services:
+  #composer finder
+  unialteri.states.service.composer.finder:
+    class: "%unialteri.states.service.composer.finder.class%"
+
+  unialteri.states.service.factory.repository:
+    class: "%unialteri.states.service.factory.repository.class%"
+
+  unialteri.states.listener.doctrine.load.class.meta:
+    class: "%unialteri.states.listener.doctrine.load.class.meta.class%"
+
+  unialteri.states.service.bootstrap:
+    class: "%unialteri.states.service.bootstrap.class%"
+    arguments:
+      - @unialteri.states.service.composer.finder
+      - @unialteri.states.service.factory.repository
+      - @unialteri.states.listener.doctrine.load.class.meta
+      - @doctrine.event_listener
+
+  unialteri.states.loader:
+    class: "%unialteri.states.loader.class%"
+    factory_service: unialteri.states.service.bootstrap
+    factory_method: getLoaderInstance
+    arguments:
+      - "%unialteri.states.loader.class%"
+      - "%unialteri.states.finder.class%"
