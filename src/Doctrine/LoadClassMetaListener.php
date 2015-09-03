@@ -59,7 +59,7 @@ class LoadClassMetaListener
     /**
      * @return LoaderInterface
      */
-    public function getLoader()
+    public function getLoader(): LoaderInterface
     {
         return $this->loader;
     }

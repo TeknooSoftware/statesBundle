@@ -83,7 +83,7 @@ class BootstrapServiceTest extends \PHPUnit_Framework_TestCase
      * @param callable $splAutoloadRegisterFunction
      * @return BootstrapService
      */
-    public function buildService(callable $splAutoloadRegisterFunction=null)
+    public function buildService(callable $splAutoloadRegisterFunction)
     {
         return new BootstrapService(
             $this->getComposerFinderServiceMock(),
@@ -99,7 +99,7 @@ class BootstrapServiceTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetLoaderInstanceMissingLoaderClass()
     {
-        $this->buildService()->getLoaderInstance('badClass', 'UniAlteri\States\Loader\FinderComposerIntegrated');
+        $this->buildService(function(){})->getLoaderInstance('badClass', 'UniAlteri\States\Loader\FinderComposerIntegrated');
     }
 
     /**
@@ -107,7 +107,7 @@ class BootstrapServiceTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetLoaderInstanceBadLoaderClass()
     {
-        $this->buildService()->getLoaderInstance('\DateTime', 'UniAlteri\States\Loader\FinderComposerIntegrated');
+        $this->buildService(function(){})->getLoaderInstance('\DateTime', 'UniAlteri\States\Loader\FinderComposerIntegrated');
     }
 
     /**
@@ -115,7 +115,7 @@ class BootstrapServiceTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetLoaderInstanceMissingFinderClass()
     {
-        $this->buildService()->getLoaderInstance('UniAlteri\States\Loader\LoaderComposer', 'badClass');
+        $this->buildService(function(){})->getLoaderInstance('UniAlteri\States\Loader\LoaderComposer', 'badClass');
     }
 
     /**
@@ -123,7 +123,7 @@ class BootstrapServiceTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetLoaderInstanceBadFinderClass()
     {
-        $this->buildService()->getLoaderInstance('UniAlteri\States\Loader\LoaderComposer', '\DateTime');
+        $this->buildService(function(){})->getLoaderInstance('UniAlteri\States\Loader\LoaderComposer', '\DateTime');
     }
 
     public function testGetLoaderInstanceIntegrated()
