@@ -25,7 +25,6 @@ namespace UniAlteri\Bundle\StatesBundle\Service;
 use Doctrine\Common\EventManager;
 use UniAlteri\Bundle\StatesBundle\Doctrine\LoadClassMetaListener;
 use UniAlteri\States\Loader\FinderComposerIntegrated;
-use UniAlteri\States\Loader\FinderInterface;
 use UniAlteri\States\Loader\LoaderInterface;
 
 class BootstrapService
@@ -51,21 +50,29 @@ class BootstrapService
     protected $eventManager;
 
     /**
+     * @var callable
+     */
+    protected $splAutoloadRegisterFunction;
+
+    /**
      * @param ComposerFinderService $composerFinderService
      * @param \ArrayAccess $factoryRepositoryInstance
      * @param LoadClassMetaListener $loadClassMetaListener
      * @param EventManager $eventManager
+     * @param callable $splAutoloadRegisterFunction
      */
     public function __construct(
         ComposerFinderService $composerFinderService,
         \ArrayAccess $factoryRepositoryInstance,
         LoadClassMetaListener $loadClassMetaListener,
-        EventManager $eventManager
+        EventManager $eventManager,
+        callable $splAutoloadRegisterFunction
     ) {
         $this->composerFinderService = $composerFinderService;
         $this->factoryRepositoryInstance = $factoryRepositoryInstance;
         $this->loadClassMetaListener = $loadClassMetaListener;
         $this->eventManager = $eventManager;
+        $this->splAutoloadRegisterFunction = $splAutoloadRegisterFunction;
     }
 
     /**
@@ -92,7 +99,8 @@ class BootstrapService
             throw new \Exception('Error, '.$loaderClassName.' does not exist');
         }
 
-        if (!$loaderClassName instanceof LoaderInterface) {
+        $reflectionClass = new \ReflectionClass($loaderClassName);
+        if (!$reflectionClass->implementsInterface('UniAlteri\States\Loader\LoaderInterface')) {
             throw new \Exception('Error, '.$loaderClassName.' does not implement the Loader Interface');
         }
 
@@ -100,7 +108,8 @@ class BootstrapService
             throw new \Exception('Error, '.$finderClassName.' does not exist');
         }
 
-        if (!$finderClassName instanceof FinderInterface) {
+        $reflectionClass = new \ReflectionClass($finderClassName);
+        if (!$reflectionClass->implementsInterface('UniAlteri\States\Loader\FinderInterface')) {
             throw new \Exception('Error, '.$finderClassName.' does not implement the Loader Interface');
         }
 
@@ -120,7 +129,8 @@ class BootstrapService
         $loader = new $loaderClassName($composerInstance, $finderFactory, $factoryRepository);
 
         //Register autoload function in the spl autoloader stack
-        spl_autoload_register(
+        $splAutoloadRegisterFunction = $this->splAutoloadRegisterFunction;
+        $splAutoloadRegisterFunction(
             array($loader, 'loadClass'),
             true,
             true

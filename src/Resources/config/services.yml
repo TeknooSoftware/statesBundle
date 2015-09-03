@@ -12,6 +12,8 @@ parameters:
   unialteri.states.loader.class: UniAlteri\States\Loader\LoaderComposer
   unialteri.states.finder.class: UniAlteri\States\Loader\FinderComposerIntegrated
 
+  #spl autoloader function
+  unialteri.states.bootstraping.autoloader.register.function: "spl_autoload_register"
 services:
   #composer finder
   unialteri.states.service.composer.finder:
@@ -30,6 +32,7 @@ services:
       - @unialteri.states.service.factory.repository
       - @unialteri.states.listener.doctrine.load.class.meta
       - @doctrine.event_listener
+      - "%unialteri.states.bootstraping.autoloader.register.function%"
 
   unialteri.states.loader:
     class: "%unialteri.states.loader.class%"
