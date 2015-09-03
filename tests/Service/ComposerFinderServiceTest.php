@@ -25,7 +25,7 @@ namespace UniAlteri\Tests\Bundle\StatesBundle\Service;
 use UniAlteri\Bundle\StatesBundle\Service\ComposerFinderService;
 
 /**
- * Class ComposerFinderServiceTest
+ * Class ComposerFinderServiceTest.
  *
  * @copyright   Copyright (c) 2009-2015 Uni Alteri (http://uni-alteri.com)
  *

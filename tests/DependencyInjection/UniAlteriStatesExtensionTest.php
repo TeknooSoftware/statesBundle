@@ -25,7 +25,7 @@ namespace UniAlteri\Tests\Bundle\StatesBundle\DependencyInjection;
 use UniAlteri\Bundle\StatesBundle\DependencyInjection\UniAlteriStatesExtension;
 
 /**
- * Class UniAlteriStatesExtensionTest
+ * Class UniAlteriStatesExtensionTest.
  *
  * @copyright   Copyright (c) 2009-2015 Uni Alteri (http://uni-alteri.com)
  *

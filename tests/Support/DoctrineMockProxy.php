@@ -26,7 +26,7 @@ use Closure;
 use UniAlteri\Tests\Support\MockProxy;
 
 /**
- * Class DoctrineMockProxy
+ * Class DoctrineMockProxy.
  *
  * @copyright   Copyright (c) 2009-2015 Uni Alteri (http://uni-alteri.com)
  *

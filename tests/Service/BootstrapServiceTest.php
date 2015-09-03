@@ -30,7 +30,7 @@ use UniAlteri\States\Loader\LoaderComposer;
 use UniAlteri\States\Loader\LoaderInterface;
 
 /**
- * Class BootstrapServiceTest
+ * Class BootstrapServiceTest.
  *
  * @copyright   Copyright (c) 2009-2015 Uni Alteri (http://uni-alteri.com)
  *
@@ -112,6 +112,7 @@ class BootstrapServiceTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @param callable $splAutoloadRegisterFunction
+     *
      * @return BootstrapService
      */
     public function buildService(callable $splAutoloadRegisterFunction)
@@ -130,7 +131,7 @@ class BootstrapServiceTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetLoaderInstanceMissingLoaderClass()
     {
-        $this->buildService(function(){})->getLoaderInstance('badClass', 'UniAlteri\States\Loader\FinderComposerIntegrated');
+        $this->buildService(function () {})->getLoaderInstance('badClass', 'UniAlteri\States\Loader\FinderComposerIntegrated');
     }
 
     /**
@@ -138,7 +139,7 @@ class BootstrapServiceTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetLoaderInstanceBadLoaderClass()
     {
-        $this->buildService(function(){})->getLoaderInstance('\DateTime', 'UniAlteri\States\Loader\FinderComposerIntegrated');
+        $this->buildService(function () {})->getLoaderInstance('\DateTime', 'UniAlteri\States\Loader\FinderComposerIntegrated');
     }
 
     /**
@@ -146,7 +147,7 @@ class BootstrapServiceTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetLoaderInstanceMissingFinderClass()
     {
-        $this->buildService(function(){})->getLoaderInstance('UniAlteri\States\Loader\LoaderComposer', 'badClass');
+        $this->buildService(function () {})->getLoaderInstance('UniAlteri\States\Loader\LoaderComposer', 'badClass');
     }
 
     /**
@@ -154,7 +155,7 @@ class BootstrapServiceTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetLoaderInstanceBadFinderClass()
     {
-        $this->buildService(function(){})->getLoaderInstance('UniAlteri\States\Loader\LoaderComposer', '\DateTime');
+        $this->buildService(function () {})->getLoaderInstance('UniAlteri\States\Loader\LoaderComposer', '\DateTime');
     }
 
     public function testGetLoaderInstanceIntegrated()

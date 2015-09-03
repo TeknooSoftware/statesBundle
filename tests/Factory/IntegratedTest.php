@@ -26,7 +26,7 @@ use UniAlteri\Bundle\StatesBundle\Factory;
 use UniAlteri\States\Loader\FinderInterface;
 
 /**
- * Class IntegratedTest
+ * Class IntegratedTest.
  *
  * @copyright   Copyright (c) 2009-2015 Uni Alteri (http://uni-alteri.com)
  *

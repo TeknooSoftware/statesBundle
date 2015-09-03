@@ -30,7 +30,7 @@ use UniAlteri\States\Loader\LoaderInterface;
 /**
  * Class BootstrapService
  * Service to initialize the Uni Alteri States Loader with its dependency (finder factory, factory registry, composer)
- * and register event listener on doctrine manager
+ * and register event listener on doctrine manager.
  *
  * @copyright   Copyright (c) 2009-2015 Uni Alteri (http://uni-alteri.com)
  *
@@ -69,10 +69,10 @@ class BootstrapService
 
     /**
      * @param ComposerFinderService $composerFinderService
-     * @param \ArrayAccess $factoryRepositoryInstance
+     * @param \ArrayAccess          $factoryRepositoryInstance
      * @param LoadClassMetaListener $loadClassMetaListener
-     * @param EventManager $eventManager
-     * @param callable $splAutoloadRegisterFunction
+     * @param EventManager          $eventManager
+     * @param callable              $splAutoloadRegisterFunction
      */
     public function __construct(
         ComposerFinderService $composerFinderService,
@@ -90,6 +90,7 @@ class BootstrapService
 
     /**
      * @param LoaderInterface $loader
+     *
      * @return self
      */
     protected function registerLoadClassMetaListener(LoaderInterface $loader)
@@ -103,7 +104,9 @@ class BootstrapService
     /**
      * @param string $loaderClassName
      * @param string $finderClassName
+     *
      * @return LoaderInterface
+     *
      * @throws \Exception
      */
     protected function buildLoaderInstance(\string $loaderClassName, \string $finderClassName)
@@ -155,7 +158,9 @@ class BootstrapService
     /**
      * @param string $loaderClassName
      * @param string $finderClassName
+     *
      * @return LoaderInterface
+     *
      * @throws \Exception
      */
     public function getLoaderInstance(\string $loaderClassName, \string $finderClassName)

@@ -28,7 +28,7 @@ use UniAlteri\Tests\Bundle\StatesBundle\Support\MongoMockProxy;
 use UniAlteri\Tests\Support;
 
 /**
- * Class MongoStartupFactoryTest
+ * Class MongoStartupFactoryTest.
  *
  * @copyright   Copyright (c) 2009-2015 Uni Alteri (http://uni-alteri.com)
  *

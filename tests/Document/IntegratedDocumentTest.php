@@ -28,7 +28,7 @@ use UniAlteri\Tests\States\Proxy\IntegratedTest;
 use UniAlteri\Tests\Support\MockStartupFactory;
 
 /**
- * Class IntegratedDocumentTest
+ * Class IntegratedDocumentTest.
  *
  * @copyright   Copyright (c) 2009-2015 Uni Alteri (http://uni-alteri.com)
  *

@@ -28,7 +28,7 @@ use UniAlteri\Tests\Bundle\StatesBundle\Support\DoctrineMockProxy;
 use UniAlteri\Tests\Support;
 
 /**
- * Class StartupFactoryTest
+ * Class StartupFactoryTest.
  *
  * @copyright   Copyright (c) 2009-2015 Uni Alteri (http://uni-alteri.com)
  *

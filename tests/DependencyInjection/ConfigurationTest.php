@@ -25,7 +25,7 @@ namespace UniAlteri\Tests\Bundle\StatesBundle\DependencyInjection;
 use UniAlteri\Bundle\StatesBundle\DependencyInjection\Configuration;
 
 /**
- * Class ConfigurationTest
+ * Class ConfigurationTest.
  *
  * @copyright   Copyright (c) 2009-2015 Uni Alteri (http://uni-alteri.com)
  *
@@ -34,7 +34,6 @@ use UniAlteri\Bundle\StatesBundle\DependencyInjection\Configuration;
  * @license     http://teknoo.it/license/mit         MIT License
  * @license     http://teknoo.it/license/gpl-3.0     GPL v3 License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
- *
  */
 class ConfigurationTest extends \PHPUnit_Framework_TestCase
 {

@@ -27,7 +27,7 @@ use Symfony\Component\Debug\DebugClassLoader;
 
 /**
  * Class ComposerFinderService
- * Service to find from the spl autoloader stack the composer instance
+ * Service to find from the spl autoloader stack the composer instance.
  * 
  * @copyright   Copyright (c) 2009-2015 Uni Alteri (http://uni-alteri.com)
  *
@@ -74,7 +74,7 @@ class ComposerFinderService
     }
 
     /**
-     * To find the composer from \spl_autoload stacks
+     * To find the composer from \spl_autoload stacks.
      *
      * @return ClassLoader|DebugClassLoader
      */
