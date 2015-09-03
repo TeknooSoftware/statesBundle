@@ -26,7 +26,7 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
  * UniAlteriStatesBundle
- * Bundle to use easily the library UniAlteri States with Symfony 2 + Doctrine.
+ * Bundle to use easily the library UniAlteri States with Symfony 2+ and Doctrine (ORM and ODM).
  *
  * @copyright   Copyright (c) 2009-2015 Uni Alteri (http://uni-alteri.com)
  *

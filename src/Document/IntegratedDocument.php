@@ -30,6 +30,7 @@ use UniAlteri\States\Proxy\ProxyInterface;
 
 /**
  * Class IntegratedDocument.
+ * Default Stated class implementation with a doctrine document
  *
  * @copyright   Copyright (c) 2009-2015 Uni Alteri (http://uni-alteri.com)
  *
