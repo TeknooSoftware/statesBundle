@@ -8,7 +8,7 @@ php:
 install:
   - yes '' | pecl install -f mongo
   - composer self-update
-  - composer install --dev --prefer-source --no-interaction --ignore-platform-reqs
+  - composer install --prefer-source --no-interaction --ignore-platform-reqs
 
 script:
   - phpunit
