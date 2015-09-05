@@ -22,7 +22,6 @@
 
 namespace UniAlteri\Bundle\StatesBundle\Factory;
 
-use UniAlteri\States\Factory\FactoryInterface;
 use UniAlteri\States\Factory\Integrated as StatesIntegrated;
 
 /**
@@ -43,7 +42,7 @@ class Integrated extends StatesIntegrated
     /**
      * {@inheritdoc}
      */
-    protected function initialize(\string $statedClassName): FactoryInterface
+    protected function initialize(\string $statedClassName): \UniAlteri\States\Factory\FactoryInterface
     {
         //Call trait's method to initialize this stated class
         $this->traitInitialize($statedClassName);

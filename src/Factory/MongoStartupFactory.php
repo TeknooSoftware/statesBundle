@@ -24,7 +24,6 @@ namespace UniAlteri\Bundle\StatesBundle\Factory;
 
 use Doctrine\ODM\MongoDB\Proxy\Proxy;
 use UniAlteri\States\Factory\Exception\UnavailableFactory;
-use UniAlteri\States\Factory\FactoryInterface;
 use UniAlteri\States\Proxy\ProxyInterface;
 
 /**
@@ -46,7 +45,7 @@ class MongoStartupFactory extends StartupFactory
     /**
      * {@inheritdoc}
      */
-    public static function forwardStartup(ProxyInterface $proxyObject, \string $stateName = null): FactoryInterface
+    public static function forwardStartup(ProxyInterface $proxyObject, \string $stateName = null): \UniAlteri\States\Factory\FactoryInterface
     {
         //If the entity object if a doctrine proxy, retrieve the proxy class name from its parent
         $factoryIdentifier = null;
