@@ -27,6 +27,7 @@ use UniAlteri\States\Loader\LoaderInterface;
 
 /**
  * Class ListenerService
+ * Simple listener only used to catch the kernel.request event to load the states library auto loader
  *
  * @copyright   Copyright (c) 2009-2015 Uni Alteri (http://uni-alteri.com)
  *
