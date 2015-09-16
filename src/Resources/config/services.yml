@@ -1,26 +1,30 @@
 # src/Resources/config/services.yml
 parameters:
-  #services class names
+  #bundle services class names
   unialteri.states.service.composer.finder.class: UniAlteri\Bundle\StatesBundle\Service\ComposerFinderService
   unialteri.states.service.factory.repository.class: ArrayObject
   unialteri.states.service.bootstrap.class: UniAlteri\Bundle\StatesBundle\Service\BootstrapService
 
-  #listener
+  #doctrine listener
   unialteri.states.listener.doctrine.load.class.meta.class: UniAlteri\Bundle\StatesBundle\Doctrine\LoadClassMetaListener
 
-  #states lodaer
+  #states loaders classes
   unialteri.states.loader.class: UniAlteri\States\Loader\LoaderComposer
   unialteri.states.finder.class: UniAlteri\States\Loader\FinderComposerIntegrated
 
-  #spl autoloader function
+  #default parameter for bootstraping
   unialteri.states.bootstraping.autoloader.register.function: "spl_autoload_register"
+  unialteri.states.bootstraping.factory.repository.class.name: "%unialteri.states.service.factory.repository.class%"
+  unialteri.states.bootstraping.loader.class.name: "%unialteri.states.loader.class%"
+  unialteri.states.bootstraping.finder.class.name: "%unialteri.states.finder.class%"
+
 services:
   #composer finder
   unialteri.states.service.composer.finder:
     class: "%unialteri.states.service.composer.finder.class%"
 
   unialteri.states.service.factory.repository:
-    class: "%unialteri.states.service.factory.repository.class%"
+    class: "%unialteri.states.bootstraping.factory.repository.class.name%"
 
   unialteri.states.listener.doctrine.load.class.meta:
     class: "%unialteri.states.listener.doctrine.load.class.meta.class%"
@@ -36,9 +40,9 @@ services:
       - "%unialteri.states.bootstraping.autoloader.register.function%"
 
   unialteri.states.loader:
-    class: "%unialteri.states.loader.class%"
+    class: "%unialteri.states.bootstraping.loader.class.name%"
     factory_service: unialteri.states.service.bootstrap
     factory_method: getLoaderInstance
     arguments:
-      - "%unialteri.states.loader.class%"
-      - "%unialteri.states.finder.class%"
+      - "%unialteri.states.bootstraping.loader.class.name%"
+      - "%unialteri.states.bootstraping.finder.class.name%"

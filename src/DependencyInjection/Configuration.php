@@ -49,11 +49,22 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('unialteri_states');
+        $rootNode = $treeBuilder->root('uni_alteri_states');
 
-        // Here you should define the parameters that are allowed to
-        // configure your bundle. See the documentation linked above for
-        // more information on that topic.
+        $rootNode->children()
+            ->scalarNode('factory_repository')
+                ->defaultValue('%unialteri.states.service.factory.repository.class%')
+            ->end()
+            ->scalarNode('loader')
+                ->defaultValue('%unialteri.states.loader.class%')
+            ->end()
+            ->scalarNode('finder')
+                ->defaultValue('%unialteri.states.finder.class%')
+            ->end()
+            ->scalarNode('autoload_register')
+                ->defaultValue('spl_autoload_register')
+            ->end()
+            ->end();
 
         return $treeBuilder;
     }

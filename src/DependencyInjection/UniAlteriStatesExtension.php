@@ -53,5 +53,33 @@ class UniAlteriStatesExtension extends Extension
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
+
+        if (isset($config['factory_repository'])) {
+            $container->setParameter(
+                'unialteri.states.bootstraping.factory.repository.class.name',
+                $config['factory_repository']
+            );
+        }
+    
+        if (isset($config['loader'])) {
+            $container->setParameter(
+                'unialteri.states.bootstraping.loader.class.name',
+                $config['loader']
+            );
+        }
+    
+        if (isset($config['finder'])) {
+            $container->setParameter(
+                'unialteri.states.bootstraping.finder.class.name',
+                $config['finder']
+            );
+        }
+    
+        if (isset($config['autoload_register'])) {
+            $container->setParameter(
+                'unialteri.states.bootstraping.autoloader.register.function',
+                $config['autoload_register']
+            );
+        }
     }
 }
