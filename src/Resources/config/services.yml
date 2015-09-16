@@ -2,7 +2,7 @@
 parameters:
   #services class names
   unialteri.states.service.composer.finder.class: UniAlteri\Bundle\StatesBundle\Service\ComposerFinderService
-  unialteri.states.service.factory.repository.class: \ArrayObject
+  unialteri.states.service.factory.repository.class: ArrayObject
   unialteri.states.service.bootstrap.class: UniAlteri\Bundle\StatesBundle\Service\BootstrapService
 
   #listener
