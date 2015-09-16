@@ -57,4 +57,4 @@ services:
     arguments:
       - @unialteri.states.loader
     tags:
-      - { name: kernel.event_listener, event: kernel.request, method: getFinderFactory, priority:99 }
+      - { name: kernel.event_listener, event: kernel.request, method: onRequest, priority:99 }
