@@ -24,6 +24,8 @@ services:
 
   unialteri.states.listener.doctrine.load.class.meta:
     class: "%unialteri.states.listener.doctrine.load.class.meta.class%"
+    tags:
+      - { name: doctrine.event_listener, event: loadClassMetadata }
 
   unialteri.states.service.bootstrap:
     class: "%unialteri.states.service.bootstrap.class%"
@@ -31,7 +33,6 @@ services:
       - @unialteri.states.service.composer.finder
       - @unialteri.states.service.factory.repository
       - @unialteri.states.listener.doctrine.load.class.meta
-      - @doctrine.event_listener
       - "%unialteri.states.bootstraping.autoloader.register.function%"
 
   unialteri.states.loader:

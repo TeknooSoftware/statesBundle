@@ -22,7 +22,6 @@
 
 namespace UniAlteri\Bundle\StatesBundle\Service;
 
-use Doctrine\Common\EventManager;
 use UniAlteri\Bundle\StatesBundle\Doctrine\LoadClassMetaListener;
 use UniAlteri\States\Loader\FinderComposerIntegrated;
 use UniAlteri\States\Loader\LoaderInterface;
@@ -58,11 +57,6 @@ class BootstrapService
     protected $loadClassMetaListener;
 
     /**
-     * @var EventManager
-     */
-    protected $eventManager;
-
-    /**
      * @var callable
      */
     protected $splAutoloadRegisterFunction;
@@ -71,20 +65,17 @@ class BootstrapService
      * @param ComposerFinderService $composerFinderService
      * @param \ArrayAccess          $factoryRepositoryInstance
      * @param LoadClassMetaListener $loadClassMetaListener
-     * @param EventManager          $eventManager
      * @param callable              $splAutoloadRegisterFunction
      */
     public function __construct(
         ComposerFinderService $composerFinderService,
         \ArrayAccess $factoryRepositoryInstance,
         LoadClassMetaListener $loadClassMetaListener,
-        EventManager $eventManager,
         callable $splAutoloadRegisterFunction
     ) {
         $this->composerFinderService = $composerFinderService;
         $this->factoryRepositoryInstance = $factoryRepositoryInstance;
         $this->loadClassMetaListener = $loadClassMetaListener;
-        $this->eventManager = $eventManager;
         $this->splAutoloadRegisterFunction = $splAutoloadRegisterFunction;
     }
 
@@ -96,7 +87,6 @@ class BootstrapService
     protected function registerLoadClassMetaListener(LoaderInterface $loader)
     {
         $this->loadClassMetaListener->registerLoader($loader);
-        $this->eventManager->addEventListener('loadClassMetadata', $this->loadClassMetaListener);
 
         return $this;
     }

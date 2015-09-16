@@ -58,11 +58,6 @@ class BootstrapServiceTest extends \PHPUnit_Framework_TestCase
     protected $loadClassMetaListenerMock;
 
     /**
-     * @var EventManager
-     */
-    protected $eventManagerMock;
-
-    /**
      * @return \PHPUnit_Framework_MockObject_MockObject|ComposerFinderService
      */
     protected function getComposerFinderServiceMock()
@@ -99,18 +94,6 @@ class BootstrapServiceTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @return \PHPUnit_Framework_MockObject_MockObject|EventManager
-     */
-    protected function getEventManagerMock()
-    {
-        if (!$this->eventManagerMock instanceof EventManager) {
-            $this->eventManagerMock = $this->getMock('Doctrine\Common\EventManager', [], [], '', false);
-        }
-
-        return $this->eventManagerMock;
-    }
-
-    /**
      * @param callable $splAutoloadRegisterFunction
      *
      * @return BootstrapService
@@ -121,7 +104,6 @@ class BootstrapServiceTest extends \PHPUnit_Framework_TestCase
             $this->getComposerFinderServiceMock(),
             $this->getfactoryRepositoryInstanceMock(),
             $this->getLoadClassMetaListenerMock(),
-            $this->getEventManagerMock(),
             $splAutoloadRegisterFunction
         );
     }
@@ -183,11 +165,6 @@ class BootstrapServiceTest extends \PHPUnit_Framework_TestCase
             ->method('registerLoader')
             ->with($this->callback(function ($arg) {return $arg instanceof LoaderComposer;}));
 
-        $this->getEventManagerMock()
-            ->expects($this->once())
-            ->method('addEventListener')
-            ->with('loadClassMetadata', $this->getLoadClassMetaListenerMock());
-
         $loader = $this->buildService($registerMock)->getLoaderInstance($loaderClassName, $finderClassName);
         $this->assertInstanceOf(
             $loaderClassName,
@@ -229,11 +206,6 @@ class BootstrapServiceTest extends \PHPUnit_Framework_TestCase
             ->expects($this->once())
             ->method('registerLoader')
             ->with($this->callback(function ($arg) {return $arg instanceof LoaderComposer;}));
-
-        $this->getEventManagerMock()
-            ->expects($this->once())
-            ->method('addEventListener')
-            ->with('loadClassMetadata', $this->getLoadClassMetaListenerMock());
 
         $loader = $this->buildService($registerMock)->getLoaderInstance($loaderClassName, $finderClassName);
         $this->assertInstanceOf(

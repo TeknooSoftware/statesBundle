@@ -72,8 +72,10 @@ class LoadClassMetaListener
      */
     public function loadClassMetadata(LoadClassMetadataEventArgs $eventArgs)
     {
-        $classMeta = $eventArgs->getClassMetadata();
-        $canonicalClassName = $classMeta->getName();
-        $this->loader->loadClass($canonicalClassName);
+        if ($this->loader instanceof LoaderInterface) {
+            $classMeta = $eventArgs->getClassMetadata();
+            $canonicalClassName = $classMeta->getName();
+            $this->loader->loadClass($canonicalClassName);
+        }
     }
 }
