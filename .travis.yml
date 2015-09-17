@@ -6,9 +6,8 @@ php:
   - 7
 
 install:
-  - yes '' | pecl install -f mongo
   - composer self-update
-  - composer install --prefer-source --no-interaction --ignore-platform-reqs
+  - composer update --prefer-source --no-interaction --ignore-platform-reqs
 
 script:
   - phpunit
