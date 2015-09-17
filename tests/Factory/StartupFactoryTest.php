@@ -36,7 +36,9 @@ use UniAlteri\Tests\Support;
  *
  * @license     http://teknoo.it/license/mit         MIT License
  * @license     http://teknoo.it/license/gpl-3.0     GPL v3 License
- * @author      Richard Déloge <r.deloge@uni-alteri.com>
+ * @author      Richard Déloge <r.deloge@uni-alteri.com
+ *
+ * @covers UniAlteri\Bundle\StatesBundle\Factory\StartupFactory
  */
 class StartupFactoryTest extends \PHPUnit_Framework_TestCase
 {

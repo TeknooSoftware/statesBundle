@@ -34,6 +34,8 @@ use UniAlteri\Bundle\StatesBundle\Service\ComposerFinderService;
  * @license     http://teknoo.it/license/mit         MIT License
  * @license     http://teknoo.it/license/gpl-3.0     GPL v3 License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
+ *
+ * @covers UniAlteri\Bundle\StatesBundle\Service\ComposerFinderService
  */
 class ComposerFinderServiceTest extends \PHPUnit_Framework_TestCase
 {

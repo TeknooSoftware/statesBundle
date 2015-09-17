@@ -34,6 +34,8 @@ use UniAlteri\Bundle\StatesBundle\DependencyInjection\UniAlteriStatesExtension;
  * @license     http://teknoo.it/license/mit         MIT License
  * @license     http://teknoo.it/license/gpl-3.0     GPL v3 License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
+ *
+ * @covers UniAlteri\Bundle\StatesBundle\DependencyInjection\UniAlteriStatesExtension
  */
 class UniAlteriStatesExtensionTest extends \PHPUnit_Framework_TestCase
 {
@@ -45,7 +47,7 @@ class UniAlteriStatesExtensionTest extends \PHPUnit_Framework_TestCase
         return new UniAlteriStatesExtension();
     }
 
-    public function testLoad()
+    public function testLoadEmpty()
     {
         $containerMock = $this->getMock('Symfony\Component\DependencyInjection\ContainerBuilder', [], [], '', false);
 
@@ -53,5 +55,54 @@ class UniAlteriStatesExtensionTest extends \PHPUnit_Framework_TestCase
         $containerMock->expects($this->atLeastOnce())->method('setDefinition');
 
         $this->buildExtension()->load([], $containerMock);
+    }
+
+    public function testLoadFull()
+    {
+        $containerMock = $this->getMock('Symfony\Component\DependencyInjection\ContainerBuilder', [], [], '', false);
+
+        $containerMock->expects($this->any())
+            ->method('setParameter')
+            ->willReturnCallback(function ($name, $value) {
+                switch ($name) {
+                    case 'unialteri.states.bootstraping.factory.repository.class.name';
+                        $this->assertTrue(
+                            'fooBarRepository' === $value
+                            || "%unialteri.states.service.factory.repository.class%" === $value
+                        );
+                        break;
+                    case 'unialteri.states.bootstraping.loader.class.name':
+                        $this->assertTrue(
+                            'fooBarLoader' === $value
+                            || "%unialteri.states.loader.class%" === $value
+                        );
+                        break;
+                    case 'unialteri.states.bootstraping.finder.class.name':
+                        $this->assertTrue(
+                            'fooBarFinder' === $value
+                            || "%unialteri.states.finder.class%" === $value
+                        );
+                        break;
+                    case 'unialteri.states.bootstraping.autoloader.register.function':
+                        $this->assertTrue(
+                            'fooBarAutoload' === $value
+                            || "spl_autoload_register" === $value
+                        );
+                        break;
+                }
+            });
+        $containerMock->expects($this->atLeastOnce())->method('setDefinition');
+
+        $this->buildExtension()->load(
+            [
+                [
+                    'factory_repository' => 'fooBarRepository',
+                    'loader' => 'fooBarLoader',
+                    'finder' => 'fooBarFinder',
+                    'autoload_register' => 'fooBarAutoload',
+                ]
+            ],
+            $containerMock
+        );
     }
 }
