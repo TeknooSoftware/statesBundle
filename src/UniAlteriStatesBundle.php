@@ -39,7 +39,7 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 class UniAlteriStatesBundle extends Bundle
 {
     /**
-     * Method to initialize the states loader before request
+     * Method to initialize the states loader before request.
      */
     public function boot()
     {

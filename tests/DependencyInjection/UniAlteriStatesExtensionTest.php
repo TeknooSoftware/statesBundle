@@ -68,25 +68,25 @@ class UniAlteriStatesExtensionTest extends \PHPUnit_Framework_TestCase
                     case 'unialteri.states.bootstraping.factory.repository.class.name';
                         $this->assertTrue(
                             'fooBarRepository' === $value
-                            || "%unialteri.states.service.factory.repository.class%" === $value
+                            || '%unialteri.states.service.factory.repository.class%' === $value
                         );
                         break;
                     case 'unialteri.states.bootstraping.loader.class.name':
                         $this->assertTrue(
                             'fooBarLoader' === $value
-                            || "%unialteri.states.loader.class%" === $value
+                            || '%unialteri.states.loader.class%' === $value
                         );
                         break;
                     case 'unialteri.states.bootstraping.finder.class.name':
                         $this->assertTrue(
                             'fooBarFinder' === $value
-                            || "%unialteri.states.finder.class%" === $value
+                            || '%unialteri.states.finder.class%' === $value
                         );
                         break;
                     case 'unialteri.states.bootstraping.autoloader.register.function':
                         $this->assertTrue(
                             'fooBarAutoload' === $value
-                            || "spl_autoload_register" === $value
+                            || 'spl_autoload_register' === $value
                         );
                         break;
                 }
@@ -100,7 +100,7 @@ class UniAlteriStatesExtensionTest extends \PHPUnit_Framework_TestCase
                     'loader' => 'fooBarLoader',
                     'finder' => 'fooBarFinder',
                     'autoload_register' => 'fooBarAutoload',
-                ]
+                ],
             ],
             $containerMock
         );

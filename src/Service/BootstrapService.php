@@ -23,7 +23,6 @@
 namespace UniAlteri\Bundle\StatesBundle\Service;
 
 use UniAlteri\Bundle\StatesBundle\Doctrine\LoadClassMetaListener;
-use UniAlteri\States\Loader\FinderComposerIntegrated;
 use UniAlteri\States\Loader\LoaderInterface;
 
 /**
@@ -121,7 +120,7 @@ class BootstrapService
 
         $composerInstance = $this->composerFinderService->getComposerInstance();
 
-        /**
+        /*
          * Service to generate a finder for Stated class factory
          * @param string $statedClassName
          * @param string $path

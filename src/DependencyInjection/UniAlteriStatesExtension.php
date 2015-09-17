@@ -60,21 +60,21 @@ class UniAlteriStatesExtension extends Extension
                 $config['factory_repository']
             );
         }
-    
+
         if (isset($config['loader'])) {
             $container->setParameter(
                 'unialteri.states.bootstraping.loader.class.name',
                 $config['loader']
             );
         }
-    
+
         if (isset($config['finder'])) {
             $container->setParameter(
                 'unialteri.states.bootstraping.finder.class.name',
                 $config['finder']
             );
         }
-    
+
         if (isset($config['autoload_register'])) {
             $container->setParameter(
                 'unialteri.states.bootstraping.autoloader.register.function',
