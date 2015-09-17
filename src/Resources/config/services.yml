@@ -4,7 +4,6 @@ parameters:
   unialteri.states.service.composer.finder.class: UniAlteri\Bundle\StatesBundle\Service\ComposerFinderService
   unialteri.states.service.factory.repository.class: ArrayObject
   unialteri.states.service.bootstrap.class: UniAlteri\Bundle\StatesBundle\Service\BootstrapService
-  unialteri.states.service.listener.class: UniAlteri\Bundle\StatesBundle\Service\ListenerService
 
   #doctrine listener
   unialteri.states.listener.doctrine.load.class.meta.class: UniAlteri\Bundle\StatesBundle\Doctrine\LoadClassMetaListener
@@ -51,10 +50,3 @@ services:
     arguments:
       - "%unialteri.states.bootstraping.loader.class.name%"
       - "%unialteri.states.bootstraping.finder.class.name%"
-
-  unialteri.states.listener:
-    class: "%unialteri.states.service.listener.class%"
-    arguments:
-      - @unialteri.states.loader
-    tags:
-      - { name: kernel.event_listener, event: kernel.request, method: onRequest, priority:99 }
