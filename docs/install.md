@@ -5,7 +5,7 @@ Install with composer
 ---------------------
 You must run the command at the root of your project :
 
-`php composer.phar require unialteri/states-bundle:dev-master`
+`php composer.phar require unialteri/states-bundle`
 
 Register the bundle into the kernel
 -----------------------------------
@@ -19,31 +19,29 @@ in the declared bundle list (commonly defined by the array `$bundles`.
 States library bootstrapping
 ---------------------------
 
-The states library need a bootloader to initialize the library :
+The states library need a specific bootstrapping to initialize the library :
 
-*   initialize an autoloader if no autoloader is available.
-*   initialize the DI Container to use with the library (default `States` use `Pimple`).
-*   instantiate the finder service to find and initialize all stated class's components (factory, proxy and states).
-*   initialize the injection closure service
-*   instantiate the stated class loader to detect and load stated class.
-*   register the stated class loader in the php autoloader stack
+This bootstrap file instantiate the library.
 
-An implementation of these operations is available in the file `/UniAlteri/States/bootstrap.php` provided by the library.
+*   Creates the service to build a new finder (object to locate files of each stated class).
+*   Find the Composer instance
+*   Instantiates a new loader instance with the composer instance. 
+*   Registers the loader in the stack __autoload.
 
-This bundle implements its own bootstrap in the class `UniAlteriStatesBundle`. It is executed when the bundle is
- initialized by Symfony. The behavior of this implementation is like the default implementation, but the stated class
- loader is registered in the DI container of Symfony.
+This bootstrapping is provided by `UniAlteri\Bundle\StatesBundle\Service\ComposerFinderService` to get the composer instance
+from PHP's API and Symfony' components and by `UniAlteri\Bundle\StatesBundle\Service\BootstrapService` to reproduce
+the behavior of the bootstrap implementation of the `States library` (Not called in this case).
 
-The stated class loader is available under the key `unialteri.states.loader`.
+Theses components are implemented via the container and the service definition written in `src/Resources/config/services.yml`.
 
 Configure yours bundle
 ----------------------
+With States 2.x and States Bundle, it is not mandatory to declare bundle namespace in the States library,
+The loader reuse now Composer, it's automatic.
 
-To work with the `States library`, you must register in the loader all namespace used to define your stated class.
-You can do this operation in your your Bundle class (aka `AcmeDemoBundle` for the bundle acme/demo) :
+By default, the bundle use all components of the States library, but you can change some components :
 
-If it is not already done, override the method `boot()`. Get the `States loader` from the Symfony container like this :
-`$loader = $this->container->get('unialteri.states.loader');`
-
-Register your stated class in the loader, like this :
-`$loader->registerNamespace('\\Acme\\DemoBundle\\Entity', __DIR__.DIRECTORY_SEPARATOR.'Entity');`
+*  The factory repository to store all instances of loaded stated classes factories. It must implement the interface \ArrayInterface
+*  The loader of stated classes. It must implement the interface `UniAlteri\States\Loader\LoaderInterface`
+*  The finder, used by the loaded to explore stated classes. It must implement the interface `UniAlteri\States\Loader\FinderInterface`
+*  The function to call to register the loader in the `__autoload` stack. It must has the same signature has `spl_autoload_register`

@@ -19,7 +19,10 @@ This library requires :
 
     * PHP 7+
     * Composer
+    * States 2+
     * Symfony 2.7+
+    
+This library support Doctrine, but Doctrine is not mandatory. (Stated classes can be use without Doctrine)    
     * Doctrine (Orm or Odm/Mongo)
 
 Symfony adaptation

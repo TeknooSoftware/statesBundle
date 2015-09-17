@@ -17,7 +17,7 @@ By default, Doctrine does not call the constructor when it load an entity from t
 *   the proxy is not initialized by the proxy, states are not loaded
 
 But Doctrine provides a mechanism of callbacks, including a callback executed when an entity is loaded, it's the callback
-`@ORM\PostLoad()`.
+`@PostLoad()`.
 
 This bundle provides an extension of the integrated proxy to implement a new callback used like a constructor. This callback
  is implemented by the method `postLoadDoctrine()`.
@@ -25,20 +25,17 @@ This bundle provides an extension of the integrated proxy to implement a new cal
 This extension provides also a new method, called `updateState()`. This method is called by the constructor or by the callback
 `postLoadDoctrine()` to allow you to enable good states of your entity from entities' data.
 
-To use this extension, your entities must extend the class `\UniAlteri\Bundle\StatesBundle\Entity\IntegratedEntity`.
- The factory of your stated class must also inherit the class `\UniAlteri\Bundle\StatesBundle\Factory\Integrated`.
+To use this extension, your entities must extend the class `\UniAlteri\Bundle\StatesBundle\Entity\IntegratedEntity` for Doctrine ORM
+and `\UniAlteri\Bundle\StatesBundle\Entity\IntegratedDocument` for Doctrine ODM. You can also use traits used by these
+classes, do not forget to declare also the static attribute `$startupFactoryClassName` like for these classes.
+ 
+The factory of your stated class must also inherit the class `\UniAlteri\Bundle\StatesBundle\Factory\Integrated` for Doctrine ORM 
+or Doctrine ODM.
 
 Proxy with Twig
 ---------------
 
-Before test a call the specific getter of a required entity's attribute, `Twig` tests with `isset()` if the attribute
- is available directly. So, PHP will call the method `__isset` of the proxy even if the method is not available in
- enabled states.
-
-To avoid error, your proxy must override the method `__isset`. If the method is not used by your class, the method must
- return only false.
-
-*Nota Bene* : The extension `\UniAlteri\Bundle\StatesBundle\Entity\IntegratedEntity` override already this method.
+States is now fully compatible with Twig without extra code, `__isset` is not implemented by the default proxy implementation.
 
 Startup factory
 ---------------
@@ -48,5 +45,6 @@ Doctrine can create its own proxy for each entity when it is loaded to do a lazy
  the default `\UniAlteri\States\Factory\StandardStartupFactory`.
 
 This bundle provides an extended startup factory, called `\UniAlteri\Bundle\StatesBundle\Factory\StartupFactory`,
- used by the provided proxy `\UniAlteri\Bundle\StatesBundle\Entity\IntegratedEntity`, and can manage Dotrcine's proxy
- to retrieve and return the original class name.
+ used by the provided proxy `\UniAlteri\Bundle\StatesBundle\Entity\IntegratedEntity`.
+ 
+With Doctrine ODM, you must use `\UniAlteri\Bundle\StatesBundle\Factory\MongoStartupFactory` instead of.
