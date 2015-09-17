@@ -1,5 +1,17 @@
 #Uni Alteri - States Bundle - Change Log
 
+##[2.0.0-beta1] - 2015-09-17 - Available on the branch "next"
+###Added
+- Support of Mongo
+- Split Doctrine ODM (Mongo) and Doctrine ORM entities and factories
+ 
+###Changed
+- Build on States 2.x
+- Refactoring Factory and Entities
+- Refactoring States loader in bundle to use Symfony' components
+- Refactoring bundle bootstrap to use container definition 
+- Refactoring Doctrine listener for support
+
 ##[1.1.0-beta4] - 2015-07-23
 ###Fixed
 - Some tests issues
