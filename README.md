@@ -3,11 +3,10 @@ Uni Alteri - States bundle
 
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/37eae306-21fc-4181-be04-9c758e1239bb/mini.png)](https://insight.sensiolabs.com/projects/37eae306-21fc-4181-be04-9c758e1239bb) [![Build Status](https://travis-ci.org/UniAlteri/statesBundle.svg?branch=master)](https://travis-ci.org/UniAlteri/statesBundle)
 
-Welcome and thank you to having downloaded this library. It allows you to follow and implement the 
- [State Pattern](http://en.wikipedia.org/wiki/State_pattern)
- and to create easily and cleanly classes with several states, writed in distinct codes blocks, 
- but never used "if conditions" with PHP 5.4+.
- This an adaptation of the library [`States`](http://teknoo.it/states) for Symfony 2+.
+Welcome and thank you to having downloaded this library. 
+It's allow you to create PHP classes following the [State Pattern](http://en.wikipedia.org/wiki/State_pattern) in PHP. 
+This can be a cleaner way for an object to change its behavior at runtime without resorting to large monolithic conditional statements and thus improve maintainability.
+This an adaptation of the library [`States`](http://teknoo.it/states) for Symfony 2+.
 
 Installation with symfony
 -------------------------
@@ -17,8 +16,9 @@ Requirements
 ------------
 This library requires :
 
-    * PHP 5.4+
+    * PHP 5.4+ to 5.6
     * Pimple ~3.0
+    * Composer
 
 Symfony adaptation
 ------------------
