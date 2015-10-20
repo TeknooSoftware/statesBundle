@@ -66,6 +66,27 @@ class IntegratedEntity extends AbstractIntegratedEntity implements
     protected static $startupFactoryClassName = '\UniAlteri\Tests\Support\MockStartupFactory';
 
     /**
+     * Property to test behavior of proxy when a method in a state want access to a public property.
+     *
+     * @var mixed
+     */
+    public $publicProperty = 'value1';
+
+    /**
+     * Property to test behavior of proxy when a method in a state want access to a protected property.
+     *
+     * @var mixed
+     */
+    protected $protectedProperty = 'value1';
+
+    /**
+     * Property to test behavior of proxy when a method in a state want access to a private property.
+     *
+     * @var mixed
+     */
+    private $privateProperty = 'value1';
+
+    /**
      * Method to update static::$_startupFactoryClassName to run some unit tests.
      *
      * @param string $className
@@ -73,5 +94,35 @@ class IntegratedEntity extends AbstractIntegratedEntity implements
     public static function defineStartupFactoryClassName($className)
     {
         static::$startupFactoryClassName = $className;
+    }
+
+    /**
+     * Method to test behavior of proxy when a method in a state want access to a public method.
+     *
+     * @return string
+     */
+    public function publicMethodToCall()
+    {
+        return 'fooBar';
+    }
+
+    /**
+     * Method to test behavior of proxy when a method in a state want access to a protected method.
+     *
+     * @return string
+     */
+    protected function protectedMethodToCall()
+    {
+        return 'fooBar';
+    }
+
+    /**
+     * Method to test behavior of proxy when a method in a state want access to a private method.
+     *
+     * @return string
+     */
+    private function privateMethodToCall()
+    {
+        return 'fooBar';
     }
 }
