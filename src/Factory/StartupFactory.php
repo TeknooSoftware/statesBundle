@@ -17,7 +17,6 @@
  * @link        http://teknoo.it/states Project website
  *
  * @license     http://teknoo.it/license/mit         MIT License
- * @license     http://teknoo.it/license/gpl-3.0     GPL v3 License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
@@ -39,7 +38,6 @@ use Doctrine\ORM\Proxy\Proxy;
  * @link        http://teknoo.it/states Project website
  *
  * @license     http://teknoo.it/license/mit         MIT License
- * @license     http://teknoo.it/license/gpl-3.0     GPL v3 License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  *
  * @api
