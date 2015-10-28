@@ -14,13 +14,13 @@
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
  *
- * @link        http://teknoo.it/states Project website
+ * @link        http://teknoo.software/states Project website
  *
- * @license     http://teknoo.it/license/mit         MIT License
+ * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
-namespace UniAlteri\Bundle\StatesBundle\Service;
+namespace Teknoo\Bundle\StatesBundle\Service;
 
 use Composer\Autoload\ClassLoader;
 use Symfony\Component\Debug\DebugClassLoader;
@@ -32,9 +32,9 @@ use Symfony\Component\Debug\DebugClassLoader;
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
  *
- * @link        http://teknoo.it/states Project website
+ * @link        http://teknoo.software/states Project website
  *
- * @license     http://teknoo.it/license/mit         MIT License
+ * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 class ComposerFinderService

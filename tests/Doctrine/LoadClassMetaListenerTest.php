@@ -14,15 +14,15 @@
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
  *
- * @link        http://teknoo.it/states Project website
+ * @link        http://teknoo.software/states Project website
  *
- * @license     http://teknoo.it/license/mit         MIT License
+ * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
-namespace UniAlteri\Tests\Bundle\StatesBundle\Doctrine;
+namespace Teknoo\Tests\Bundle\StatesBundle\Doctrine;
 
-use UniAlteri\Bundle\StatesBundle\Doctrine\LoadClassMetaListener;
+use Teknoo\Bundle\StatesBundle\Doctrine\LoadClassMetaListener;
 
 /**
  * Class LoadClassMetaListenerTest.
@@ -30,12 +30,12 @@ use UniAlteri\Bundle\StatesBundle\Doctrine\LoadClassMetaListener;
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
  *
- * @link        http://teknoo.it/states Project website
+ * @link        http://teknoo.software/states Project website
  *
- * @license     http://teknoo.it/license/mit         MIT License
+ * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  *
- * @covers UniAlteri\Bundle\StatesBundle\Doctrine\LoadClassMetaListener
+ * @covers Teknoo\Bundle\StatesBundle\Doctrine\LoadClassMetaListener
  */
 class LoadClassMetaListenerTest extends \PHPUnit_Framework_TestCase
 {
@@ -49,11 +49,11 @@ class LoadClassMetaListenerTest extends \PHPUnit_Framework_TestCase
 
     public function testRegisterGetLoader()
     {
-        $loader = $this->getMock('UniAlteri\States\Loader\LoaderInterface', [], [], '', false);
+        $loader = $this->getMock('Teknoo\States\Loader\LoaderInterface', [], [], '', false);
         $listener = $this->buildListener();
 
         $this->assertInstanceOf(
-            'UniAlteri\Bundle\StatesBundle\Doctrine\LoadClassMetaListener',
+            'Teknoo\Bundle\StatesBundle\Doctrine\LoadClassMetaListener',
             $listener->registerLoader($loader)
         );
 
@@ -68,7 +68,7 @@ class LoadClassMetaListenerTest extends \PHPUnit_Framework_TestCase
         $eventArgs = $this->getMock('Doctrine\Common\Persistence\Event\LoadClassMetadataEventArgs', [], [], '', false);
         $eventArgs->expects($this->any())->method('getClassMetadata')->willReturn($classMeta);
 
-        $loader = $this->getMock('UniAlteri\States\Loader\LoaderInterface', [], [], '', false);
+        $loader = $this->getMock('Teknoo\States\Loader\LoaderInterface', [], [], '', false);
         $loader->expects($this->once())->method('loadClass')->with('my\Stated\Class');
 
         $listener = $this->buildListener()->registerLoader($loader);

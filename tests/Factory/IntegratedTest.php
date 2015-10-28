@@ -14,16 +14,16 @@
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
  *
- * @link        http://teknoo.it/states Project website
+ * @link        http://teknoo.software/states Project website
  *
- * @license     http://teknoo.it/license/mit         MIT License
+ * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
-namespace UniAlteri\Tests\Bundle\StatesBundle;
+namespace Teknoo\Tests\Bundle\StatesBundle;
 
-use UniAlteri\Bundle\StatesBundle\Factory;
-use UniAlteri\States\Loader\FinderInterface;
+use Teknoo\Bundle\StatesBundle\Factory;
+use Teknoo\States\Loader\FinderInterface;
 
 /**
  * Class IntegratedTest.
@@ -31,14 +31,14 @@ use UniAlteri\States\Loader\FinderInterface;
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
  *
- * @link        http://teknoo.it/states Project website
+ * @link        http://teknoo.software/states Project website
  *
- * @license     http://teknoo.it/license/mit         MIT License
+ * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  *
- * @covers UniAlteri\Bundle\StatesBundle\Factory\Integrated
+ * @covers Teknoo\Bundle\StatesBundle\Factory\Integrated
  */
-class IntegratedTest extends \UniAlteri\Tests\States\Factory\IntegratedTest
+class IntegratedTest extends \Teknoo\Tests\States\Factory\IntegratedTest
 {
     /**
      * @param FinderInterface $finder

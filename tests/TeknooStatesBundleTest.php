@@ -14,31 +14,31 @@
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
  *
- * @link        http://teknoo.it/states Project website
+ * @link        http://teknoo.software/states Project website
  *
- * @license     http://teknoo.it/license/mit         MIT License
+ * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
-namespace UniAlteri\Tests\Bundle\StatesBundle;
+namespace Teknoo\Tests\Bundle\StatesBundle;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use UniAlteri\Bundle\StatesBundle\UniAlteriStatesBundle;
+use Teknoo\Bundle\StatesBundle\TeknooStatesBundle;
 
 /**
- * Class UniAlteriStatesBundleTest.
+ * Class TeknooStatesBundleTest.
  *
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
  *
- * @link        http://teknoo.it/states Project website
+ * @link        http://teknoo.software/states Project website
  *
- * @license     http://teknoo.it/license/mit         MIT License
+ * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  *
- * @covers UniAlteri\Bundle\StatesBundle\UniAlteriStatesBundle
+ * @covers Teknoo\Bundle\StatesBundle\TeknooStatesBundle
  */
-class UniAlteriStatesBundleTest extends \PHPUnit_Framework_TestCase
+class TeknooStatesBundleTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var ContainerInterface
@@ -59,7 +59,7 @@ class UniAlteriStatesBundleTest extends \PHPUnit_Framework_TestCase
 
     public function buildService()
     {
-        $bundle = new UniAlteriStatesBundle();
+        $bundle = new TeknooStatesBundle();
         $bundle->setContainer($this->getContainerMock());
 
         return $bundle;
@@ -70,8 +70,8 @@ class UniAlteriStatesBundleTest extends \PHPUnit_Framework_TestCase
         $this->getContainerMock()
             ->expects($this->once())
             ->method('get')
-            ->with('unialteri.states.loader')
-            ->willReturn($this->getMock('UniAlteri\States\Loader\LoaderInterface', [], [], '', false));
+            ->with('teknoo.states.loader')
+            ->willReturn($this->getMock('Teknoo\States\Loader\LoaderInterface', [], [], '', false));
 
         $this->buildService()->boot();
     }

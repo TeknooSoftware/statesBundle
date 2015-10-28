@@ -14,13 +14,13 @@
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
  *
- * @link        http://teknoo.it/states Project website
+ * @link        http://teknoo.software/states Project website
  *
- * @license     http://teknoo.it/license/mit         MIT License
+ * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
-namespace UniAlteri\Bundle\StatesBundle\DependencyInjection;
+namespace Teknoo\Bundle\StatesBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
@@ -28,7 +28,7 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader;
 
 /**
- * Class UniAlteriStatesExtension
+ * Class TeknooStatesExtension
  * This is the class that loads and manages your bundle configuration.
  *
  * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
@@ -36,12 +36,12 @@ use Symfony\Component\DependencyInjection\Loader;
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
  *
- * @link        http://teknoo.it/states Project website
+ * @link        http://teknoo.software/states Project website
  *
- * @license     http://teknoo.it/license/mit         MIT License
+ * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
-class UniAlteriStatesExtension extends Extension
+class TeknooStatesExtension extends Extension
 {
     /**
      * {@inheritdoc}
@@ -56,28 +56,28 @@ class UniAlteriStatesExtension extends Extension
 
         if (isset($config['factory_repository'])) {
             $container->setParameter(
-                'unialteri.states.bootstraping.factory.repository.class.name',
+                'teknoo.states.bootstraping.factory.repository.class.name',
                 $config['factory_repository']
             );
         }
 
         if (isset($config['loader'])) {
             $container->setParameter(
-                'unialteri.states.bootstraping.loader.class.name',
+                'teknoo.states.bootstraping.loader.class.name',
                 $config['loader']
             );
         }
 
         if (isset($config['finder'])) {
             $container->setParameter(
-                'unialteri.states.bootstraping.finder.class.name',
+                'teknoo.states.bootstraping.finder.class.name',
                 $config['finder']
             );
         }
 
         if (isset($config['autoload_register'])) {
             $container->setParameter(
-                'unialteri.states.bootstraping.autoloader.register.function',
+                'teknoo.states.bootstraping.autoloader.register.function',
                 $config['autoload_register']
             );
         }

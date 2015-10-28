@@ -14,25 +14,25 @@
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
  *
- * @link        http://teknoo.it/states Project website
+ * @link        http://teknoo.software/states Project website
  *
- * @license     http://teknoo.it/license/mit         MIT License
+ * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
-namespace UniAlteri\Tests\Bundle\StatesBundle\Support;
+namespace Teknoo\Tests\Bundle\StatesBundle\Support;
 
-use UniAlteri\Bundle\StatesBundle\Document\IntegratedDocument as AbstractIntegratedDocument;
-use UniAlteri\States\Proxy\ArrayAccessTrait;
-use UniAlteri\States\Proxy\IteratorTrait;
-use UniAlteri\States\Proxy\MagicCallTrait;
-use UniAlteri\States\Proxy\SerializableTrait;
+use Teknoo\Bundle\StatesBundle\Document\IntegratedDocument as AbstractIntegratedDocument;
+use Teknoo\States\Proxy\ArrayAccessTrait;
+use Teknoo\States\Proxy\IteratorTrait;
+use Teknoo\States\Proxy\MagicCallTrait;
+use Teknoo\States\Proxy\SerializableTrait;
 
 /**
  * Class IntegratedDocument
  * To build an specific instance of the class IntegratedDocument to test this default class.
- * By default, the class Proxy\Integrated uses '\UniAlteri\States\Factory\StandardStartupFactory' as startup factory.
- * But, in the test, we will use '\UniAlteri\Tests\Support\MockStartupFactory' to unit testing only the proxy.
+ * By default, the class Proxy\Integrated uses '\Teknoo\States\Factory\StandardStartupFactory' as startup factory.
+ * But, in the test, we will use '\Teknoo\Tests\Support\MockStartupFactory' to unit testing only the proxy.
  *
  * This extends support implements also all supported standard interface to tests implementation provided by the trait Proxy.
  * To avoid errors in the usage of this lib, these interfaces are not defined with released proxies.
@@ -41,9 +41,9 @@ use UniAlteri\States\Proxy\SerializableTrait;
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
  *
- * @link        http://teknoo.it/states Project website
+ * @link        http://teknoo.software/states Project website
  *
- * @license     http://teknoo.it/license/mit         MIT License
+ * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 class IntegratedDocument extends AbstractIntegratedDocument implements
@@ -63,7 +63,7 @@ class IntegratedDocument extends AbstractIntegratedDocument implements
      *
      * @var string
      */
-    protected static $startupFactoryClassName = '\UniAlteri\Tests\Support\MockStartupFactory';
+    protected static $startupFactoryClassName = '\Teknoo\Tests\Support\MockStartupFactory';
 
     /**
      * Property to test behavior of proxy when a method in a state want access to a public property.

@@ -14,15 +14,15 @@
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
  *
- * @link        http://teknoo.it/states Project website
+ * @link        http://teknoo.software/states Project website
  *
- * @license     http://teknoo.it/license/mit         MIT License
+ * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
-namespace UniAlteri\Tests\Bundle\StatesBundle\Service;
+namespace Teknoo\Tests\Bundle\StatesBundle\Service;
 
-use UniAlteri\Bundle\StatesBundle\Service\ComposerFinderService;
+use Teknoo\Bundle\StatesBundle\Service\ComposerFinderService;
 
 /**
  * Class ComposerFinderServiceTest.
@@ -30,12 +30,12 @@ use UniAlteri\Bundle\StatesBundle\Service\ComposerFinderService;
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
  *
- * @link        http://teknoo.it/states Project website
+ * @link        http://teknoo.software/states Project website
  *
- * @license     http://teknoo.it/license/mit         MIT License
+ * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  *
- * @covers UniAlteri\Bundle\StatesBundle\Service\ComposerFinderService
+ * @covers Teknoo\Bundle\StatesBundle\Service\ComposerFinderService
  */
 class ComposerFinderServiceTest extends \PHPUnit_Framework_TestCase
 {

@@ -14,19 +14,19 @@
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
  *
- * @link        http://teknoo.it/states Project website
+ * @link        http://teknoo.software/states Project website
  *
- * @license     http://teknoo.it/license/mit         MIT License
+ * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
-namespace UniAlteri\Tests\Bundle\StatesBundle\Service;
+namespace Teknoo\Tests\Bundle\StatesBundle\Service;
 
-use UniAlteri\Bundle\StatesBundle\Service\BootstrapService;
-use UniAlteri\Bundle\StatesBundle\Doctrine\LoadClassMetaListener;
-use UniAlteri\Bundle\StatesBundle\Service\ComposerFinderService;
-use UniAlteri\States\Loader\LoaderComposer;
-use UniAlteri\States\Loader\LoaderInterface;
+use Teknoo\Bundle\StatesBundle\Service\BootstrapService;
+use Teknoo\Bundle\StatesBundle\Doctrine\LoadClassMetaListener;
+use Teknoo\Bundle\StatesBundle\Service\ComposerFinderService;
+use Teknoo\States\Loader\LoaderComposer;
+use Teknoo\States\Loader\LoaderInterface;
 
 /**
  * Class BootstrapServiceTest.
@@ -34,12 +34,12 @@ use UniAlteri\States\Loader\LoaderInterface;
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
  *
- * @link        http://teknoo.it/states Project website
+ * @link        http://teknoo.software/states Project website
  *
- * @license     http://teknoo.it/license/mit         MIT License
+ * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  *
- * @covers UniAlteri\Bundle\StatesBundle\Service\BootstrapService
+ * @covers Teknoo\Bundle\StatesBundle\Service\BootstrapService
  */
 class BootstrapServiceTest extends \PHPUnit_Framework_TestCase
 {
@@ -64,7 +64,7 @@ class BootstrapServiceTest extends \PHPUnit_Framework_TestCase
     protected function getComposerFinderServiceMock()
     {
         if (!$this->composerFinderServiceMock instanceof ComposerFinderService) {
-            $this->composerFinderServiceMock = $this->getMock('UniAlteri\Bundle\StatesBundle\Service\ComposerFinderService', [], [], '', false);
+            $this->composerFinderServiceMock = $this->getMock('Teknoo\Bundle\StatesBundle\Service\ComposerFinderService', [], [], '', false);
         }
 
         return $this->composerFinderServiceMock;
@@ -88,7 +88,7 @@ class BootstrapServiceTest extends \PHPUnit_Framework_TestCase
     protected function getLoadClassMetaListenerMock()
     {
         if (!$this->loadClassMetaListenerMock instanceof LoadClassMetaListener) {
-            $this->loadClassMetaListenerMock = $this->getMock('UniAlteri\Bundle\StatesBundle\Doctrine\LoadClassMetaListener', [], [], '', false);
+            $this->loadClassMetaListenerMock = $this->getMock('Teknoo\Bundle\StatesBundle\Doctrine\LoadClassMetaListener', [], [], '', false);
         }
 
         return $this->loadClassMetaListenerMock;
@@ -114,7 +114,7 @@ class BootstrapServiceTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetLoaderInstanceMissingLoaderClass()
     {
-        $this->buildService(function () {})->getLoaderInstance('badClass', 'UniAlteri\States\Loader\FinderComposerIntegrated');
+        $this->buildService(function () {})->getLoaderInstance('badClass', 'Teknoo\States\Loader\FinderComposerIntegrated');
     }
 
     /**
@@ -122,7 +122,7 @@ class BootstrapServiceTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetLoaderInstanceBadLoaderClass()
     {
-        $this->buildService(function () {})->getLoaderInstance('\DateTime', 'UniAlteri\States\Loader\FinderComposerIntegrated');
+        $this->buildService(function () {})->getLoaderInstance('\DateTime', 'Teknoo\States\Loader\FinderComposerIntegrated');
     }
 
     /**
@@ -130,7 +130,7 @@ class BootstrapServiceTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetLoaderInstanceMissingFinderClass()
     {
-        $this->buildService(function () {})->getLoaderInstance('UniAlteri\States\Loader\LoaderComposer', 'badClass');
+        $this->buildService(function () {})->getLoaderInstance('Teknoo\States\Loader\LoaderComposer', 'badClass');
     }
 
     /**
@@ -138,7 +138,7 @@ class BootstrapServiceTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetLoaderInstanceBadFinderClass()
     {
-        $this->buildService(function () {})->getLoaderInstance('UniAlteri\States\Loader\LoaderComposer', '\DateTime');
+        $this->buildService(function () {})->getLoaderInstance('Teknoo\States\Loader\LoaderComposer', '\DateTime');
     }
 
     public function testGetLoaderInstanceIntegrated()
@@ -150,8 +150,8 @@ class BootstrapServiceTest extends \PHPUnit_Framework_TestCase
             ->method('getComposerInstance')
             ->willReturn($composerMock);
 
-        $loaderClassName = 'UniAlteri\States\Loader\LoaderComposer';
-        $finderClassName = 'UniAlteri\States\Loader\FinderComposerIntegrated';
+        $loaderClassName = 'Teknoo\States\Loader\LoaderComposer';
+        $finderClassName = 'Teknoo\States\Loader\FinderComposerIntegrated';
 
         $registerMock = function ($function, $throw, $prepend) use ($loaderClassName) {
             $this->assertTrue(is_callable($function) && is_array($function));
@@ -192,8 +192,8 @@ class BootstrapServiceTest extends \PHPUnit_Framework_TestCase
             ->method('getComposerInstance')
             ->willReturn($composerMock);
 
-        $loaderClassName = 'UniAlteri\States\Loader\LoaderComposer';
-        $finderClassName = 'UniAlteri\States\Loader\FinderComposer';
+        $loaderClassName = 'Teknoo\States\Loader\LoaderComposer';
+        $finderClassName = 'Teknoo\States\Loader\FinderComposer';
 
         $registerMock = function ($function, $throw, $prepend) use ($loaderClassName) {
             $this->assertTrue(is_callable($function) && is_array($function));

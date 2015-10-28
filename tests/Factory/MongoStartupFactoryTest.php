@@ -14,18 +14,18 @@
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
  *
- * @link        http://teknoo.it/states Project website
+ * @link        http://teknoo.software/states Project website
  *
- * @license     http://teknoo.it/license/mit         MIT License
+ * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
-namespace UniAlteri\Tests\Bundle\StatesBundle;
+namespace Teknoo\Tests\Bundle\StatesBundle;
 
-use UniAlteri\Bundle\StatesBundle\Factory;
-use UniAlteri\States\Factory\Exception;
-use UniAlteri\Tests\Bundle\StatesBundle\Support\MongoMockProxy;
-use UniAlteri\Tests\Support;
+use Teknoo\Bundle\StatesBundle\Factory;
+use Teknoo\States\Factory\Exception;
+use Teknoo\Tests\Bundle\StatesBundle\Support\MongoMockProxy;
+use Teknoo\Tests\Support;
 
 /**
  * Class MongoStartupFactoryTest.
@@ -33,12 +33,12 @@ use UniAlteri\Tests\Support;
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
  *
- * @link        http://teknoo.it/states Project website
+ * @link        http://teknoo.software/states Project website
  *
- * @license     http://teknoo.it/license/mit         MIT License
+ * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  *
- * @covers UniAlteri\Bundle\StatesBundle\Factory\MongoStartupFactory
+ * @covers Teknoo\Bundle\StatesBundle\Factory\MongoStartupFactory
  */
 class MongoStartupFactoryTest extends \PHPUnit_Framework_TestCase
 {
@@ -72,7 +72,7 @@ class MongoStartupFactoryTest extends \PHPUnit_Framework_TestCase
     public function testForwardStartup()
     {
         $factory = new Support\MockFactory('My\Stated\Class', new Support\MockFinder('My\Stated\Class', 'path/to/class'), new \ArrayObject());
-        Factory\MongoStartupFactory::registerFactory('UniAlteri\Tests\Support\MockProxy', $factory);
+        Factory\MongoStartupFactory::registerFactory('Teknoo\Tests\Support\MockProxy', $factory);
         $proxy = new Support\MockProxy(null);
         Factory\MongoStartupFactory::forwardStartup($proxy);
         $this->assertSame($factory->getStartupProxy(), $proxy);
@@ -84,7 +84,7 @@ class MongoStartupFactoryTest extends \PHPUnit_Framework_TestCase
     public function testForwardStartupFromProxy()
     {
         $factory = new Support\MockFactory('My\Stated\Class', new Support\MockFinder('My\Stated\Class', 'path/to/class'), new \ArrayObject());
-        Factory\MongoStartupFactory::registerFactory('UniAlteri\Tests\Support\MockProxy', $factory);
+        Factory\MongoStartupFactory::registerFactory('Teknoo\Tests\Support\MockProxy', $factory);
         $proxy = new MongoMockProxy(null);
         Factory\MongoStartupFactory::forwardStartup($proxy);
         $this->assertSame($factory->getStartupProxy(), $proxy);
@@ -96,14 +96,14 @@ class MongoStartupFactoryTest extends \PHPUnit_Framework_TestCase
     public function testListRegisteredFactory()
     {
         $factory = new Support\MockFactory('My\Stated\Class', new Support\MockFinder('My\Stated\Class', 'path/to/class'), new \ArrayObject());
-        Factory\MongoStartupFactory::registerFactory('UniAlteri\Tests\Support\MockProxy1', $factory);
+        Factory\MongoStartupFactory::registerFactory('Teknoo\Tests\Support\MockProxy1', $factory);
         Factory\MongoStartupFactory::reset();
-        Factory\MongoStartupFactory::registerFactory('UniAlteri\Tests\Support\MockProxy2', $factory);
-        Factory\MongoStartupFactory::registerFactory('UniAlteri\Tests\Support\MockProxy3', $factory);
+        Factory\MongoStartupFactory::registerFactory('Teknoo\Tests\Support\MockProxy2', $factory);
+        Factory\MongoStartupFactory::registerFactory('Teknoo\Tests\Support\MockProxy3', $factory);
         $this->assertEquals(
             array(
-                'UniAlteri\Tests\Support\MockProxy2',
-                'UniAlteri\Tests\Support\MockProxy3',
+                'Teknoo\Tests\Support\MockProxy2',
+                'Teknoo\Tests\Support\MockProxy3',
             ),
             Factory\MongoStartupFactory::listRegisteredFactory()
         );

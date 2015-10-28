@@ -14,19 +14,19 @@
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
  *
- * @link        http://teknoo.it/states Project website
+ * @link        http://teknoo.software/states Project website
  *
- * @license     http://teknoo.it/license/mit         MIT License
+ * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
-namespace UniAlteri\Bundle\StatesBundle\Document;
+namespace Teknoo\Bundle\StatesBundle\Document;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
-use UniAlteri\States\Proxy\Exception\IllegalFactory;
-use UniAlteri\States\Proxy\Exception\UnavailableFactory;
-use UniAlteri\States\Proxy\IntegratedInterface;
-use UniAlteri\States\Proxy\ProxyInterface;
+use Teknoo\States\Proxy\Exception\IllegalFactory;
+use Teknoo\States\Proxy\Exception\UnavailableFactory;
+use Teknoo\States\Proxy\IntegratedInterface;
+use Teknoo\States\Proxy\ProxyInterface;
 
 /**
  * Class IntegratedDocument.
@@ -35,9 +35,9 @@ use UniAlteri\States\Proxy\ProxyInterface;
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
  *
- * @link        http://teknoo.it/states Project website
+ * @link        http://teknoo.software/states Project website
  *
- * @license     http://teknoo.it/license/mit         MIT License
+ * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  *
  * @MongoDB\MappedSuperclass
@@ -52,7 +52,7 @@ abstract class IntegratedDocument implements ProxyInterface, IntegratedInterface
      *
      * @var string
      */
-    protected static $startupFactoryClassName = '\UniAlteri\Bundle\StatesBundle\Factory\MongoStartupFactory';
+    protected static $startupFactoryClassName = '\Teknoo\Bundle\StatesBundle\Factory\MongoStartupFactory';
 
     /**
      * Default constructor used to initialize the stated object with its factory.

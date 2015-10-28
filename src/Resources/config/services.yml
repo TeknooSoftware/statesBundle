@@ -1,52 +1,52 @@
 # src/Resources/config/services.yml
 parameters:
   #bundle services class names
-  unialteri.states.service.composer.finder.class: UniAlteri\Bundle\StatesBundle\Service\ComposerFinderService
-  unialteri.states.service.factory.repository.class: ArrayObject
-  unialteri.states.service.bootstrap.class: UniAlteri\Bundle\StatesBundle\Service\BootstrapService
+  teknoo.states.service.composer.finder.class: Teknoo\Bundle\StatesBundle\Service\ComposerFinderService
+  teknoo.states.service.factory.repository.class: ArrayObject
+  teknoo.states.service.bootstrap.class: Teknoo\Bundle\StatesBundle\Service\BootstrapService
 
   #doctrine listener
-  unialteri.states.listener.doctrine.load.class.meta.class: UniAlteri\Bundle\StatesBundle\Doctrine\LoadClassMetaListener
+  teknoo.states.listener.doctrine.load.class.meta.class: Teknoo\Bundle\StatesBundle\Doctrine\LoadClassMetaListener
 
   #states loaders classes
-  unialteri.states.loader.class: UniAlteri\States\Loader\LoaderComposer
-  unialteri.states.finder.class: UniAlteri\States\Loader\FinderComposerIntegrated
+  teknoo.states.loader.class: Teknoo\States\Loader\LoaderComposer
+  teknoo.states.finder.class: Teknoo\States\Loader\FinderComposerIntegrated
 
   #default parameter for bootstraping
-  unialteri.states.bootstraping.autoloader.register.function: "spl_autoload_register"
-  unialteri.states.bootstraping.factory.repository.class.name: "%unialteri.states.service.factory.repository.class%"
-  unialteri.states.bootstraping.loader.class.name: "%unialteri.states.loader.class%"
-  unialteri.states.bootstraping.finder.class.name: "%unialteri.states.finder.class%"
+  teknoo.states.bootstraping.autoloader.register.function: "spl_autoload_register"
+  teknoo.states.bootstraping.factory.repository.class.name: "%teknoo.states.service.factory.repository.class%"
+  teknoo.states.bootstraping.loader.class.name: "%teknoo.states.loader.class%"
+  teknoo.states.bootstraping.finder.class.name: "%teknoo.states.finder.class%"
 
 services:
   #composer finder
-  unialteri.states.service.composer.finder:
-    class: "%unialteri.states.service.composer.finder.class%"
+  teknoo.states.service.composer.finder:
+    class: "%teknoo.states.service.composer.finder.class%"
     public: false
 
-  unialteri.states.service.factory.repository:
-    class: "%unialteri.states.bootstraping.factory.repository.class.name%"
+  teknoo.states.service.factory.repository:
+    class: "%teknoo.states.bootstraping.factory.repository.class.name%"
     public: false
 
-  unialteri.states.listener.doctrine.load.class.meta:
-    class: "%unialteri.states.listener.doctrine.load.class.meta.class%"
+  teknoo.states.listener.doctrine.load.class.meta:
+    class: "%teknoo.states.listener.doctrine.load.class.meta.class%"
     public: false
     tags:
       - { name: doctrine.event_listener, event: loadClassMetadata }
 
-  unialteri.states.service.bootstrap:
-    class: "%unialteri.states.service.bootstrap.class%"
+  teknoo.states.service.bootstrap:
+    class: "%teknoo.states.service.bootstrap.class%"
     public: false
     arguments:
-      - @unialteri.states.service.composer.finder
-      - @unialteri.states.service.factory.repository
-      - @unialteri.states.listener.doctrine.load.class.meta
-      - "%unialteri.states.bootstraping.autoloader.register.function%"
+      - @teknoo.states.service.composer.finder
+      - @teknoo.states.service.factory.repository
+      - @teknoo.states.listener.doctrine.load.class.meta
+      - "%teknoo.states.bootstraping.autoloader.register.function%"
 
-  unialteri.states.loader:
-    class: "%unialteri.states.bootstraping.loader.class.name%"
-    factory_service: unialteri.states.service.bootstrap
+  teknoo.states.loader:
+    class: "%teknoo.states.bootstraping.loader.class.name%"
+    factory_service: teknoo.states.service.bootstrap
     factory_method: getLoaderInstance
     arguments:
-      - "%unialteri.states.bootstraping.loader.class.name%"
-      - "%unialteri.states.bootstraping.finder.class.name%"
+      - "%teknoo.states.bootstraping.loader.class.name%"
+      - "%teknoo.states.bootstraping.finder.class.name%"

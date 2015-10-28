@@ -14,19 +14,19 @@
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
  *
- * @link        http://teknoo.it/states Project website
+ * @link        http://teknoo.software/states Project website
  *
- * @license     http://teknoo.it/license/mit         MIT License
+ * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
-namespace UniAlteri\Bundle\StatesBundle\Entity;
+namespace Teknoo\Bundle\StatesBundle\Entity;
 
-use UniAlteri\States\Proxy\Exception\IllegalFactory;
-use UniAlteri\States\Proxy\Exception\UnavailableFactory;
+use Teknoo\States\Proxy\Exception\IllegalFactory;
+use Teknoo\States\Proxy\Exception\UnavailableFactory;
 use Doctrine\ORM\Mapping as ORM;
-use UniAlteri\States\Proxy\IntegratedInterface;
-use UniAlteri\States\Proxy\ProxyInterface;
+use Teknoo\States\Proxy\IntegratedInterface;
+use Teknoo\States\Proxy\ProxyInterface;
 
 /**
  * Class IntegratedEntity.
@@ -35,9 +35,9 @@ use UniAlteri\States\Proxy\ProxyInterface;
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
  *
- * @link        http://teknoo.it/states Project website
+ * @link        http://teknoo.software/states Project website
  *
- * @license     http://teknoo.it/license/mit         MIT License
+ * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  *
  * @ORM\MappedSuperclass
@@ -52,7 +52,7 @@ abstract class IntegratedEntity implements ProxyInterface, IntegratedInterface
      *
      * @var string
      */
-    protected static $startupFactoryClassName = '\UniAlteri\Bundle\StatesBundle\Factory\StartupFactory';
+    protected static $startupFactoryClassName = '\Teknoo\Bundle\StatesBundle\Factory\StartupFactory';
 
     /**
      * Default constructor used to initialize the stated object with its factory.

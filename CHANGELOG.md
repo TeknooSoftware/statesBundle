@@ -1,4 +1,4 @@
-#Uni Alteri - States Bundle - Change Log
+#Teknoo Software - States Bundle - Change Log
 
 ##[2.0.0-beta1] - 2015-09-17 - Available on the branch "next"
 ###Added

@@ -14,16 +14,16 @@
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
  *
- * @link        http://teknoo.it/states Project website
+ * @link        http://teknoo.software/states Project website
  *
- * @license     http://teknoo.it/license/mit         MIT License
+ * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
-namespace UniAlteri\Bundle\StatesBundle\Service;
+namespace Teknoo\Bundle\StatesBundle\Service;
 
-use UniAlteri\Bundle\StatesBundle\Doctrine\LoadClassMetaListener;
-use UniAlteri\States\Loader\LoaderInterface;
+use Teknoo\Bundle\StatesBundle\Doctrine\LoadClassMetaListener;
+use Teknoo\States\Loader\LoaderInterface;
 
 /**
  * Class BootstrapService
@@ -33,9 +33,9 @@ use UniAlteri\States\Loader\LoaderInterface;
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
  *
- * @link        http://teknoo.it/states Project website
+ * @link        http://teknoo.software/states Project website
  *
- * @license     http://teknoo.it/license/mit         MIT License
+ * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 class BootstrapService
@@ -105,7 +105,7 @@ class BootstrapService
         }
 
         $reflectionClass = new \ReflectionClass($loaderClassName);
-        if (!$reflectionClass->implementsInterface('UniAlteri\States\Loader\LoaderInterface')) {
+        if (!$reflectionClass->implementsInterface('Teknoo\States\Loader\LoaderInterface')) {
             throw new \Exception('Error, '.$loaderClassName.' does not implement the Loader Interface');
         }
 
@@ -114,7 +114,7 @@ class BootstrapService
         }
 
         $reflectionClass = new \ReflectionClass($finderClassName);
-        if (!$reflectionClass->implementsInterface('UniAlteri\States\Loader\FinderInterface')) {
+        if (!$reflectionClass->implementsInterface('Teknoo\States\Loader\FinderInterface')) {
             throw new \Exception('Error, '.$finderClassName.' does not implement the Loader Interface');
         }
 

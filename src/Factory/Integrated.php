@@ -14,27 +14,27 @@
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
  *
- * @link        http://teknoo.it/states Project website
+ * @link        http://teknoo.software/states Project website
  *
- * @license     http://teknoo.it/license/mit         MIT License
+ * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
-namespace UniAlteri\Bundle\StatesBundle\Factory;
+namespace Teknoo\Bundle\StatesBundle\Factory;
 
-use UniAlteri\States\Factory\Integrated as StatesIntegrated;
+use Teknoo\States\Factory\Integrated as StatesIntegrated;
 
 /**
  * Class Integrated
- * Extends of \UniAlteri\States\Factory\Integrated to support Doctrine proxy :
- * Use the \UniAlteri\Bundle\StatesBundle\Factory\StartupFactory instead of \UniAlteri\States\Factory\StartupFactory.
+ * Extends of \Teknoo\States\Factory\Integrated to support Doctrine proxy :
+ * Use the \Teknoo\Bundle\StatesBundle\Factory\StartupFactory instead of \Teknoo\States\Factory\StartupFactory.
  *
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
  *
- * @link        http://teknoo.it/states Project website
+ * @link        http://teknoo.software/states Project website
  *
- * @license     http://teknoo.it/license/mit         MIT License
+ * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 class Integrated extends StatesIntegrated
@@ -42,7 +42,7 @@ class Integrated extends StatesIntegrated
     /**
      * {@inheritdoc}
      */
-    protected function initialize(\string $statedClassName): \UniAlteri\States\Factory\FactoryInterface
+    protected function initialize(\string $statedClassName): \Teknoo\States\Factory\FactoryInterface
     {
         //Call trait's method to initialize this stated class
         $this->traitInitialize($statedClassName);

@@ -1,12 +1,12 @@
-Uni Alteri - States bundle
+Teknoo Software - States bundle
 ===========================
 
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/37eae306-21fc-4181-be04-9c758e1239bb/mini.png)](https://insight.sensiolabs.com/projects/37eae306-21fc-4181-be04-9c758e1239bb) [![Build Status](https://travis-ci.org/UniAlteri/statesBundle.svg?branch=master)](https://travis-ci.org/UniAlteri/statesBundle)
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/37eae306-21fc-4181-be04-9c758e1239bb/mini.png)](https://insight.sensiolabs.com/projects/37eae306-21fc-4181-be04-9c758e1239bb) [![Build Status](https://travis-ci.org/Teknoo/statesBundle.svg?branch=master)](https://travis-ci.org/Teknoo/statesBundle)
 
 Welcome and thank you to having downloaded this library. 
 It's allow you to create PHP classes following the [State Pattern](http://en.wikipedia.org/wiki/State_pattern) in PHP. 
 This can be a cleaner way for an object to change its behavior at runtime without resorting to large monolithic conditional statements and thus improve maintainability.
-This an adaptation of the library [`States`](http://teknoo.it/states) for Symfony 2+.
+This an adaptation of the library [`States`](http://teknoo.software/states) for Symfony 2+.
 
 Installation with symfony
 -------------------------
@@ -48,7 +48,8 @@ Documentation to explain how this library works : [Behavior](https://github.com/
 Credits
 -------
 Richard Déloge - <r.deloge@uni-alteri.com> - Lead developer.
-Uni Alteri - <http://uni-alteri.com> - <http://teknoo.it>
+Teknoo Software - <http://teknoo.software>
+Uni Alteri - <http://uni-alteri.com>
 
 License
 -------

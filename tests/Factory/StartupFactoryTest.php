@@ -14,18 +14,18 @@
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
  *
- * @link        http://teknoo.it/states Project website
+ * @link        http://teknoo.software/states Project website
  *
- * @license     http://teknoo.it/license/mit         MIT License
+ * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
-namespace UniAlteri\Tests\Bundle\StatesBundle;
+namespace Teknoo\Tests\Bundle\StatesBundle;
 
-use UniAlteri\Bundle\StatesBundle\Factory;
-use UniAlteri\States\Factory\Exception;
-use UniAlteri\Tests\Bundle\StatesBundle\Support\DoctrineMockProxy;
-use UniAlteri\Tests\Support;
+use Teknoo\Bundle\StatesBundle\Factory;
+use Teknoo\States\Factory\Exception;
+use Teknoo\Tests\Bundle\StatesBundle\Support\DoctrineMockProxy;
+use Teknoo\Tests\Support;
 
 /**
  * Class StartupFactoryTest.
@@ -33,12 +33,12 @@ use UniAlteri\Tests\Support;
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
  *
- * @link        http://teknoo.it/states Project website
+ * @link        http://teknoo.software/states Project website
  *
- * @license     http://teknoo.it/license/mit         MIT License
+ * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com
  *
- * @covers UniAlteri\Bundle\StatesBundle\Factory\StartupFactory
+ * @covers Teknoo\Bundle\StatesBundle\Factory\StartupFactory
  */
 class StartupFactoryTest extends \PHPUnit_Framework_TestCase
 {
@@ -72,7 +72,7 @@ class StartupFactoryTest extends \PHPUnit_Framework_TestCase
     public function testForwardStartup()
     {
         $factory = new Support\MockFactory('My\Stated\Class', new Support\MockFinder('My\Stated\Class', 'path/to/class'), new \ArrayObject());
-        Factory\StartupFactory::registerFactory('UniAlteri\Tests\Support\MockProxy', $factory);
+        Factory\StartupFactory::registerFactory('Teknoo\Tests\Support\MockProxy', $factory);
         $proxy = new Support\MockProxy(null);
         Factory\StartupFactory::forwardStartup($proxy);
         $this->assertSame($factory->getStartupProxy(), $proxy);
@@ -84,7 +84,7 @@ class StartupFactoryTest extends \PHPUnit_Framework_TestCase
     public function testForwardStartupFromProxy()
     {
         $factory = new Support\MockFactory('My\Stated\Class', new Support\MockFinder('My\Stated\Class', 'path/to/class'), new \ArrayObject());
-        Factory\StartupFactory::registerFactory('UniAlteri\Tests\Support\MockProxy', $factory);
+        Factory\StartupFactory::registerFactory('Teknoo\Tests\Support\MockProxy', $factory);
         $proxy = new DoctrineMockProxy(null);
         Factory\StartupFactory::forwardStartup($proxy);
         $this->assertSame($factory->getStartupProxy(), $proxy);
@@ -96,14 +96,14 @@ class StartupFactoryTest extends \PHPUnit_Framework_TestCase
     public function testListRegisteredFactory()
     {
         $factory = new Support\MockFactory('My\Stated\Class', new Support\MockFinder('My\Stated\Class', 'path/to/class'), new \ArrayObject());
-        Factory\StartupFactory::registerFactory('UniAlteri\Tests\Support\MockProxy1', $factory);
+        Factory\StartupFactory::registerFactory('Teknoo\Tests\Support\MockProxy1', $factory);
         Factory\StartupFactory::reset();
-        Factory\StartupFactory::registerFactory('UniAlteri\Tests\Support\MockProxy2', $factory);
-        Factory\StartupFactory::registerFactory('UniAlteri\Tests\Support\MockProxy3', $factory);
+        Factory\StartupFactory::registerFactory('Teknoo\Tests\Support\MockProxy2', $factory);
+        Factory\StartupFactory::registerFactory('Teknoo\Tests\Support\MockProxy3', $factory);
         $this->assertEquals(
             array(
-                'UniAlteri\Tests\Support\MockProxy2',
-                'UniAlteri\Tests\Support\MockProxy3',
+                'Teknoo\Tests\Support\MockProxy2',
+                'Teknoo\Tests\Support\MockProxy3',
             ),
             Factory\StartupFactory::listRegisteredFactory()
         );

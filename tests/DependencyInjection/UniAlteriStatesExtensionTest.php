@@ -14,37 +14,37 @@
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
  *
- * @link        http://teknoo.it/states Project website
+ * @link        http://teknoo.software/states Project website
  *
- * @license     http://teknoo.it/license/mit         MIT License
+ * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
-namespace UniAlteri\Tests\Bundle\StatesBundle\DependencyInjection;
+namespace Teknoo\Tests\Bundle\StatesBundle\DependencyInjection;
 
-use UniAlteri\Bundle\StatesBundle\DependencyInjection\UniAlteriStatesExtension;
+use Teknoo\Bundle\StatesBundle\DependencyInjection\TeknooStatesExtension;
 
 /**
- * Class UniAlteriStatesExtensionTest.
+ * Class TeknooStatesExtensionTest.
  *
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
  *
- * @link        http://teknoo.it/states Project website
+ * @link        http://teknoo.software/states Project website
  *
- * @license     http://teknoo.it/license/mit         MIT License
+ * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  *
- * @covers UniAlteri\Bundle\StatesBundle\DependencyInjection\UniAlteriStatesExtension
+ * @covers Teknoo\Bundle\StatesBundle\DependencyInjection\TeknooStatesExtension
  */
-class UniAlteriStatesExtensionTest extends \PHPUnit_Framework_TestCase
+class TeknooStatesExtensionTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @return UniAlteriStatesExtension
+     * @return TeknooStatesExtension
      */
     public function buildExtension()
     {
-        return new UniAlteriStatesExtension();
+        return new TeknooStatesExtension();
     }
 
     public function testLoadEmpty()
@@ -65,25 +65,25 @@ class UniAlteriStatesExtensionTest extends \PHPUnit_Framework_TestCase
             ->method('setParameter')
             ->willReturnCallback(function ($name, $value) {
                 switch ($name) {
-                    case 'unialteri.states.bootstraping.factory.repository.class.name';
+                    case 'teknoo.states.bootstraping.factory.repository.class.name';
                         $this->assertTrue(
                             'fooBarRepository' === $value
-                            || '%unialteri.states.service.factory.repository.class%' === $value
+                            || '%teknoo.states.service.factory.repository.class%' === $value
                         );
                         break;
-                    case 'unialteri.states.bootstraping.loader.class.name':
+                    case 'teknoo.states.bootstraping.loader.class.name':
                         $this->assertTrue(
                             'fooBarLoader' === $value
-                            || '%unialteri.states.loader.class%' === $value
+                            || '%teknoo.states.loader.class%' === $value
                         );
                         break;
-                    case 'unialteri.states.bootstraping.finder.class.name':
+                    case 'teknoo.states.bootstraping.finder.class.name':
                         $this->assertTrue(
                             'fooBarFinder' === $value
-                            || '%unialteri.states.finder.class%' === $value
+                            || '%teknoo.states.finder.class%' === $value
                         );
                         break;
-                    case 'unialteri.states.bootstraping.autoloader.register.function':
+                    case 'teknoo.states.bootstraping.autoloader.register.function':
                         $this->assertTrue(
                             'fooBarAutoload' === $value
                             || 'spl_autoload_register' === $value

@@ -14,13 +14,13 @@
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
  *
- * @link        http://teknoo.it/states Project website
+ * @link        http://teknoo.software/states Project website
  *
- * @license     http://teknoo.it/license/mit         MIT License
+ * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
-namespace UniAlteri\Bundle\StatesBundle\DependencyInjection;
+namespace Teknoo\Bundle\StatesBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -36,9 +36,9 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
  *
- * @link        http://teknoo.it/states Project website
+ * @link        http://teknoo.software/states Project website
  *
- * @license     http://teknoo.it/license/mit         MIT License
+ * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 class Configuration implements ConfigurationInterface
@@ -53,13 +53,13 @@ class Configuration implements ConfigurationInterface
 
         $rootNode->children()
             ->scalarNode('factory_repository')
-                ->defaultValue('%unialteri.states.service.factory.repository.class%')
+                ->defaultValue('%teknoo.states.service.factory.repository.class%')
             ->end()
             ->scalarNode('loader')
-                ->defaultValue('%unialteri.states.loader.class%')
+                ->defaultValue('%teknoo.states.loader.class%')
             ->end()
             ->scalarNode('finder')
-                ->defaultValue('%unialteri.states.finder.class%')
+                ->defaultValue('%teknoo.states.finder.class%')
             ->end()
             ->scalarNode('autoload_register')
                 ->defaultValue('spl_autoload_register')

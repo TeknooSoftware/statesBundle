@@ -14,18 +14,18 @@
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
  *
- * @link        http://teknoo.it/states Project website
+ * @link        http://teknoo.software/states Project website
  *
- * @license     http://teknoo.it/license/mit         MIT License
+ * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
-namespace UniAlteri\Tests\Bundle\StatesBundle\Entity;
+namespace Teknoo\Tests\Bundle\StatesBundle\Entity;
 
-use UniAlteri\States\Proxy\ProxyInterface;
-use UniAlteri\Tests\Bundle\StatesBundle\Support;
-use UniAlteri\Tests\States\Proxy\IntegratedTest;
-use UniAlteri\Tests\Support\MockStartupFactory;
+use Teknoo\States\Proxy\ProxyInterface;
+use Teknoo\Tests\Bundle\StatesBundle\Support;
+use Teknoo\Tests\States\Proxy\IntegratedTest;
+use Teknoo\Tests\Support\MockStartupFactory;
 
 /**
  * Class IntegratedEntityTest.
@@ -33,14 +33,14 @@ use UniAlteri\Tests\Support\MockStartupFactory;
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
  *
- * @link        http://teknoo.it/states Project website
+ * @link        http://teknoo.software/states Project website
  *
- * @license     http://teknoo.it/license/mit         MIT License
+ * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  *
- * @covers UniAlteri\Tests\Bundle\StatesBundle\Support\IntegratedEntity
- * @covers UniAlteri\Bundle\StatesBundle\Entity\IntegratedEntity
- * @covers UniAlteri\Bundle\StatesBundle\Entity\IntegratedTrait
+ * @covers Teknoo\Tests\Bundle\StatesBundle\Support\IntegratedEntity
+ * @covers Teknoo\Bundle\StatesBundle\Entity\IntegratedEntity
+ * @covers Teknoo\Bundle\StatesBundle\Entity\IntegratedTrait
  */
 class IntegratedEntityTest extends IntegratedTest
 {
@@ -61,7 +61,7 @@ class IntegratedEntityTest extends IntegratedTest
      */
     public function testPostLoadDoctrine()
     {
-        $proxyReflectionClass = new \ReflectionClass('\UniAlteri\Tests\Bundle\StatesBundle\Support\IntegratedEntity');
+        $proxyReflectionClass = new \ReflectionClass('\Teknoo\Tests\Bundle\StatesBundle\Support\IntegratedEntity');
         $proxy = $proxyReflectionClass->newInstanceWithoutConstructor();
         MockStartupFactory::$calledProxyObject = null;
         $this->assertNull(MockStartupFactory::$calledProxyObject);
@@ -74,14 +74,14 @@ class IntegratedEntityTest extends IntegratedTest
 
     public function testInStateNotInitializedBundle()
     {
-        $proxyReflectionClass = new \ReflectionClass('\UniAlteri\Tests\Bundle\StatesBundle\Support\IntegratedEntity');
+        $proxyReflectionClass = new \ReflectionClass('\Teknoo\Tests\Bundle\StatesBundle\Support\IntegratedEntity');
         $proxy = $proxyReflectionClass->newInstanceWithoutConstructor();
         $this->assertFalse($proxy->inState('foo'));
     }
 
     public function testInStateBundle()
     {
-        $proxy = $this->getMock('\UniAlteri\Tests\Bundle\StatesBundle\Support\IntegratedEntity', array('listEnabledStates'), array(), '', false);
+        $proxy = $this->getMock('\Teknoo\Tests\Bundle\StatesBundle\Support\IntegratedEntity', array('listEnabledStates'), array(), '', false);
         $proxy->expects($this->any())
             ->method('listEnabledStates')
             ->withAnyParameters()

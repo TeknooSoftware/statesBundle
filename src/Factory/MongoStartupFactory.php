@@ -14,28 +14,28 @@
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
  *
- * @link        http://teknoo.it/states Project website
+ * @link        http://teknoo.software/states Project website
  *
- * @license     http://teknoo.it/license/mit         MIT License
+ * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
-namespace UniAlteri\Bundle\StatesBundle\Factory;
+namespace Teknoo\Bundle\StatesBundle\Factory;
 
 use Doctrine\ODM\MongoDB\Proxy\Proxy;
-use UniAlteri\States\Factory\Exception\UnavailableFactory;
-use UniAlteri\States\Proxy\ProxyInterface;
+use Teknoo\States\Factory\Exception\UnavailableFactory;
+use Teknoo\States\Proxy\ProxyInterface;
 
 /**
  * Class StartupFactory
- * Extends of \UniAlteri\States\Factory\StandardStartupFactory to support Doctrine proxy.
+ * Extends of \Teknoo\States\Factory\StandardStartupFactory to support Doctrine proxy.
  *
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
  *
- * @link        http://teknoo.it/states Project website
+ * @link        http://teknoo.software/states Project website
  *
- * @license     http://teknoo.it/license/mit         MIT License
+ * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  *
  * @api
@@ -45,7 +45,7 @@ class MongoStartupFactory extends StartupFactory
     /**
      * {@inheritdoc}
      */
-    public static function forwardStartup(ProxyInterface $proxyObject, \string $stateName = null): \UniAlteri\States\Factory\FactoryInterface
+    public static function forwardStartup(ProxyInterface $proxyObject, \string $stateName = null): \Teknoo\States\Factory\FactoryInterface
     {
         //If the entity object if a doctrine proxy, retrieve the proxy class name from its parent
         $factoryIdentifier = null;
