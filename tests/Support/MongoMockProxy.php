@@ -21,10 +21,10 @@
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
-namespace UniAlteri\Tests\Bundle\StatesBundle\Support;
+namespace Teknoo\Tests\Bundle\StatesBundle\Support;
 
 use Closure;
-use UniAlteri\Tests\Support\MockProxy;
+use Teknoo\Tests\Support\MockProxy;
 
 class MongoMockProxy extends MockProxy implements \Doctrine\ODM\MongoDB\Proxy\Proxy
 {

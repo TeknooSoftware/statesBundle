@@ -1,7 +1,7 @@
 {
-    "name": "unialteri/states-bundle",
+    "name": "teknoo/states-bundle",
     "type": "symfony-bundle",
-    "description": "Symfony bunde to create PHP classes following the State pattern in PHP. This can be a cleaner way for an object to change its behavior at runtime without resorting to large monolithic conditional statements and thus improve maintainability. (Build on the Uni Alteri States library)",
+    "description": "Symfony bunde to create PHP classes following the State pattern in PHP. This can be a cleaner way for an object to change its behavior at runtime without resorting to large monolithic conditional statements and thus improve maintainability. (Build on the Teknoo Software States library)",
     "keywords": ["states","class","symfony","bundle","state pattern","pattern","behavioral software design pattern"],
     "homepage": "http://teknoo.it/states",
     "license": ["MIT","GPL-3.0"],
@@ -13,8 +13,8 @@
         }
     ],
     "require": {
-        "php": ">=5.4.0",
-        "unialteri/states": "~1.2.0-beta4"
+        "php": ">=5.4,<7",
+        "teknoo/states": "~1.2.0-beta4,<2.0.0"
     },
     "require-dev": {
         "phpunit/phpunit": "~4.0",
@@ -30,12 +30,12 @@
     "minimum-stability": "beta",
     "autoload": {
         "psr-4": {
-            "UniAlteri\\Bundle\\StatesBundle\\": "src/"
+            "Teknoo\\Bundle\\StatesBundle\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "UniAlteri\\Tests\\Bundle\\StatesBundle\\": "tests/"
+            "Teknoo\\Tests\\Bundle\\StatesBundle\\": "tests/"
         }
     },
     "archive": {

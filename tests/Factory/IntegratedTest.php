@@ -21,12 +21,12 @@
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
-namespace UniAlteri\Tests\Bundle\StatesBundle;
+namespace Teknoo\Tests\Bundle\StatesBundle;
 
-use UniAlteri\Bundle\StatesBundle\Factory;
-use UniAlteri\States\Factory\FactoryInterface;
+use Teknoo\Bundle\StatesBundle\Factory;
+use Teknoo\States\Factory\FactoryInterface;
 
-class IntegratedTest extends \UniAlteri\Tests\States\Factory\IntegratedTest
+class IntegratedTest extends \Teknoo\Tests\States\Factory\IntegratedTest
 {
     /**
      * Return the Factory Object Interface.

@@ -21,15 +21,15 @@
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
-namespace UniAlteri\Bundle\StatesBundle\Factory;
+namespace Teknoo\Bundle\StatesBundle\Factory;
 
-use UniAlteri\States\Factory;
-use UniAlteri\States\Factory\Exception;
+use Teknoo\States\Factory;
+use Teknoo\States\Factory\Exception;
 
 /**
  * Class Integrated
- * Extends of \UniAlteri\States\Factory\Integrated to support Doctrine proxy :
- * Use the \UniAlteri\Bundle\StatesBundle\Factory\StartupFactory instead of \UniAlteri\States\Factory\StartupFactory.
+ * Extends of \Teknoo\States\Factory\Integrated to support Doctrine proxy :
+ * Use the \Teknoo\Bundle\StatesBundle\Factory\StartupFactory instead of \Teknoo\States\Factory\StartupFactory.
  *
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
@@ -64,8 +64,8 @@ class Integrated extends Factory\Integrated
         $parts = explode('\\', $statedClassName);
         $statedClassName .= '\\'.array_pop($parts);
         //Register this factory into the startup factory
-        //(Use the \UniAlteri\Bundle\StatesBundle\Factory\StartupFactory instead
-        //  of \UniAlteri\States\Factory\StartupFactory)
+        //(Use the \Teknoo\Bundle\StatesBundle\Factory\StartupFactory instead
+        //  of \Teknoo\States\Factory\StartupFactory)
         StartupFactory::registerFactory($statedClassName, $this);
     }
 }

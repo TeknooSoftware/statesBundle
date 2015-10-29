@@ -1,7 +1,7 @@
-Uni Alteri - States bundle
+Teknoo Software - States bundle
 ===========================
 
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/37eae306-21fc-4181-be04-9c758e1239bb/mini.png)](https://insight.sensiolabs.com/projects/37eae306-21fc-4181-be04-9c758e1239bb) [![Build Status](https://travis-ci.org/UniAlteri/statesBundle.svg?branch=master)](https://travis-ci.org/UniAlteri/statesBundle)
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/37eae306-21fc-4181-be04-9c758e1239bb/mini.png)](https://insight.sensiolabs.com/projects/37eae306-21fc-4181-be04-9c758e1239bb) [![Build Status](https://travis-ci.org/Teknoo/statesBundle.svg?branch=master)](https://travis-ci.org/Teknoo/statesBundle)
 
 Welcome and thank you to having downloaded this library. 
 It's allow you to create PHP classes following the [State Pattern](http://en.wikipedia.org/wiki/State_pattern) in PHP. 
@@ -26,25 +26,31 @@ Adaptation of States library to use it with Symfony 2+ : [Symfony](docs/symfony.
 
 Quick startup
 -------------
-Quick How-to to learn how use this library : [Startup](https://github.com/UniAlteri/states/blob/master/docs/howto/quick-startup.md).
+Quick How-to to learn how use this library : [Startup](https://github.com/Teknoo/states/blob/master/docs/howto/quick-startup.md).
 
 Example
 -------
-An example of using this library is available in the folder : [Demo](https://github.com/UniAlteri/states/blob/master/demo/demo_article.php).
+An example of using this library is available in the folder : [Demo](https://github.com/Teknoo/states/blob/master/demo/demo_article.php).
 
 API Documentation
 -----------------
-Generated documentation from the library with PhpDocumentor : [Open](https://cdn.rawgit.com/UniAlteri/states/master/docs/api/index.html).
-Generated documentation from the library with PhpDocumentor : [Open](https://cdn.rawgit.com/UniAlteri/statesBundle/master/docs/api/index.html).
+Generated documentation from the library with PhpDocumentor : [Open](https://cdn.rawgit.com/Teknoo/states/master/docs/api/index.html).
+Generated documentation from the library with PhpDocumentor : [Open](https://cdn.rawgit.com/Teknoo/statesBundle/master/docs/api/index.html).
 
 Behavior Documentation
 ----------------------
-Documentation to explain how this library works : [Behavior](https://github.com/UniAlteri/states/blob/master/docs/howto/behavior.md).
+Documentation to explain how this library works : [Behavior](https://github.com/Teknoo/states/blob/master/docs/howto/behavior.md).
 
 Credits
 -------
 Richard Déloge - <r.deloge@uni-alteri.com> - Lead developer.
-Uni Alteri - <http://agence.net.ua> - <http://teknoo.it>
+Teknoo Software - <http://teknoo.software>
+Uni Alteri - <http://uni-alteri.com>
+
+About Teknoo Software
+---------------------
+**Teknoo Software** is the [Uni Alteri](http://uni-alteri.com)'s PHP software editor, founded by Richard Déloge, also co-founder of the web agency Uni Alteri. 
+Teknoo Software shares the same DNA as Uni Alteri : Provide to our partners and to the community a set of high quality services or software, sharing knowledge and skills.
 
 License
 -------

@@ -1,11 +1,11 @@
-Uni Alteri - States bundle
+Teknoo Software - States bundle
 ===========================
 
 Installation
 ------------
 To install this library with composer, run this command :
 
-    composer require unialteri/states-bundle
+    composer require teknoo/states-bundle
 
 Integrated entities and factories with doctrine
 -----------------------------------------------
@@ -25,8 +25,8 @@ This bundle provides an extension of the integrated proxy to implement a new cal
 This extension provides also a new method, called `updateState()`. This method is called by the constructor or by the callback
 `postLoadDoctrine()` to allow you to enable good states of your entity from entities' data.
 
-To use this extension, your entities must extend the class `\UniAlteri\Bundle\StatesBundle\Entity\IntegratedEntity`.
- The factory of your stated class must also inherit the class `\UniAlteri\Bundle\StatesBundle\Factory\Integrated`.
+To use this extension, your entities must extend the class `\Teknoo\Bundle\StatesBundle\Entity\IntegratedEntity`.
+ The factory of your stated class must also inherit the class `\Teknoo\Bundle\StatesBundle\Factory\Integrated`.
 
 Proxy with Twig
 ---------------
@@ -38,15 +38,15 @@ Before test a call the specific getter of a required entity's attribute, `Twig` 
 To avoid error, your proxy must override the method `__isset`. If the method is not used by your class, the method must
  return only false.
 
-*Nota Bene* : The extension `\UniAlteri\Bundle\StatesBundle\Entity\IntegratedEntity` override already this method.
+*Nota Bene* : The extension `\Teknoo\Bundle\StatesBundle\Entity\IntegratedEntity` override already this method.
 
 Startup factory
 ---------------
 
 Doctrine can create its own proxy for each entity when it is loaded to do a lazy loading of its relations. This proxy
  extends the entity's class and its signature can be differ of the original signature. This behavior is not managed by
- the default `\UniAlteri\States\Factory\StandardStartupFactory`.
+ the default `\Teknoo\States\Factory\StandardStartupFactory`.
 
-This bundle provides an extended startup factory, called `\UniAlteri\Bundle\StatesBundle\Factory\StartupFactory`,
- used by the provided proxy `\UniAlteri\Bundle\StatesBundle\Entity\IntegratedEntity`, and can manage Dotrcine's proxy
+This bundle provides an extended startup factory, called `\Teknoo\Bundle\StatesBundle\Factory\StartupFactory`,
+ used by the provided proxy `\Teknoo\Bundle\StatesBundle\Entity\IntegratedEntity`, and can manage Dotrcine's proxy
  to retrieve and return the original class name.

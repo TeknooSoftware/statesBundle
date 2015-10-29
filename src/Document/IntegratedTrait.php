@@ -21,9 +21,9 @@
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
-namespace UniAlteri\Bundle\StatesBundle\Document;
+namespace Teknoo\Bundle\StatesBundle\Document;
 
-use UniAlteri\States\Proxy;
+use Teknoo\States\Proxy;
 
 /**
  * Trait IntegratedTrait

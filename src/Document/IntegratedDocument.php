@@ -21,13 +21,13 @@
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
-namespace UniAlteri\Bundle\StatesBundle\Document;
+namespace Teknoo\Bundle\StatesBundle\Document;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
-use UniAlteri\States\Proxy\Exception\IllegalFactory;
-use UniAlteri\States\Proxy\Exception\UnavailableFactory;
-use UniAlteri\States\Proxy\IntegratedInterface;
-use UniAlteri\States\Proxy\ProxyInterface;
+use Teknoo\States\Proxy\Exception\IllegalFactory;
+use Teknoo\States\Proxy\Exception\UnavailableFactory;
+use Teknoo\States\Proxy\IntegratedInterface;
+use Teknoo\States\Proxy\ProxyInterface;
 
 /**
  * Class IntegratedDocument.
@@ -53,7 +53,7 @@ abstract class IntegratedDocument implements ProxyInterface, IntegratedInterface
      *
      * @var string
      */
-    protected static $startupFactoryClassName = '\UniAlteri\Bundle\StatesBundle\Factory\MongoStartupFactory';
+    protected static $startupFactoryClassName = '\Teknoo\Bundle\StatesBundle\Factory\MongoStartupFactory';
 
     /**
      * Default constructor used to initialize the stated object with its factory.

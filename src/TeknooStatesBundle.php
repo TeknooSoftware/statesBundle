@@ -21,22 +21,22 @@
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
-namespace UniAlteri\Bundle\StatesBundle;
+namespace Teknoo\Bundle\StatesBundle;
 
 use Composer\Autoload\ClassLoader;
 use Symfony\Component\Debug\DebugClassLoader;
 use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
-use UniAlteri\Bundle\StatesBundle\Factory\StartupFactory;
-use UniAlteri\States\DI;
-use UniAlteri\States\Loader;
-use UniAlteri\States\Exception;
-use UniAlteri\States\Factory;
-use UniAlteri\States\States;
+use Teknoo\Bundle\StatesBundle\Factory\StartupFactory;
+use Teknoo\States\DI;
+use Teknoo\States\Loader;
+use Teknoo\States\Exception;
+use Teknoo\States\Factory;
+use Teknoo\States\States;
 
 /**
- * UniAlteriStatesBundle
- * Bundle to use easily the library UniAlteri States with Symfony 2 + Doctrine.
+ * TeknooStatesBundle
+ * Bundle to use easily the library Teknoo States with Symfony 2 + Doctrine.
  *
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
@@ -47,7 +47,7 @@ use UniAlteri\States\States;
  * @license     http://teknoo.it/states/license/gpl-3.0     GPL v3 License
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
-class UniAlteriStatesBundle extends Bundle
+class TeknooStatesBundle extends Bundle
 {
     /**
      * To retrieve the composer loader instance from the __autoload stack with PHP's spl function.
@@ -94,7 +94,7 @@ class UniAlteriStatesBundle extends Bundle
         $diContainer = new DI\Container();
 
         //Create the factory registry in the container for States library >= 1.2 or >= 2.0
-        $factoryReflection = new \ReflectionClass('UniAlteri\States\Factory\FactoryInterface');
+        $factoryReflection = new \ReflectionClass('Teknoo\States\Factory\FactoryInterface');
         if ($factoryReflection->hasConstant('DI_FACTORY_REPOSITORY')) {
             //Initialize the Factory Repository
             $diContainer->registerInstance(Factory\FactoryInterface::DI_FACTORY_REPOSITORY, new DI\Container());
@@ -120,7 +120,7 @@ class UniAlteriStatesBundle extends Bundle
         $diContainer->registerService(Loader\FinderInterface::DI_FINDER_SERVICE, $finderService);
 
         //Register injection closure generator only for States library 1.x versions
-        if (interface_exists('UniAlteri\States\DI\InjectionClosureInterface')) {
+        if (interface_exists('Teknoo\States\DI\InjectionClosureInterface')) {
             //Register injection closure generator
             $injectionClosureService = function () {
                 if (!defined('DISABLE_PHP_FLOC_OPERATOR') && '5.6' <= PHP_VERSION) {
@@ -148,7 +148,7 @@ class UniAlteriStatesBundle extends Bundle
         );
 
         if ($this->container instanceof Container) {
-            $this->container->set('unialteri.states.loader', $loader);
+            $this->container->set('teknoo.states.loader', $loader);
         }
 
         StartupFactory::registerLoader($loader);

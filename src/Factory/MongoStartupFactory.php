@@ -21,15 +21,15 @@
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
-namespace UniAlteri\Bundle\StatesBundle\Factory;
+namespace Teknoo\Bundle\StatesBundle\Factory;
 
-use UniAlteri\States\Proxy;
-use UniAlteri\States\Factory;
-use UniAlteri\States\Factory\Exception;
+use Teknoo\States\Proxy;
+use Teknoo\States\Factory;
+use Teknoo\States\Factory\Exception;
 
 /**
  * Class StartupFactory
- * Extends of \UniAlteri\States\Factory\StandardStartupFactory to support Doctrine proxy.
+ * Extends of \Teknoo\States\Factory\StandardStartupFactory to support Doctrine proxy.
  *
  * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)

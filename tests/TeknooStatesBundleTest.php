@@ -21,18 +21,18 @@
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
-namespace UniAlteri\Tests\Bundle\StatesBundle;
+namespace Teknoo\Tests\Bundle\StatesBundle;
 
 use Composer\Autoload\ClassLoader;
 use Symfony\Component\DependencyInjection\Container;
-use UniAlteri\Bundle\StatesBundle\UniAlteriStatesBundle;
-use UniAlteri\States;
-use UniAlteri\States\Loader;
-use UniAlteri\States\Factory;
-use UniAlteri\States\Exception;
-use UniAlteri\Tests\Support;
+use Teknoo\Bundle\StatesBundle\TeknooStatesBundle;
+use Teknoo\States;
+use Teknoo\States\Loader;
+use Teknoo\States\Factory;
+use Teknoo\States\Exception;
+use Teknoo\Tests\Support;
 
-class UniAlteriStatesBundleTest extends \PHPUnit_Framework_TestCase
+class TeknooStatesBundleTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var Container
@@ -49,12 +49,12 @@ class UniAlteriStatesBundleTest extends \PHPUnit_Framework_TestCase
 
     protected function tearDown()
     {
-        if ($this->_container->has('unialteri.states.loader')) {
+        if ($this->_container->has('teknoo.states.loader')) {
             spl_autoload_unregister(
-                array($this->_container->get('unialteri.states.loader'), 'loadClass')
+                array($this->_container->get('teknoo.states.loader'), 'loadClass')
             );
 
-            $this->_container->set('unialteri.states.loader', null);
+            $this->_container->set('teknoo.states.loader', null);
         }
 
         parent::tearDown();
@@ -63,20 +63,20 @@ class UniAlteriStatesBundleTest extends \PHPUnit_Framework_TestCase
     public function testLoaderInitialisation()
     {
         //Initialize container
-        $bundle = new UniAlteriStatesBundle();
+        $bundle = new TeknooStatesBundle();
         $bundle->setContainer($this->_container);
 
         $bundle->boot();
 
-        $this->assertTrue($this->_container->has('unialteri.states.loader'));
-        $loader = $this->_container->get('unialteri.states.loader');
+        $this->assertTrue($this->_container->has('teknoo.states.loader'));
+        $loader = $this->_container->get('teknoo.states.loader');
 
         //Check if the loader implements the good interface
-        $this->assertInstanceOf('\\UniAlteri\\States\\Loader\\LoaderInterface', $loader);
+        $this->assertInstanceOf('\\Teknoo\\States\\Loader\\LoaderInterface', $loader);
 
         //Check if the loader is initialized with a di container
         $container = $loader->getDIContainer();
-        $this->assertInstanceOf('\\UniAlteri\\States\\DI\\ContainerInterface', $container);
+        $this->assertInstanceOf('\\Teknoo\\States\\DI\\ContainerInterface', $container);
 
         //Check if required services are present into the di container
         $this->assertTrue($container->testEntry(Loader\FinderInterface::DI_FINDER_SERVICE));
@@ -95,11 +95,11 @@ class UniAlteriStatesBundleTest extends \PHPUnit_Framework_TestCase
         //Test behavior of the service to create finder for a stated class
         $container->registerInstance(Factory\FactoryInterface::DI_FACTORY_NAME, new Support\MockFactory());
         $finder = $container->get(Loader\FinderInterface::DI_FINDER_SERVICE);
-        $this->assertInstanceOf('\\UniAlteri\\States\\Loader\\FinderInterface', $finder);
+        $this->assertInstanceOf('\\Teknoo\\States\\Loader\\FinderInterface', $finder);
 
         //Test behavior of the service to create injection closure
         $injectionClosure = $container->get(States\States\StateInterface::INJECTION_CLOSURE_SERVICE_IDENTIFIER);
-        $this->assertInstanceOf('\\UniAlteri\\States\\DI\\InjectionClosureInterface', $injectionClosure);
+        $this->assertInstanceOf('\\Teknoo\\States\\DI\\InjectionClosureInterface', $injectionClosure);
     }
 
     public function testLoaderInitialisationWithoutFlocOperator()
@@ -113,20 +113,20 @@ class UniAlteriStatesBundleTest extends \PHPUnit_Framework_TestCase
         defined('DISABLE_PHP_FLOC_OPERATOR') || define('DISABLE_PHP_FLOC_OPERATOR', true);
 
         //Initialize container
-        $bundle = new UniAlteriStatesBundle();
+        $bundle = new TeknooStatesBundle();
         $bundle->setContainer($this->_container);
 
         $bundle->boot();
 
-        $this->assertTrue($this->_container->has('unialteri.states.loader'));
-        $loader = $this->_container->get('unialteri.states.loader');
+        $this->assertTrue($this->_container->has('teknoo.states.loader'));
+        $loader = $this->_container->get('teknoo.states.loader');
 
         //Check if the loader implements the good interface
-        $this->assertInstanceOf('\\UniAlteri\\States\\Loader\\LoaderInterface', $loader);
+        $this->assertInstanceOf('\\Teknoo\\States\\Loader\\LoaderInterface', $loader);
 
         //Check if the loader is initialized with a di container
         $container = $loader->getDIContainer();
-        $this->assertInstanceOf('\\UniAlteri\\States\\DI\\ContainerInterface', $container);
+        $this->assertInstanceOf('\\Teknoo\\States\\DI\\ContainerInterface', $container);
 
         //Check if required services are present into the di container
         $this->assertTrue($container->testEntry(Loader\FinderInterface::DI_FINDER_SERVICE));
@@ -145,11 +145,11 @@ class UniAlteriStatesBundleTest extends \PHPUnit_Framework_TestCase
         //Test behavior of the service to create finder for a stated class
         $container->registerInstance(Factory\FactoryInterface::DI_FACTORY_NAME, new Support\MockFactory());
         $finder = $container->get(Loader\FinderInterface::DI_FINDER_SERVICE);
-        $this->assertInstanceOf('\\UniAlteri\\States\\Loader\\FinderInterface', $finder);
+        $this->assertInstanceOf('\\Teknoo\\States\\Loader\\FinderInterface', $finder);
 
         //Test behavior of the service to create injection closure
         $injectionClosure = $container->get(States\States\StateInterface::INJECTION_CLOSURE_SERVICE_IDENTIFIER);
-        $this->assertInstanceOf('\\UniAlteri\\States\\DI\\InjectionClosureInterface', $injectionClosure);
+        $this->assertInstanceOf('\\Teknoo\\States\\DI\\InjectionClosureInterface', $injectionClosure);
     }
 
     public function testLoaderBehaviorIfComposerIsNotAvailable()
@@ -158,7 +158,7 @@ class UniAlteriStatesBundleTest extends \PHPUnit_Framework_TestCase
         spl_autoload_register(function ($className) {return false;});
 
         //Initialize container
-        $bundle = new UniAlteriStatesBundle();
+        $bundle = new TeknooStatesBundle();
         $bundle->setContainer($this->_container);
 
         //Remove autoloader
@@ -197,7 +197,7 @@ class UniAlteriStatesBundleTest extends \PHPUnit_Framework_TestCase
     public function testLoaderBehaviorIfComposerIsNotAvailableEmpty()
     {
         //Initialize container
-        $bundle = new UniAlteriStatesBundle();
+        $bundle = new TeknooStatesBundle();
         $bundle->setContainer($this->_container);
 
         //Remove autoloader

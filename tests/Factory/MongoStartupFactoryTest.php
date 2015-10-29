@@ -21,12 +21,12 @@
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
-namespace UniAlteri\Tests\Bundle\StatesBundle;
+namespace Teknoo\Tests\Bundle\StatesBundle;
 
-use UniAlteri\Bundle\StatesBundle\Factory;
-use UniAlteri\States\Factory\Exception;
-use UniAlteri\Tests\Bundle\StatesBundle\Support\MongoMockProxy;
-use UniAlteri\Tests\Support;
+use Teknoo\Bundle\StatesBundle\Factory;
+use Teknoo\States\Factory\Exception;
+use Teknoo\Tests\Bundle\StatesBundle\Support\MongoMockProxy;
+use Teknoo\Tests\Support;
 
 class MongoStartupFactoryTest extends \PHPUnit_Framework_TestCase
 {
@@ -75,7 +75,7 @@ class MongoStartupFactoryTest extends \PHPUnit_Framework_TestCase
     public function testForwardStartup()
     {
         $factory = new Support\MockFactory();
-        Factory\MongoStartupFactory::registerFactory('UniAlteri\Tests\Support\MockProxy', $factory);
+        Factory\MongoStartupFactory::registerFactory('Teknoo\Tests\Support\MockProxy', $factory);
         $proxy = new Support\MockProxy(null);
         Factory\MongoStartupFactory::forwardStartup($proxy);
         $this->assertSame($factory->getStartupProxy(), $proxy);
@@ -87,7 +87,7 @@ class MongoStartupFactoryTest extends \PHPUnit_Framework_TestCase
     public function testForwardStartupFromProxy()
     {
         $factory = new Support\MockFactory();
-        Factory\MongoStartupFactory::registerFactory('UniAlteri\Tests\Support\MockProxy', $factory);
+        Factory\MongoStartupFactory::registerFactory('Teknoo\Tests\Support\MockProxy', $factory);
         $proxy = new MongoMockProxy(null);
         Factory\MongoStartupFactory::forwardStartup($proxy);
         $this->assertSame($factory->getStartupProxy(), $proxy);
@@ -100,12 +100,12 @@ class MongoStartupFactoryTest extends \PHPUnit_Framework_TestCase
     {
         $factory = new Support\MockFactory();
         $proxy = new MongoMockProxy(null);
-        $loaderMock = $this->getMock('UniAlteri\States\Loader\LoaderStandard', ['loadClass'], [], '', false);
+        $loaderMock = $this->getMock('Teknoo\States\Loader\LoaderStandard', ['loadClass'], [], '', false);
         $loaderMock->expects($this->once())
             ->method('loadClass')
-            ->with($this->equalTo('UniAlteri\Tests\Support\MockProxy'))
+            ->with($this->equalTo('Teknoo\Tests\Support\MockProxy'))
             ->willReturnCallback(function () use ($factory) {
-                Factory\MongoStartupFactory::registerFactory('UniAlteri\Tests\Support\MockProxy', $factory);
+                Factory\MongoStartupFactory::registerFactory('Teknoo\Tests\Support\MockProxy', $factory);
             });
 
         Factory\MongoStartupFactory::registerLoader($loaderMock);
@@ -119,10 +119,10 @@ class MongoStartupFactoryTest extends \PHPUnit_Framework_TestCase
     public function testForwardStartupClassLoadedByDoctrineLoaderFail()
     {
         $proxy = new MongoMockProxy(null);
-        $loaderMock = $this->getMock('UniAlteri\States\Loader\LoaderStandard', ['loadClass'], [], '', false);
+        $loaderMock = $this->getMock('Teknoo\States\Loader\LoaderStandard', ['loadClass'], [], '', false);
         $loaderMock->expects($this->once())
             ->method('loadClass')
-            ->with($this->equalTo('UniAlteri\Tests\Support\MockProxy'));
+            ->with($this->equalTo('Teknoo\Tests\Support\MockProxy'));
 
         Factory\MongoStartupFactory::registerLoader($loaderMock);
 
@@ -172,14 +172,14 @@ class MongoStartupFactoryTest extends \PHPUnit_Framework_TestCase
     public function testListRegisteredFactory()
     {
         $factory = new Support\MockFactory();
-        Factory\MongoStartupFactory::registerFactory('UniAlteri\Tests\Support\MockProxy1', $factory);
+        Factory\MongoStartupFactory::registerFactory('Teknoo\Tests\Support\MockProxy1', $factory);
         Factory\MongoStartupFactory::reset();
-        Factory\MongoStartupFactory::registerFactory('UniAlteri\Tests\Support\MockProxy2', $factory);
-        Factory\MongoStartupFactory::registerFactory('UniAlteri\Tests\Support\MockProxy3', $factory);
+        Factory\MongoStartupFactory::registerFactory('Teknoo\Tests\Support\MockProxy2', $factory);
+        Factory\MongoStartupFactory::registerFactory('Teknoo\Tests\Support\MockProxy3', $factory);
         $this->assertEquals(
             array(
-                'UniAlteri\Tests\Support\MockProxy2',
-                'UniAlteri\Tests\Support\MockProxy3',
+                'Teknoo\Tests\Support\MockProxy2',
+                'Teknoo\Tests\Support\MockProxy3',
             ),
             Factory\MongoStartupFactory::listRegisteredFactory()
         );

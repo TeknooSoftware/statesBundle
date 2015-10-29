@@ -21,12 +21,12 @@
  * @author      Richard Déloge <r.deloge@uni-alteri.com>
  */
 
-namespace UniAlteri\Tests\Bundle\StatesBundle\Entity;
+namespace Teknoo\Tests\Bundle\StatesBundle\Entity;
 
-use UniAlteri\States\Proxy\ProxyInterface;
-use UniAlteri\Tests\Bundle\StatesBundle\Support;
-use UniAlteri\Tests\States\Proxy\IntegratedTest;
-use UniAlteri\Tests\Support\MockStartupFactory;
+use Teknoo\States\Proxy\ProxyInterface;
+use Teknoo\Tests\Bundle\StatesBundle\Support;
+use Teknoo\Tests\States\Proxy\IntegratedTest;
+use Teknoo\Tests\Support\MockStartupFactory;
 
 class IntegratedEntityTest extends IntegratedTest
 {
@@ -61,7 +61,7 @@ class IntegratedEntityTest extends IntegratedTest
      */
     public function testPostLoadDoctrine()
     {
-        $proxyReflectionClass = new \ReflectionClass('\UniAlteri\Tests\Bundle\StatesBundle\Support\IntegratedEntity');
+        $proxyReflectionClass = new \ReflectionClass('\Teknoo\Tests\Bundle\StatesBundle\Support\IntegratedEntity');
         $proxy = $proxyReflectionClass->newInstanceWithoutConstructor();
         MockStartupFactory::$calledProxyObject = null;
         $this->assertNull(MockStartupFactory::$calledProxyObject);
@@ -87,14 +87,14 @@ class IntegratedEntityTest extends IntegratedTest
 
     public function testInStateNotInitializedBundle()
     {
-        $proxyReflectionClass = new \ReflectionClass('\UniAlteri\Tests\Bundle\StatesBundle\Support\IntegratedEntity');
+        $proxyReflectionClass = new \ReflectionClass('\Teknoo\Tests\Bundle\StatesBundle\Support\IntegratedEntity');
         $proxy = $proxyReflectionClass->newInstanceWithoutConstructor();
         $this->assertFalse($proxy->inState('foo'));
     }
 
     public function testInStateBundle()
     {
-        $proxy = $this->getMock('\UniAlteri\Tests\Bundle\StatesBundle\Support\IntegratedEntity', array('listEnabledStates'), array(), '', false);
+        $proxy = $this->getMock('\Teknoo\Tests\Bundle\StatesBundle\Support\IntegratedEntity', array('listEnabledStates'), array(), '', false);
         $proxy->expects($this->any())
             ->method('listEnabledStates')
             ->withAnyParameters()
