@@ -31,6 +31,7 @@ use Teknoo\States\Loader;
 use Teknoo\States\Factory;
 use Teknoo\States\Exception;
 use Teknoo\Tests\Support;
+use TYPO3\ClassAliasLoader\ClassAliasLoader;
 
 class TeknooStatesBundleTest extends \PHPUnit_Framework_TestCase
 {
@@ -168,7 +169,8 @@ class TeknooStatesBundleTest extends \PHPUnit_Framework_TestCase
         if (!empty($autoloadCallbackList)) {
             foreach ($autoloadCallbackList as $autoloadCallback) {
                 if (is_array($autoloadCallback) && isset($autoloadCallback[0])
-                    && $autoloadCallback[0] instanceof ClassLoader
+                    && ($autoloadCallback[0] instanceof ClassLoader
+                        || $autoloadCallback[0] instanceof ClassAliasLoader)
                 ) {
                     $composerAutoloaderCallback = $autoloadCallback;
                     spl_autoload_unregister($autoloadCallback);
@@ -207,7 +209,8 @@ class TeknooStatesBundleTest extends \PHPUnit_Framework_TestCase
         if (!empty($autoloadCallbackList)) {
             foreach ($autoloadCallbackList as $autoloadCallback) {
                 if (is_array($autoloadCallback) && isset($autoloadCallback[0])
-                    && $autoloadCallback[0] instanceof ClassLoader
+                    && ($autoloadCallback[0] instanceof ClassLoader
+                        || $autoloadCallback[0] instanceof ClassAliasLoader)
                 ) {
                     $composerAutoloaderCallback = $autoloadCallback;
                     spl_autoload_unregister($autoloadCallback);

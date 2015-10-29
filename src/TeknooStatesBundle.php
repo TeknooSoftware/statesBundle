@@ -33,6 +33,7 @@ use Teknoo\States\Loader;
 use Teknoo\States\Exception;
 use Teknoo\States\Factory;
 use Teknoo\States\States;
+use TYPO3\ClassAliasLoader\ClassAliasLoader;
 
 /**
  * TeknooStatesBundle
@@ -63,6 +64,13 @@ class TeknooStatesBundle extends Bundle
                 if (is_array($autoloadCallback) && isset($autoloadCallback[0])) {
                     if ($autoloadCallback[0] instanceof ClassLoader) {
                         return $autoloadCallback[0];
+                    }
+
+                    if ($autoloadCallback[0] instanceof ClassAliasLoader) {
+                        $reflectionObject = new \ReflectionObject($autoloadCallback[0]);
+                        $property = $reflectionObject->getProperty('composerClassLoader');
+                        $property->setAccessible(true);
+                        return $property->getValue($autoloadCallback[0]);
                     }
 
                     if ($autoloadCallback[0] instanceof DebugClassLoader) {
