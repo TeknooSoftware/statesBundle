@@ -1,5 +1,13 @@
 #Teknoo Software - States Bundle - Change Log
 
+##[2.0.0-beta2] - 2015-10-31 - Available on the branch "next"
+###Changed
+- Migrate from Uni Alteri to Teknoo Software organization
+
+##[1.1.0-beta5] - 2015-07-23
+###Fixed
+- Migrate from Uni Alteri to Teknoo Software organization
+
 ##[2.0.0-beta1] - 2015-09-17 - Available on the branch "next"
 ###Added
 - Support of Mongo
