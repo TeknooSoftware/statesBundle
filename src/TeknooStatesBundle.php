@@ -78,6 +78,10 @@ class TeknooStatesBundle extends Bundle
                         if (is_array($classLoader) && $classLoader[0] instanceof ClassLoader) {
                             return $classLoader[0];
                         }
+
+                        if (is_array($classLoader) && $classLoader[0] instanceof ClassAliasLoader) {
+                            return $classLoader[0];
+                        }
                     }
                 }
             }
