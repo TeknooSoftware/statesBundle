@@ -80,7 +80,10 @@ class TeknooStatesBundle extends Bundle
                         }
 
                         if (is_array($classLoader) && $classLoader[0] instanceof ClassAliasLoader) {
-                            return $classLoader[0];
+                            $reflectionObject = new \ReflectionObject($classLoader[0]);
+                            $property = $reflectionObject->getProperty('composerClassLoader');
+                            $property->setAccessible(true);
+                            return $property->getValue($classLoader[0]);
                         }
                     }
                 }
