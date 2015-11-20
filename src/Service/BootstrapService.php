@@ -11,13 +11,13 @@
  * obtain it through the world-wide-web, please send an email
  * to contact@uni-alteri.com so we can send you a copy immediately.
  *
- * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
- * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
+ *
+ * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *
  * @link        http://teknoo.software/states Project website
  *
  * @license     http://teknoo.software/license/mit         MIT License
- * @author      Richard Déloge <r.deloge@uni-alteri.com>
+ * @author      Richard Déloge <richarddeloge@gmail.com>
  */
 
 namespace Teknoo\Bundle\StatesBundle\Service;
@@ -30,13 +30,13 @@ use Teknoo\States\Loader\LoaderInterface;
  * Service to initialize the Uni Alteri States Loader with its dependency (finder factory, factory registry, composer)
  * and register event listener on doctrine manager.
  *
- * @copyright   Copyright (c) 2009-2016 Uni Alteri (http://uni-alteri.com)
- * @copyright   Copyright (c) 2009-2016 Richard Déloge (r.deloge@uni-alteri.com)
+ *
+ * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *
  * @link        http://teknoo.software/states Project website
  *
  * @license     http://teknoo.software/license/mit         MIT License
- * @author      Richard Déloge <r.deloge@uni-alteri.com>
+ * @author      Richard Déloge <richarddeloge@gmail.com>
  */
 class BootstrapService
 {
