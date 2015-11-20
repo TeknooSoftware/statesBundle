@@ -70,6 +70,7 @@ class TeknooStatesBundle extends Bundle
                         $reflectionObject = new \ReflectionObject($autoloadCallback[0]);
                         $property = $reflectionObject->getProperty('composerClassLoader');
                         $property->setAccessible(true);
+
                         return $property->getValue($autoloadCallback[0]);
                     }
 
@@ -83,6 +84,7 @@ class TeknooStatesBundle extends Bundle
                             $reflectionObject = new \ReflectionObject($classLoader[0]);
                             $property = $reflectionObject->getProperty('composerClassLoader');
                             $property->setAccessible(true);
+
                             return $property->getValue($classLoader[0]);
                         }
                     }
