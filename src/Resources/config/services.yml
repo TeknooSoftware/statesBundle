@@ -38,9 +38,9 @@ services:
     class: "%teknoo.states.service.bootstrap.class%"
     public: false
     arguments:
-      - @teknoo.states.service.composer.finder
-      - @teknoo.states.service.factory.repository
-      - @teknoo.states.listener.doctrine.load.class.meta
+      - "@teknoo.states.service.composer.finder"
+      - "@teknoo.states.service.factory.repository"
+      - "@teknoo.states.listener.doctrine.load.class.meta"
       - "%teknoo.states.bootstraping.autoloader.register.function%"
 
   teknoo.states.loader:
