@@ -45,7 +45,7 @@ class MongoStartupFactory extends StartupFactory
     /**
      * {@inheritdoc}
      */
-    public static function forwardStartup(ProxyInterface $proxyObject, \string $stateName = null): \Teknoo\States\Factory\FactoryInterface
+    public static function forwardStartup(ProxyInterface $proxyObject, string $stateName = null): \Teknoo\States\Factory\FactoryInterface
     {
         //If the entity object if a doctrine proxy, retrieve the proxy class name from its parent
         $factoryIdentifier = null;

@@ -54,7 +54,7 @@ class StartupFactory extends StandardStartupFactory
     /**
      * {@inheritdoc}
      */
-    public static function forwardStartup(ProxyInterface $proxyObject, \string $stateName = null): FactoryInterface
+    public static function forwardStartup(ProxyInterface $proxyObject, string $stateName = null): FactoryInterface
     {
         //If the entity object if a doctrine proxy, retrieve the proxy class name from its parent
         $factoryIdentifier = null;

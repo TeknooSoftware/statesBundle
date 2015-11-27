@@ -42,7 +42,7 @@ class Integrated extends StatesIntegrated
     /**
      * {@inheritdoc}
      */
-    protected function initialize(\string $statedClassName): \Teknoo\States\Factory\FactoryInterface
+    protected function initialize(string $statedClassName): \Teknoo\States\Factory\FactoryInterface
     {
         //Call trait's method to initialize this stated class
         $this->traitInitialize($statedClassName);

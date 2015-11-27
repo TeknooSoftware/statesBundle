@@ -98,7 +98,7 @@ class BootstrapService
      *
      * @throws \Exception
      */
-    protected function buildLoaderInstance(\string $loaderClassName, \string $finderClassName)
+    protected function buildLoaderInstance(string $loaderClassName, string $finderClassName)
     {
         if (!class_exists($loaderClassName)) {
             throw new \Exception('Error, '.$loaderClassName.' does not exist');
@@ -126,7 +126,7 @@ class BootstrapService
          * @param string $path
          * @return FinderComposerIntegrated
          */
-        $finderFactory = function (\string $statedClassName, \string $path) use ($composerInstance, $finderClassName) {
+        $finderFactory = function (string $statedClassName, string $path) use ($composerInstance, $finderClassName) {
             return new $finderClassName($statedClassName, $path, $composerInstance);
         };
 
@@ -152,7 +152,7 @@ class BootstrapService
      *
      * @throws \Exception
      */
-    public function getLoaderInstance(\string $loaderClassName, \string $finderClassName)
+    public function getLoaderInstance(string $loaderClassName, string $finderClassName)
     {
         $loader = $this->buildLoaderInstance($loaderClassName, $finderClassName);
         $this->registerLoadClassMetaListener($loader);
