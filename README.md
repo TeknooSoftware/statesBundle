@@ -1,7 +1,7 @@
 Teknoo Software - States bundle
 ===========================
 
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/37eae306-21fc-4181-be04-9c758e1239bb/mini.png)](https://insight.sensiolabs.com/projects/37eae306-21fc-4181-be04-9c758e1239bb) [![Build Status](https://travis-ci.org/Teknoo/statesBundle.svg?branch=master)](https://travis-ci.org/Teknoo/statesBundle)
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/0af6b8a7-8090-46cc-bd5f-d86c9f70282a/mini.png)](https://insight.sensiolabs.com/projects/0af6b8a7-8090-46cc-bd5f-d86c9f70282a) [![Build Status](https://travis-ci.org/TeknooSoftware/statesBundle.svg?branch=next)](https://travis-ci.org/TeknooSoftware/statesBundle)
 
 Welcome and thank you to having downloaded this library. 
 It's allow you to create PHP classes following the [State Pattern](http://en.wikipedia.org/wiki/State_pattern) in PHP. 
