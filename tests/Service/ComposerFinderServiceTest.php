@@ -22,6 +22,7 @@
 
 namespace Teknoo\Tests\Bundle\StatesBundle\Service;
 
+use Composer\Autoload\ClassLoader;
 use Teknoo\Bundle\StatesBundle\Service\ComposerFinderService;
 
 /**
@@ -53,5 +54,82 @@ class ComposerFinderServiceTest extends \PHPUnit_Framework_TestCase
             'Composer\Autoload\ClassLoader',
             $this->buildFinder()->getComposerInstance()
         );
+    }
+
+    public function testGetComposerInstanceWithDebugClassLoader()
+    {
+        //Fake autoload method to simulate an not empty autoload stack
+        spl_autoload_register(function ($className) {return false;});
+
+        //Remove autoloader
+        $autoloadCallbackList = \spl_autoload_functions();
+
+        $composerAutoloaderCallback = null;
+        $debugClassLoader = $this->getMock('Symfony\Component\Debug\DebugClassLoader', [], [], '', false);
+        if (!empty($autoloadCallbackList)) {
+            foreach ($autoloadCallbackList as $autoloadCallback) {
+                if (is_array($autoloadCallback) && isset($autoloadCallback[0])
+                    && ($autoloadCallback[0] instanceof ClassLoader)
+                ) {
+                    $classLoader = $autoloadCallback[0];
+                    $composerAutoloaderCallback = $autoloadCallback;
+                    spl_autoload_unregister($autoloadCallback);
+
+                    $debugClassLoader->expects($this->any())->method('getClassLoader')->willReturn($autoloadCallback);
+                    $debugClassLoader->expects($this->any())->method('loadClass')->willReturnCallback(function ($className) use ($classLoader) {
+                        $classLoader->loadClass($className);
+                    });
+                    spl_autoload_register([$debugClassLoader, 'loadClass']);
+                }
+            }
+        }
+
+        $this->assertInstanceOf(
+            'Composer\Autoload\ClassLoader',
+            $this->buildFinder()->getComposerInstance()
+        );
+
+        if (is_callable($composerAutoloaderCallback)) {
+            spl_autoload_register($composerAutoloaderCallback, true, true);
+            spl_autoload_unregister([$debugClassLoader, 'loadClass']);
+        }
+    }
+
+    public function testGetComposerInstanceWithoutComposer()
+    {
+        //Fake autoload method to simulate an not empty autoload stack
+        spl_autoload_register(function ($className) {return false;});
+
+        //Remove autoloader
+        $autoloadCallbackList = \spl_autoload_functions();
+
+        $composerAutoloaderCallback = null;
+        if (!empty($autoloadCallbackList)) {
+            foreach ($autoloadCallbackList as $autoloadCallback) {
+                if (is_array($autoloadCallback) && isset($autoloadCallback[0])
+                    && ($autoloadCallback[0] instanceof ClassLoader)
+                ) {
+                    $composerAutoloaderCallback = $autoloadCallback;
+                    spl_autoload_unregister($autoloadCallback);
+                }
+            }
+        }
+
+        try {
+            $this->buildFinder()->getComposerInstance();
+        } catch (\RuntimeException $e) {
+            if (is_callable($composerAutoloaderCallback)) {
+                spl_autoload_register($composerAutoloaderCallback, true, true);
+            }
+
+            return;
+        } catch (\Exception $e) { /* ... */
+        }
+
+        $this->fail('Error, the method getComposerInstance() must throw an exception when the Composer Loader is not available');
+
+        if (is_callable($composerAutoloaderCallback)) {
+            spl_autoload_register($composerAutoloaderCallback, true, true);
+        }
     }
 }
