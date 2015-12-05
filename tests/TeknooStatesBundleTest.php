@@ -192,7 +192,6 @@ class TeknooStatesBundleTest extends \PHPUnit_Framework_TestCase
         }
     }
 
-
     public function testLoaderBehaviorIfComposerIsNotAvailable()
     {
         //Fake autoload method to simulate an not empty autoload stack
