@@ -1,5 +1,12 @@
 #Teknoo Software - States Bundle - Change Log
 
+##[1.1.0] - 2015-12-06
+###Added
+- Stable release 1.1.0
+
+###Remove
+- Typo3 class alias loader
+
 ##[1.1.0-beta6] - 2015-10-21
 ###Fixed
 - Fix bug to retrieve composer instance via spl functions
