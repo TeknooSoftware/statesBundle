@@ -1,5 +1,12 @@
 #Teknoo Software - States Bundle - Change Log
 
+##[2.0.0-rc1] - 2015-12-06 - Available on the branch "next"
+###Added
+- Release Candidate 1 about 2.0
+
+###Fixed
+- Coverage test code
+
 ##[1.1.0] - 2015-12-06
 ###Added
 - Stable release 1.1.0
