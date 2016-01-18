@@ -48,3 +48,16 @@ This bundle provides an extended startup factory, called `\Teknoo\Bundle\StatesB
  used by the provided proxy `\Teknoo\Bundle\StatesBundle\Entity\IntegratedEntity`.
  
 With Doctrine ODM, you must use `\Teknoo\Bundle\StatesBundle\Factory\MongoStartupFactory` instead of.
+
+States Life cyclable extensions
+-------------------------------
+
+States bundle supports also the Life cyclable extension available for Teknoo States 2+.
+
+The States bundle provides all needed services, provided by the extension generator, in the service container :
+
+*   `@teknoo.states.lifecyclable.service.tokenizer` for `Teknoo\States\LifeCycle\Generator::getTokenizer()`
+*   `@teknoo.states.lifecyclable.service.manager` for `Teknoo\States\LifeCycle\Generator::getManager()`
+*   `@teknoo.states.lifecyclable.service.observer` for `Teknoo\States\LifeCycle\Generator::getObserver()`
+*   `@teknoo.states.lifecyclable.service.observer` for `Teknoo\States\LifeCycle\Generator::getObserver()`
+*   The bundle use the default event dispatcher provided by symfony (`@event_dispatcher`) instead of `Teknoo\States\LifeCycle\Generator::getObserver()`
