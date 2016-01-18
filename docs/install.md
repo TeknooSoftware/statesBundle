@@ -39,9 +39,25 @@ Configure yours bundle
 With States 2.x and States Bundle, it is not mandatory to declare bundle namespace in the States library,
 The loader reuse now Composer, it's automatic.
 
-By default, the bundle use all components of the States library, but you can change some components :
+By default, the bundle use all components of the States library, but you can change some components. You can define in
+your config.yml file components to use
 
 *  The factory repository to store all instances of loaded stated classes factories. It must implement the interface \ArrayInterface
+
+        teknoo_states:
+            factory_repository: 'className' # default '%teknoo.states.service.factory.repository.class%'
+
 *  The loader of stated classes. It must implement the interface `Teknoo\States\Loader\LoaderInterface`
+
+        teknoo_states:
+            loader: 'className' # default '%teknoo.states.loader.class%'
+
 *  The finder, used by the loaded to explore stated classes. It must implement the interface `Teknoo\States\Loader\FinderInterface`
+
+        teknoo_states:
+            finder: 'className' # default '%teknoo.states.finder.class%'
+
 *  The function to call to register the loader in the `__autoload` stack. It must has the same signature has `spl_autoload_register`
+
+        teknoo_states:
+            autoload_register: 'className' # default 'spl_autoload_register'

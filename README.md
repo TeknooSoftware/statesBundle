@@ -39,7 +39,6 @@ An example of using this library is available in the folder : [Demo](https://git
 API Documentation
 -----------------
 Generated documentation from the library with PhpDocumentor : [Open](https://cdn.rawgit.com/TeknooSoftware/states/master/docs/api/index.html).
-Generated documentation from the library with PhpDocumentor : [Open](https://cdn.rawgit.com/TeknooSoftware/statesBundle/master/docs/api/index.html).
 
 Behavior Documentation
 ----------------------
