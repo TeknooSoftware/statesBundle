@@ -1,5 +1,12 @@
 #Teknoo Software - States Bundle - Change Log
 
+##[2.0.0-rc2] - 2015-12-06 - Available on the branch "next"
+###Added
+- Support of States Lifecyclable extenstion
+
+###Fixed
+- Bug in configuration use token teknoo_states instead of uni_alteri_states
+
 ##[2.0.0-rc1] - 2015-12-06 - Available on the branch "next"
 ###Added
 - Release Candidate 1 about 2.0
