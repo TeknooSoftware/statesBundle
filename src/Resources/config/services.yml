@@ -119,7 +119,7 @@ services:
       - @teknoo.vendor.service.gaufrette.adapter
 
   teknoo.states.lifecyclable.prototype.scenario_builder:
-    class: "%teknoo.vendor.yaml.gaufrette.filesystem.class%"
+    class: "%teknoo.states.lifecyclable.scenario.builder.class%"
     scope: prototype
     arguments:
       - @teknoo.states.lifecyclable.service.tokenizer
