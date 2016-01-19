@@ -1,6 +1,11 @@
 #Teknoo Software - States Bundle - Change Log
 
-##[2.0.0-rc2] - 2015-12-06 - Available on the branch "next"
+##[2.0.0-rc3] - 2016-01-19 - Available on the branch "next"
+###Updated
+- Finalize support of States Lifecyclable extenstion
+- Documentation about this extension with Symfony 2.7+
+
+##[2.0.0-rc2] - 2016-01-18 - Available on the branch "next"
 ###Added
 - Support of States Lifecyclable extenstion
 
