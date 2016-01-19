@@ -61,3 +61,43 @@ The States bundle provides all needed services, provided by the extension genera
 *   `@teknoo.states.lifecyclable.service.observer` for `\Teknoo\States\LifeCycle\Generator::getObserver()`
 *   `@teknoo.states.lifecyclable.service.observer` for `\Teknoo\States\LifeCycle\Generator::getObserver()`
 *   The bundle use the default event dispatcher provided by symfony (`@event_dispatcher`) instead of `\Teknoo\States\LifeCycle\Generator::getObserver()`
+
+Some prototypes are also defined in the service container to get new instances of `ScenarioBuilder`,
+`ScenarioYamlBuilder` and `Scenario`
+
+ *  To get a new instance of `ScenarioBuilder` : `$this->get('teknoo.states.lifecyclable.prototype.scenario_builder');`
+ *  To get a new instance of `ScenarioYamlBuilder` : `$this->get('teknoo.states.lifecyclable.prototype.scenario_yaml_builder');`
+ *  To get a new instance of `Scenario` : `$this->get('teknoo.states.lifecyclable.prototype.scenario');`
+
+Example to build a new scenario with ScenarioBuilder
+----------------------------------------------------
+
+    $manager = $this->get('teknoo.states.lifecyclable.service.manager');
+    $manager->registerScenario(
+        $this->get('teknoo.states.lifecyclable.prototype.scenario_builder')
+            ->towardStatedClass('AppBundle\Demo\Acme\Class')
+            ->onIncomingState('State3')
+            ->onOutgoingState('State2')
+            ->ifNotInState('StateDefault')
+            ->run(function () use ($instanceB) {
+                $instanceB->switchToStateDefault();
+            })
+            ->build($this->get('teknoo.states.lifecyclable.prototype.scenario'))
+    );
+
+Example to build a new scenario with ScenarioYamlBuilder
+--------------------------------------------------------
+
+**Warning, Yaml builder is automatically instancied with a Yaml parser and an instance of Gaufrette filesystem wrapper.
+The wrapper is mounted on the root folder of your application : `%kernel.root_dir%/../`**
+
+    $adapter = new Local(__DIR__.'/scenarii');
+    $filesystem = new Filesystem($adapter);
+
+    $manager = $this->get('teknoo.states.lifecyclable.service.manager');
+    $manager->registerScenario(
+        $this->get('teknoo.states.lifecyclable.prototype.scenario_yaml_builder')
+            ->loadScenario('src/YourBundle/Scenarii/scenario1.yml')
+            ->setParameter('instanceB', $instanceB)
+            ->build($this->get('teknoo.states.lifecyclable.prototype.scenario'))
+    );
