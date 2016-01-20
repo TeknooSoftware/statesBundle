@@ -55,14 +55,14 @@ class ComposerFinderService
 
         if (!empty($autoloadCallbackList)) {
             foreach ($autoloadCallbackList as $autoloadCallback) {
-                if (is_array($autoloadCallback) && isset($autoloadCallback[0])) {
+                if (\is_array($autoloadCallback) && isset($autoloadCallback[0])) {
                     if ($autoloadCallback[0] instanceof ClassLoader) {
                         return $autoloadCallback[0];
                     }
 
                     if ($autoloadCallback[0] instanceof DebugClassLoader) {
                         $classLoader = $autoloadCallback[0]->getClassLoader();
-                        if (is_array($classLoader) && $classLoader[0] instanceof ClassLoader) {
+                        if (\is_array($classLoader) && $classLoader[0] instanceof ClassLoader) {
                             return $classLoader[0];
                         }
                     }
