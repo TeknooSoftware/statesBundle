@@ -1,5 +1,10 @@
 #Teknoo Software - States Bundle - Change Log
 
+##[2.0.0-rc4] - 2016-01-20 - Available on the branch "next"
+###Updated
+- Clean .gitignore
+- Optimizing for inlined internal functions
+
 ##[2.0.0-rc3] - 2016-01-19 - Available on the branch "next"
 ###Updated
 - Finalize support of States Lifecyclable extenstion
