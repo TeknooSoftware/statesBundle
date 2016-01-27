@@ -1,5 +1,33 @@
 #Teknoo Software - States Bundle - Change Log
 
+##[1.1.1] - 2016-01-27
+###Added
+- Clean .gitignorefile
+
+##[2.0.0-rc4] - 2016-01-20 - Available on the branch "next"
+###Updated
+- Clean .gitignore
+- Optimizing for inlined internal functions
+
+##[2.0.0-rc3] - 2016-01-19 - Available on the branch "next"
+###Updated
+- Finalize support of States Lifecyclable extenstion
+- Documentation about this extension with Symfony 2.7+
+
+##[2.0.0-rc2] - 2016-01-18 - Available on the branch "next"
+###Added
+- Support of States Lifecyclable extenstion
+
+###Fixed
+- Bug in configuration use token teknoo_states instead of uni_alteri_states
+
+##[2.0.0-rc1] - 2015-12-06 - Available on the branch "next"
+###Added
+- Release Candidate 1 about 2.0
+
+###Fixed
+- Coverage test code
+
 ##[1.1.0] - 2015-12-06
 ###Added
 - Stable release 1.1.0
