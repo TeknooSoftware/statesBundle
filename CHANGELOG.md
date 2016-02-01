@@ -1,5 +1,10 @@
 #Teknoo Software - States Bundle - Change Log
 
+##[1.1.2] - 2016-02-02
+###Fixed
+###Fixed
+- Fix composer minimum requirements
+
 ##[1.1.1] - 2016-01-27
 ###Added
 - Clean .gitignorefile

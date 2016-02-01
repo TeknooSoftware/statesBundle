@@ -154,6 +154,10 @@ class TeknooStatesBundleTest extends \PHPUnit_Framework_TestCase
 
     public function testLoaderBehaviorWithDebugClassLoader()
     {
+        if (!class_exists('Symfony\Component\Debug\DebugClassLoader')) {
+            $this->markTestSkipped('DebugClassLoader is not available');
+        }
+
         //Fake autoload method to simulate an not empty autoload stack
         spl_autoload_register(function ($className) {return false;});
 

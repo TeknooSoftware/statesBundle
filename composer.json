@@ -14,10 +14,10 @@
     ],
     "require": {
         "php": ">=5.4,<7",
-        "teknoo/states": "~1.2.0-beta4,<2.0.0"
+        "teknoo/states": "~1.2.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "~4.0",
+        "phpunit/phpunit": "~4.3",
         "phpunit/phpunit-mock-objects": "~2.3",
         "phpunit/phpunit-selenium": "~1.4",
         "phpunit/phpunit-story": "~1.0",
@@ -27,7 +27,7 @@
         "symfony/console": "~2.3",
         "symfony/validator": "~2.3"
     },
-    "minimum-stability": "beta",
+    "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
             "Teknoo\\Bundle\\StatesBundle\\": "src/"
