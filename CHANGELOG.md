@@ -1,5 +1,9 @@
 #Teknoo Software - States Bundle - Change Log
 
+##[2.0.0-rc6] - 2016-02-03 - Available on the branch "next"
+###Updated
+- Fix yaml service.yml file
+
 ##[2.0.0-rc5] - 2016-02-02 - Available on the branch "next"
 ###Updated
 - Fix composer minimum requirements
