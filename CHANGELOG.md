@@ -1,5 +1,9 @@
 #Teknoo Software - States Bundle - Change Log
 
+##[2.0.0] - 2016-02-12
+###Updated
+- Stable Release, 1.x is switched on legacy branch and next is merged with master.
+
 ##[2.0.0-rc6] - 2016-02-03 - Available on the branch "next"
 ###Updated
 - Fix yaml service.yml file
