@@ -1,7 +1,11 @@
 #Teknoo Software - States Bundle - Change Log
 
+##[2.0.2] - 2016-02-26
+###Fixed
+- Compatibility with Symfony 3.0 (remove use of factory_method, replaced by factory)
+
 ##[2.0.1] - 2016-02-26
-###Fix
+###Fixed
 - Minimum PHP requirement in composer.json
 
 ##[2.0.0] - 2016-02-12

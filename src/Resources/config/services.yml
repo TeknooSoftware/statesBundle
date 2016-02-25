@@ -71,8 +71,7 @@ services:
 
   teknoo.states.loader:
     class: "%teknoo.states.bootstraping.loader.class.name%"
-    factory_service: teknoo.states.service.bootstrap
-    factory_method: getLoaderInstance
+    factory: ["@teknoo.states.service.bootstrap", "getLoaderInstance"]
     arguments:
       - "%teknoo.states.bootstraping.loader.class.name%"
       - "%teknoo.states.bootstraping.finder.class.name%"
