@@ -19,7 +19,6 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-
 namespace Teknoo\Tests\Bundle\StatesBundle\Service;
 
 use Composer\Autoload\ClassLoader;
@@ -60,6 +59,7 @@ class ComposerFinderServiceTest extends \PHPUnit_Framework_TestCase
     {
         if (!class_exists('Symfony\Component\Debug\DebugClassLoader')) {
             $this->markTestSkipped('DebugClassLoader is not available');
+
             return $this;
         }
 
