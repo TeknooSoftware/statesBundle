@@ -1,5 +1,9 @@
 #Teknoo Software - States Bundle - Change Log
 
+##[2.0.3] - 2016-04-09
+###Fixed
+- Fix code style with cs-fixer
+
 ##[2.0.2] - 2016-02-26
 ###Fixed
 - Compatibility with Symfony 3.0 (remove use of factory_method, replaced by factory)
