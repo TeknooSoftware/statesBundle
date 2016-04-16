@@ -52,6 +52,10 @@ class TeknooStatesExtension extends Extension
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
+        
+        if (!empty($config['enable_lifecycable'])) {
+            $loader->load('lifecyclable.yml');    
+        }
 
         if (isset($config['factory_repository'])) {
             $container->setParameter(

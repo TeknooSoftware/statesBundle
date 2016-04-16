@@ -1,0 +1,88 @@
+# src/Resources/config/services.yml
+parameters:
+  #Tokenizer for lifecyclable behavior
+  teknoo.states.lifecyclable.tokenizer.class: 'Teknoo\States\LifeCycle\Tokenization\Tokenizer'
+
+  #Manager for lifecyclable behavior
+  teknoo.states.lifecyclable.manager.class: 'Teknoo\States\LifeCycle\Scenario\Manager'
+
+  #Observer for lifecyclable behavior with factory
+  teknoo.states.lifecyclable.observer.class: 'Teknoo\States\LifeCycle\Observing\Observer'
+  teknoo.states.lifecyclable.observed.factory.class: 'Teknoo\States\LifeCycle\Observing\ObservedFactory'
+  teknoo.states.lifecyclable.observed.class: 'Teknoo\States\LifeCycle\Observing\Observed'
+  teknoo.states.lifecyclable.event.class: 'Teknoo\States\LifeCycle\Event\Event'
+  teknoo.states.lifecyclable.trace.class: 'Teknoo\States\LifeCycle\Trace\Trace'
+  teknoo.states.lifecyclable.scenario.builder.class: 'Teknoo\States\LifeCycle\Scenario\ScenarioBuilder'
+  teknoo.states.lifecyclable.scenario.builder.yaml.class: 'Teknoo\States\LifeCycle\Scenario\ScenarioYamlBuilder'
+  teknoo.states.lifecyclable.scenario.class: 'Teknoo\States\LifeCycle\Scenario\Scenario'
+
+  #External venddor
+  teknoo.vendor.yaml.parser.class: 'Symfony\Component\Yaml\Parser'
+  teknoo.vendor.yaml.gaufrette.adapter.class: 'Gaufrette\Adapter\Local'
+  teknoo.vendor.yaml.gaufrette.filesystem.class: 'Gaufrette\Filesystem'
+
+  #default parameter for states lifecyclable behaior
+  teknoo.states.lifecyclable.observed.class.name: '%teknoo.states.lifecyclable.observed.class%'
+  teknoo.states.lifecyclable.event.class.name: '%teknoo.states.lifecyclable.event.class%'
+  teknoo.states.lifecyclable.trace.class.name: '%teknoo.states.lifecyclable.trace.class%'
+
+services:
+  teknoo.states.lifecyclable.service.tokenizer:
+    class: '%teknoo.states.lifecyclable.tokenizer.class%'
+    public: false
+
+  teknoo.states.lifecyclable.service.manager:
+    class: '%teknoo.states.lifecyclable.manager.class%'
+    arguments:
+      - '@event_dispatcher'
+
+  teknoo.states.lifecyclable.service.observed.factory:
+    class: '%teknoo.states.lifecyclable.observed.factory.class%'
+    public: false
+    arguments:
+      - '%teknoo.states.lifecyclable.observed.class.name%'
+      - '%teknoo.states.lifecyclable.event.class.name%'
+      - '%teknoo.states.lifecyclable.trace.class.name%'
+
+  teknoo.states.lifecyclable.service.observer:
+    class: '%teknoo.states.lifecyclable.observer.class%'
+    arguments:
+      - '@teknoo.states.lifecyclable.service.observed.factory'
+    calls:
+      - [ 'addEventDispatcher', ['@event_dispatcher']]
+      - [ 'setTokenizer', ['@teknoo.states.lifecyclable.service.tokenizer']]
+
+  teknoo.vendor.service.yaml.parser:
+    class: '%teknoo.vendor.yaml.parser.class%'
+    public: 'false'
+
+  teknoo.vendor.service.gaufrette.adapter:
+    class: '%teknoo.vendor.yaml.gaufrette.adapter.class%'
+    public: 'false'
+    arguments:
+      - "%kernel.root_dir%/../"
+
+  teknoo.vendor.service.gaufrette.filesystem:
+    class: '%teknoo.vendor.yaml.gaufrette.filesystem.class%'
+    public: 'false'
+    arguments:
+      - '@teknoo.vendor.service.gaufrette.adapter'
+
+  teknoo.states.lifecyclable.prototype.scenario_builder:
+    class: '%teknoo.states.lifecyclable.scenario.builder.class%'
+    scope: 'prototype'
+    arguments:
+      - '@teknoo.states.lifecyclable.service.tokenizer'
+
+  teknoo.states.lifecyclable.prototype.scenario_yaml_builder:
+    class: '%teknoo.states.lifecyclable.scenario.builder.yaml.class%'
+    scope: 'prototype'
+    arguments:
+      - '@teknoo.states.lifecyclable.service.tokenizer'
+    calls:
+      - ['setYamlParser', ['@teknoo.vendor.service.yaml.parser']]
+      - ['setFilesystem', ['@teknoo.vendor.service.gaufrette.filesystem']]
+
+  teknoo.states.lifecyclable.prototype.scenario:
+    class: '%teknoo.states.lifecyclable.scenario.class%'
+    scope: 'prototype'

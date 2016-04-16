@@ -63,6 +63,9 @@ class Configuration implements ConfigurationInterface
             ->scalarNode('autoload_register')
                 ->defaultValue('spl_autoload_register')
             ->end()
+            ->scalarNode('enable_lifecycable')
+                ->defaultValue(false)
+            ->end()
             ->end();
 
         return $treeBuilder;
