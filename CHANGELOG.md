@@ -1,5 +1,12 @@
 #Teknoo Software - States Bundle - Change Log
 
+##[2.1.0] - 2016-04-16
+###Added
+- Split States lifecycable support in an optional behavior
+
+###Fixed
+- Dependency to States lifecyclable is now not mandatory
+
 ##[2.0.3] - 2016-04-09
 ###Fixed
 - Fix code style with cs-fixer
