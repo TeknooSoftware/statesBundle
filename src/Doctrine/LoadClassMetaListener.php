@@ -19,7 +19,6 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-
 namespace Teknoo\Bundle\StatesBundle\Doctrine;
 
 use Doctrine\Common\Persistence\Event\LoadClassMetadataEventArgs;
@@ -47,6 +46,7 @@ class LoadClassMetaListener
 
     /**
      * @param LoaderInterface $loader
+     *
      * @return $this
      */
     public function registerLoader(LoaderInterface $loader)

@@ -99,7 +99,7 @@ class TeknooStatesExtensionTest extends \PHPUnit_Framework_TestCase
                     'loader' => 'fooBarLoader',
                     'finder' => 'fooBarFinder',
                     'autoload_register' => 'fooBarAutoload',
-                    'enable_lifecycable' => true
+                    'enable_lifecycable' => true,
                 ],
             ],
             $containerMock
