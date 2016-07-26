@@ -1,5 +1,12 @@
 #Teknoo Software - States Bundle - Change Log
 
+##[2.2.0] - 2016-07-26
+###Updated
+- Remove deprecated "prototype" scope in Symfony container, to be replace by shared services
+
+###Removed
+- Remove Symfony 2.7 support, Symfony 2.8 is needed
+
 ##[2.1.1] - 2016-07-26
 ###Updated
 - Fix code style with cs-fixer
