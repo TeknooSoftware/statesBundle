@@ -5,6 +5,9 @@
 - Remove legacy reference to Uni Alteri in licences
 - Change minimum version about State Life Cyclable exension
 
+###Fixed
+- Missing namespace use in IntegratedTrait about document and entity for doctrine's tags
+
 ##[2.2.0] - 2016-07-26
 ###Updated
 - Remove deprecated "prototype" scope in Symfony container, to be replace by shared services
