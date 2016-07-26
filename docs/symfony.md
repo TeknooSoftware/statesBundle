@@ -59,8 +59,8 @@ The States bundle provides all needed services, provided by the extension genera
 *   `@teknoo.states.lifecyclable.service.tokenizer` for `\Teknoo\States\LifeCycle\Generator::getTokenizer()`
 *   `@teknoo.states.lifecyclable.service.manager` for `\Teknoo\States\LifeCycle\Generator::getManager()`
 *   `@teknoo.states.lifecyclable.service.observer` for `\Teknoo\States\LifeCycle\Generator::getObserver()`
-*   `@teknoo.states.lifecyclable.service.observer` for `\Teknoo\States\LifeCycle\Generator::getObserver()`
-*   The bundle use the default event dispatcher provided by symfony (`@event_dispatcher`) instead of `\Teknoo\States\LifeCycle\Generator::getObserver()`
+*   The bundle use the default event dispatcher provided by symfony (`@event_dispatcher`) instead of 
+    `\Teknoo\States\LifeCycle\Generator::getObserver()`
 
 Some prototypes are also defined in the service container to get new instances of `ScenarioBuilder`,
 `ScenarioYamlBuilder` and `Scenario`
