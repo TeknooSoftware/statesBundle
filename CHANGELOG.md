@@ -1,5 +1,10 @@
 #Teknoo Software - States Bundle - Change Log
 
+##[2.2.1] - 2016-07-26
+###Updated
+- Remove legacy reference to Uni Alteri in licences
+- Change minimum version about State Life Cyclable exension
+
 ##[2.2.0] - 2016-07-26
 ###Updated
 - Remove deprecated "prototype" scope in Symfony container, to be replace by shared services
