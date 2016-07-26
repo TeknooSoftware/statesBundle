@@ -48,7 +48,7 @@ class LoadClassMetaListenerTest extends \PHPUnit_Framework_TestCase
 
     public function testRegisterGetLoader()
     {
-        $loader = $this->getMock('Teknoo\States\Loader\LoaderInterface', [], [], '', false);
+        $loader = $this->createMock('Teknoo\States\Loader\LoaderInterface');
         $listener = $this->buildListener();
 
         $this->assertInstanceOf(
@@ -61,13 +61,13 @@ class LoadClassMetaListenerTest extends \PHPUnit_Framework_TestCase
 
     public function testLoadClassMetadata()
     {
-        $classMeta = $this->getMock('Doctrine\Common\Persistence\Mapping\ClassMetadata', [], [], '', false);
+        $classMeta = $this->createMock('Doctrine\Common\Persistence\Mapping\ClassMetadata');
         $classMeta->expects($this->any())->method('getName')->willReturn('my\Stated\Class');
 
-        $eventArgs = $this->getMock('Doctrine\Common\Persistence\Event\LoadClassMetadataEventArgs', [], [], '', false);
+        $eventArgs = $this->createMock('Doctrine\Common\Persistence\Event\LoadClassMetadataEventArgs');
         $eventArgs->expects($this->any())->method('getClassMetadata')->willReturn($classMeta);
 
-        $loader = $this->getMock('Teknoo\States\Loader\LoaderInterface', [], [], '', false);
+        $loader = $this->createMock('Teknoo\States\Loader\LoaderInterface');
         $loader->expects($this->once())->method('loadClass')->with('my\Stated\Class');
 
         $listener = $this->buildListener()->registerLoader($loader);

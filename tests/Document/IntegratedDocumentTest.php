@@ -80,7 +80,7 @@ class IntegratedDocumentTest extends IntegratedTest
 
     public function testInStateBundle()
     {
-        $proxy = $this->getMock('\Teknoo\Tests\Bundle\StatesBundle\Support\IntegratedDocument', array('listEnabledStates'), array(), '', false);
+        $proxy = $this->getMockObjectGenerator()->getMock('\Teknoo\Tests\Bundle\StatesBundle\Support\IntegratedDocument', array('listEnabledStates'), array(), '', false);
         $proxy->expects($this->any())
             ->method('listEnabledStates')
             ->withAnyParameters()

@@ -50,7 +50,7 @@ class TeknooStatesBundleTest extends \PHPUnit_Framework_TestCase
     protected function getContainerMock()
     {
         if (!$this->containerMock instanceof ContainerInterface) {
-            $this->containerMock = $this->getMock('Symfony\Component\DependencyInjection\ContainerInterface', [], [], '', false);
+            $this->containerMock = $this->createMock('Symfony\Component\DependencyInjection\ContainerInterface');
         }
 
         return $this->containerMock;
@@ -70,7 +70,7 @@ class TeknooStatesBundleTest extends \PHPUnit_Framework_TestCase
             ->expects($this->once())
             ->method('get')
             ->with('teknoo.states.loader')
-            ->willReturn($this->getMock('Teknoo\States\Loader\LoaderInterface', [], [], '', false));
+            ->willReturn($this->createMock('Teknoo\States\Loader\LoaderInterface', [], [], '', false));
 
         $this->buildService()->boot();
     }

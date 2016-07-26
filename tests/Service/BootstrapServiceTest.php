@@ -63,7 +63,7 @@ class BootstrapServiceTest extends \PHPUnit_Framework_TestCase
     protected function getComposerFinderServiceMock()
     {
         if (!$this->composerFinderServiceMock instanceof ComposerFinderService) {
-            $this->composerFinderServiceMock = $this->getMock('Teknoo\Bundle\StatesBundle\Service\ComposerFinderService', [], [], '', false);
+            $this->composerFinderServiceMock = $this->createMock('Teknoo\Bundle\StatesBundle\Service\ComposerFinderService');
         }
 
         return $this->composerFinderServiceMock;
@@ -87,7 +87,7 @@ class BootstrapServiceTest extends \PHPUnit_Framework_TestCase
     protected function getLoadClassMetaListenerMock()
     {
         if (!$this->loadClassMetaListenerMock instanceof LoadClassMetaListener) {
-            $this->loadClassMetaListenerMock = $this->getMock('Teknoo\Bundle\StatesBundle\Doctrine\LoadClassMetaListener', [], [], '', false);
+            $this->loadClassMetaListenerMock = $this->createMock('Teknoo\Bundle\StatesBundle\Doctrine\LoadClassMetaListener');
         }
 
         return $this->loadClassMetaListenerMock;
@@ -142,7 +142,7 @@ class BootstrapServiceTest extends \PHPUnit_Framework_TestCase
 
     public function testGetLoaderInstanceIntegrated()
     {
-        $composerMock = $this->getMock('Composer\Autoload\ClassLoader', [], [], '', false);
+        $composerMock = $this->createMock('Composer\Autoload\ClassLoader');
 
         $this->getComposerFinderServiceMock()
             ->expects($this->once())
@@ -184,7 +184,7 @@ class BootstrapServiceTest extends \PHPUnit_Framework_TestCase
 
     public function testGetLoaderInstanceStandard()
     {
-        $composerMock = $this->getMock('Composer\Autoload\ClassLoader', [], [], '', false);
+        $composerMock = $this->createMock('Composer\Autoload\ClassLoader');
 
         $this->getComposerFinderServiceMock()
             ->expects($this->once())

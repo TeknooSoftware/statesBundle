@@ -70,7 +70,7 @@ class ComposerFinderServiceTest extends \PHPUnit_Framework_TestCase
         $autoloadCallbackList = \spl_autoload_functions();
 
         $composerAutoloaderCallback = null;
-        $debugClassLoader = $this->getMock('Symfony\Component\Debug\DebugClassLoader', [], [], '', false);
+        $debugClassLoader = $this->createMock('Symfony\Component\Debug\DebugClassLoader');
         if (!empty($autoloadCallbackList)) {
             foreach ($autoloadCallbackList as $autoloadCallback) {
                 if (is_array($autoloadCallback) && isset($autoloadCallback[0])

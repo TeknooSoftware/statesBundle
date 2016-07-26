@@ -80,7 +80,7 @@ class IntegratedEntityTest extends IntegratedTest
 
     public function testInStateBundle()
     {
-        $proxy = $this->getMock('\Teknoo\Tests\Bundle\StatesBundle\Support\IntegratedEntity', array('listEnabledStates'), array(), '', false);
+        $proxy = $this->getMockObjectGenerator()->getMock('\Teknoo\Tests\Bundle\StatesBundle\Support\IntegratedEntity', array('listEnabledStates'), array(), '', false);
         $proxy->expects($this->any())
             ->method('listEnabledStates')
             ->withAnyParameters()

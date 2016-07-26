@@ -48,7 +48,7 @@ class TeknooStatesExtensionTest extends \PHPUnit_Framework_TestCase
 
     public function testLoadEmpty()
     {
-        $containerMock = $this->getMock('Symfony\Component\DependencyInjection\ContainerBuilder', [], [], '', false);
+        $containerMock = $this->createMock('Symfony\Component\DependencyInjection\ContainerBuilder');
 
         $containerMock->expects($this->atLeastOnce())->method('setParameter');
         $containerMock->expects($this->atLeastOnce())->method('setDefinition');
@@ -58,7 +58,7 @@ class TeknooStatesExtensionTest extends \PHPUnit_Framework_TestCase
 
     public function testLoadFull()
     {
-        $containerMock = $this->getMock('Symfony\Component\DependencyInjection\ContainerBuilder', [], [], '', false);
+        $containerMock = $this->createMock('Symfony\Component\DependencyInjection\ContainerBuilder');
 
         $containerMock->expects($this->any())
             ->method('setParameter')
