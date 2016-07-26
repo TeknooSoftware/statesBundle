@@ -23,6 +23,7 @@ namespace Teknoo\Bundle\StatesBundle\Document;
 
 use Teknoo\States\Proxy\ProxyTrait;
 use Teknoo\States\Proxy\IntegratedTrait as ProxyIntegratedTrait;
+use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
 
 /**
  * Trait IntegratedTrait

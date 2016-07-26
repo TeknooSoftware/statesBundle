@@ -23,6 +23,7 @@ namespace Teknoo\Bundle\StatesBundle\Entity;
 
 use Teknoo\States\Proxy\ProxyTrait;
 use Teknoo\States\Proxy\IntegratedTrait as ProxyIntegratedTrait;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Trait IntegratedTrait
