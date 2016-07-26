@@ -70,13 +70,13 @@ services:
 
   teknoo.states.lifecyclable.prototype.scenario_builder:
     class: '%teknoo.states.lifecyclable.scenario.builder.class%'
-    scope: 'prototype'
+    shared: false
     arguments:
       - '@teknoo.states.lifecyclable.service.tokenizer'
 
   teknoo.states.lifecyclable.prototype.scenario_yaml_builder:
     class: '%teknoo.states.lifecyclable.scenario.builder.yaml.class%'
-    scope: 'prototype'
+    shared: false
     arguments:
       - '@teknoo.states.lifecyclable.service.tokenizer'
     calls:
@@ -85,4 +85,4 @@ services:
 
   teknoo.states.lifecyclable.prototype.scenario:
     class: '%teknoo.states.lifecyclable.scenario.class%'
-    scope: 'prototype'
+    shared: false
