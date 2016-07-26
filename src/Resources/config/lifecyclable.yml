@@ -54,17 +54,17 @@ services:
 
   teknoo.vendor.service.yaml.parser:
     class: '%teknoo.vendor.yaml.parser.class%'
-    public: 'false'
+    public: false
 
   teknoo.vendor.service.gaufrette.adapter:
     class: '%teknoo.vendor.yaml.gaufrette.adapter.class%'
-    public: 'false'
+    public: false
     arguments:
       - "%kernel.root_dir%/../"
 
   teknoo.vendor.service.gaufrette.filesystem:
     class: '%teknoo.vendor.yaml.gaufrette.filesystem.class%'
-    public: 'false'
+    public: false
     arguments:
       - '@teknoo.vendor.service.gaufrette.adapter'
 
