@@ -21,6 +21,7 @@
         "phpunit/phpunit-mock-objects": "~2.3",
         "phpunit/phpunit-selenium": "~1.4",
         "phpunit/phpunit-story": "~1.0",
+        "phpdocumentor/reflection-docblock":"^2.0.0",
         "doctrine/orm": "~2.2",
         "doctrine/mongodb-odm": "~1.0.0-BETA13",
         "symfony/framework-bundle": "~2.3",
