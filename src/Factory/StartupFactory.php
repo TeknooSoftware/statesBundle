@@ -58,16 +58,16 @@ class StartupFactory extends StandardStartupFactory
         //If the entity object if a doctrine proxy, retrieve the proxy class name from its parent
         $factoryIdentifier = null;
         if ($proxyObject instanceof Proxy) {
-            $factoryIdentifier = get_parent_class($proxyObject);
+            $factoryIdentifier = \get_parent_class($proxyObject);
         } else {
             //Normal behavior
-            $factoryIdentifier = get_class($proxyObject);
+            $factoryIdentifier = \get_class($proxyObject);
         }
 
         if (!static::$factoryRegistry instanceof \ArrayObject || !isset(static::$factoryRegistry[$factoryIdentifier])) {
             //we can not found definitely the factory for this stated class
             throw new UnavailableFactory(
-                sprintf('Error, the factory "%s" is not available', $factoryIdentifier)
+                \sprintf('Error, the factory "%s" is not available', $factoryIdentifier)
             );
         }
 

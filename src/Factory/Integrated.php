@@ -47,8 +47,8 @@ class Integrated extends StatesIntegrated
         $this->traitInitialize($statedClassName);
 
         //Build the factory identifier (the proxy class name)
-        $parts = explode('\\', $statedClassName);
-        $statedClassName .= '\\'.array_pop($parts);
+        $parts = \explode('\\', $statedClassName);
+        $statedClassName .= '\\'.\array_pop($parts);
 
         //Register this factory into the startup factory
         StartupFactory::registerFactory($statedClassName, $this);
