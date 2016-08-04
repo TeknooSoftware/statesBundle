@@ -1,5 +1,9 @@
 #Teknoo Software - States Bundle - Change Log
 
+##[2.2.2] - 2016-08-04
+###Fixed
+- Improve optimization on call to native function and optimized
+
 ##[2.2.1] - 2016-07-26
 ###Updated
 - Remove legacy reference to Uni Alteri in licences
