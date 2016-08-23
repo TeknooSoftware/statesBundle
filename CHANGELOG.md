@@ -1,5 +1,9 @@
 #Teknoo Software - States Bundle - Change Log
 
+##[2.2.3] - 2016-08-23
+###Fixed
+- Minimum version of teknoo/state, use ^ operator insteadof ~ to allow to use the version 2.1 of States.
+
 ##[2.2.2] - 2016-08-04
 ###Fixed
 - Improve optimization on call to native function and optimized
