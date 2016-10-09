@@ -51,38 +51,8 @@ class TeknooStatesExtension extends Extension
         $config = $this->processConfiguration($configuration, $configs);
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-        $loader->load('services.yml');
-
         if (!empty($config['enable_lifecycable'])) {
             $loader->load('lifecyclable.yml');
-        }
-
-        if (isset($config['factory_repository'])) {
-            $container->setParameter(
-                'teknoo.states.bootstraping.factory.repository.class.name',
-                $config['factory_repository']
-            );
-        }
-
-        if (isset($config['loader'])) {
-            $container->setParameter(
-                'teknoo.states.bootstraping.loader.class.name',
-                $config['loader']
-            );
-        }
-
-        if (isset($config['finder'])) {
-            $container->setParameter(
-                'teknoo.states.bootstraping.finder.class.name',
-                $config['finder']
-            );
-        }
-
-        if (isset($config['autoload_register'])) {
-            $container->setParameter(
-                'teknoo.states.bootstraping.autoloader.register.function',
-                $config['autoload_register']
-            );
         }
     }
 }

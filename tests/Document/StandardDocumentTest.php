@@ -19,15 +19,14 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-namespace Teknoo\Bundle\StatesBundle\Entity;
+namespace Teknoo\Tests\Bundle\StatesBundle\Document;
 
-use Teknoo\States\Proxy\ProxyTrait;
-use Teknoo\States\Proxy\IntegratedTrait as ProxyIntegratedTrait;
-use Doctrine\ORM\Mapping as ORM;
+use Teknoo\States\Proxy\ProxyInterface;
+use Teknoo\Tests\Bundle\StatesBundle\Support;
+use Teknoo\Tests\States\Proxy\StandardTest;
 
 /**
- * Trait IntegratedTrait
- * Trait adapt integrated proxies to doctrine.
+ * Class StandardDocumentTest.
  *
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
@@ -36,35 +35,34 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
+ *
+ * @covers \Teknoo\Bundle\StatesBundle\Document\StandardDocument
+ * @covers \Teknoo\Bundle\StatesBundle\Document\StandardTrait
  */
-trait IntegratedTrait
+class StandardDocumentTest extends StandardTest
 {
-    use ProxyTrait,
-        ProxyIntegratedTrait;
-
     /**
-     * Doctrine does not call the construction and create a new instance without it....
-     * This callback reinitialize proxy.
+     * Build a proxy object, into $this->_proxy to test it.
      *
-     * @ORM\PostLoad()
+     * @return ProxyInterface
      */
-    public function postLoadDoctrine()
+    protected function buildProxy()
     {
-        //Call the method of the trait to initialize local attributes of the proxy
-        $this->initializeProxy();
-        //Call the startup factory to initialize this proxy
-        $this->initializeObjectWithFactory();
-        //Select good state
-        $this->updateState();
+        $this->proxy = new Support\StandardDocument();
+
+        return $this->proxy;
     }
 
     /**
-     * Callback to extends in your entity to apply states according to your entity's value.
-     *
-     * @return $this
+     * Test if the class initialize its vars from the trait constructor.
      */
-    public function updateState()
+    public function testPostLoadDoctrine()
     {
-        return $this;
+        $proxyReflectionClass = new \ReflectionClass('\Teknoo\Tests\Bundle\StatesBundle\Support\StandardDocument');
+        $proxy = $proxyReflectionClass->newInstanceWithoutConstructor();
+        $proxy->postLoadDoctrine();
+        $this->assertSame(array(), $proxy->listAvailableStates());
+
+        return;
     }
 }

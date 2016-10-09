@@ -21,16 +21,16 @@
  */
 namespace Teknoo\Tests\Bundle\StatesBundle\Support;
 
-use Teknoo\Bundle\StatesBundle\Entity\IntegratedEntity as AbstractIntegratedEntity;
+use Teknoo\Bundle\StatesBundle\Document\StandardDocument as AbstractStandardDocument;
 use Teknoo\States\Proxy\ArrayAccessTrait;
 use Teknoo\States\Proxy\IteratorTrait;
 use Teknoo\States\Proxy\MagicCallTrait;
 use Teknoo\States\Proxy\SerializableTrait;
 
 /**
- * Class IntegratedEntity
- * To build an specific instance of the class IntegratedEntity to test this default class.
- * By default, the class Proxy\Integrated uses '\Teknoo\States\Factory\StandardStartupFactory' as startup factory.
+ * Class StandardDocument
+ * To build an specific instance of the class StandardDocument to test this default class.
+ * By default, the class Proxy\Standard uses '\Teknoo\States\Factory\StandardStartupFactory' as startup factory.
  * But, in the test, we will use '\Teknoo\Tests\Support\MockStartupFactory' to unit testing only the proxy.
  *
  * This extends support implements also all supported standard interface to tests implementation provided by the trait Proxy.
@@ -45,7 +45,7 @@ use Teknoo\States\Proxy\SerializableTrait;
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-class IntegratedEntity extends AbstractIntegratedEntity implements
+class StandardDocument extends AbstractStandardDocument implements
     \Serializable,
     \ArrayAccess,
     \SeekableIterator,
@@ -123,5 +123,10 @@ class IntegratedEntity extends AbstractIntegratedEntity implements
     private function privateMethodToCall()
     {
         return 'fooBar';
+    }
+
+    public static function statesListDeclaration(): array
+    {
+        return [];
     }
 }

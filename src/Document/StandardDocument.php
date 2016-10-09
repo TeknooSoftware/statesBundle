@@ -11,7 +11,7 @@
  * obtain it through the world-wide-web, please send an email
  * to richarddeloge@gmail.com so we can send you a copy immediately.
  *
- *
+ * 
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *
  * @link        http://teknoo.software/states Project website
@@ -21,50 +21,38 @@
  */
 namespace Teknoo\Bundle\StatesBundle\Document;
 
-use Teknoo\States\Proxy\ProxyTrait;
-use Teknoo\States\Proxy\IntegratedTrait as ProxyIntegratedTrait;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
+use Teknoo\States\Proxy\ProxyInterface;
 
 /**
- * Trait IntegratedTrait
- * Trait adapt integrated proxies to doctrine.
+ * Class StandardDocument.
+ * Default Stated class implementation with a doctrine document.
  *
- *
+ * 
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *
  * @link        http://teknoo.software/states Project website
  *
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
+ *
+ * @MongoDB\MappedSuperclass
+ * @MongoDB\HasLifecycleCallbacks
  */
-trait IntegratedTrait
+abstract class StandardDocument implements ProxyInterface
 {
-    use ProxyTrait,
-        ProxyIntegratedTrait;
+    use StandardTrait;
 
     /**
-     * Doctrine does not call the construction and create a new instance without it....
-     * This callback reinitialize proxy.
-     *
-     * @MongoDB\PostLoad()
+     * Default constructor used to initialize the stated object with its factory.
      */
-    public function postLoadDoctrine()
+    public function __construct()
     {
-        //Call the method of the trait to initialize local attributes of the proxy
-        $this->initializeProxy();
-        //Call the startup factory to initialize this proxy
-        $this->initializeObjectWithFactory();
-        //Update states
-        $this->updateState();
+        $this->postLoadDoctrine();
     }
 
-    /**
-     * Callback to extends in your entity to apply states according to your entity's value.
-     *
-     * @return $this
-     */
-    public function updateState()
+    public static function statesListDeclaration(): array
     {
-        return $this;
+        return [];
     }
 }

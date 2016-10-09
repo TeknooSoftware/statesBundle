@@ -49,10 +49,6 @@ class TeknooStatesExtensionTest extends \PHPUnit_Framework_TestCase
     public function testLoadEmpty()
     {
         $containerMock = $this->createMock('Symfony\Component\DependencyInjection\ContainerBuilder');
-
-        $containerMock->expects($this->atLeastOnce())->method('setParameter');
-        $containerMock->expects($this->atLeastOnce())->method('setDefinition');
-
         $this->buildExtension()->load([], $containerMock);
     }
 
@@ -60,45 +56,9 @@ class TeknooStatesExtensionTest extends \PHPUnit_Framework_TestCase
     {
         $containerMock = $this->createMock('Symfony\Component\DependencyInjection\ContainerBuilder');
 
-        $containerMock->expects($this->any())
-            ->method('setParameter')
-            ->willReturnCallback(function ($name, $value) {
-                switch ($name) {
-                    case 'teknoo.states.bootstraping.factory.repository.class.name';
-                        $this->assertTrue(
-                            'fooBarRepository' === $value
-                            || '%teknoo.states.service.factory.repository.class%' === $value
-                        );
-                        break;
-                    case 'teknoo.states.bootstraping.loader.class.name':
-                        $this->assertTrue(
-                            'fooBarLoader' === $value
-                            || '%teknoo.states.loader.class%' === $value
-                        );
-                        break;
-                    case 'teknoo.states.bootstraping.finder.class.name':
-                        $this->assertTrue(
-                            'fooBarFinder' === $value
-                            || '%teknoo.states.finder.class%' === $value
-                        );
-                        break;
-                    case 'teknoo.states.bootstraping.autoloader.register.function':
-                        $this->assertTrue(
-                            'fooBarAutoload' === $value
-                            || 'spl_autoload_register' === $value
-                        );
-                        break;
-                }
-            });
-        $containerMock->expects($this->atLeastOnce())->method('setDefinition');
-
         $this->buildExtension()->load(
             [
                 [
-                    'factory_repository' => 'fooBarRepository',
-                    'loader' => 'fooBarLoader',
-                    'finder' => 'fooBarFinder',
-                    'autoload_register' => 'fooBarAutoload',
                     'enable_lifecycable' => true,
                 ],
             ],

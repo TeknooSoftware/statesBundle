@@ -19,14 +19,16 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-namespace Teknoo\Bundle\StatesBundle\Factory;
+namespace Teknoo\Bundle\StatesBundle\Entity;
 
-use Teknoo\States\Factory\Integrated as StatesIntegrated;
+use Teknoo\States\Proxy\Exception\IllegalFactory;
+use Teknoo\States\Proxy\Exception\UnavailableFactory;
+use Doctrine\ORM\Mapping as ORM;
+use Teknoo\States\Proxy\ProxyInterface;
 
 /**
- * Class Integrated
- * Extends of \Teknoo\States\Factory\Integrated to support Doctrine proxy :
- * Use the \Teknoo\Bundle\StatesBundle\Factory\StartupFactory instead of \Teknoo\States\Factory\StartupFactory.
+ * Class StandardEntity.
+ * Default Stated class implementation with a doctrine entity class.
  *
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
@@ -35,24 +37,24 @@ use Teknoo\States\Factory\Integrated as StatesIntegrated;
  *
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
+ *
+ * @ORM\MappedSuperclass
+ * @ORM\HasLifecycleCallbacks
  */
-class Integrated extends StatesIntegrated
+abstract class StandardEntity implements ProxyInterface
 {
+    use StandardTrait;
+
     /**
-     * {@inheritdoc}
+     * Default constructor used to initialize the stated object with its factory.
      */
-    protected function initialize(string $statedClassName): \Teknoo\States\Factory\FactoryInterface
+    public function __construct()
     {
-        //Call trait's method to initialize this stated class
-        $this->traitInitialize($statedClassName);
+        $this->postLoadDoctrine();
+    }
 
-        //Build the factory identifier (the proxy class name)
-        $parts = \explode('\\', $statedClassName);
-        $statedClassName .= '\\'.\array_pop($parts);
-
-        //Register this factory into the startup factory
-        StartupFactory::registerFactory($statedClassName, $this);
-
-        return $this;
+    public static function statesListDeclaration(): array
+    {
+        return [];
     }
 }

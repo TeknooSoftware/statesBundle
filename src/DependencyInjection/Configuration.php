@@ -51,18 +51,6 @@ class Configuration implements ConfigurationInterface
         $rootNode = $treeBuilder->root('teknoo_states');
 
         $rootNode->children()
-            ->scalarNode('factory_repository')
-                ->defaultValue('%teknoo.states.service.factory.repository.class%')
-            ->end()
-            ->scalarNode('loader')
-                ->defaultValue('%teknoo.states.loader.class%')
-            ->end()
-            ->scalarNode('finder')
-                ->defaultValue('%teknoo.states.finder.class%')
-            ->end()
-            ->scalarNode('autoload_register')
-                ->defaultValue('spl_autoload_register')
-            ->end()
             ->scalarNode('enable_lifecycable')
                 ->defaultValue(false)
             ->end()

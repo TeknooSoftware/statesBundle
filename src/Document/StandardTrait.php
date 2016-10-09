@@ -11,7 +11,7 @@
  * obtain it through the world-wide-web, please send an email
  * to richarddeloge@gmail.com so we can send you a copy immediately.
  *
- * 
+ *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *
  * @link        http://teknoo.software/states Project website
@@ -21,46 +21,46 @@
  */
 namespace Teknoo\Bundle\StatesBundle\Document;
 
+use Teknoo\States\Proxy\ProxyTrait;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
-use Teknoo\States\Proxy\Exception\IllegalFactory;
-use Teknoo\States\Proxy\Exception\UnavailableFactory;
-use Teknoo\States\Proxy\IntegratedInterface;
-use Teknoo\States\Proxy\ProxyInterface;
 
 /**
- * Class IntegratedDocument.
- * Default Stated class implementation with a doctrine document.
+ * Trait StandardTrait
+ * Trait adapt standard proxies to doctrine.
  *
- * 
+ *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *
  * @link        http://teknoo.software/states Project website
  *
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
- *
- * @MongoDB\MappedSuperclass
- * @MongoDB\HasLifecycleCallbacks
  */
-abstract class IntegratedDocument implements ProxyInterface, IntegratedInterface
+trait StandardTrait
 {
-    use IntegratedTrait;
+    use ProxyTrait;
 
     /**
-     * Class name of the factory to use in set up to initialize this object in this construction.
+     * Doctrine does not call the construction and create a new instance without it....
+     * This callback reinitialize proxy.
      *
-     * @var string
+     * @MongoDB\PostLoad()
      */
-    protected static $startupFactoryClassName = '\Teknoo\Bundle\StatesBundle\Factory\MongoStartupFactory';
-
-    /**
-     * Default constructor used to initialize the stated object with its factory.
-     *
-     * @throws IllegalFactory
-     * @throws UnavailableFactory
-     */
-    public function __construct()
+    public function postLoadDoctrine()
     {
-        $this->postLoadDoctrine();
+        //Call the method of the trait to initialize local attributes of the proxy
+        $this->initializeProxy();
+        //Update states
+        $this->updateState();
+    }
+
+    /**
+     * Callback to extends in your entity to apply states according to your entity's value.
+     *
+     * @return $this
+     */
+    public function updateState()
+    {
+        return $this;
     }
 }

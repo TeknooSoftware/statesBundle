@@ -23,11 +23,10 @@ namespace Teknoo\Tests\Bundle\StatesBundle\Entity;
 
 use Teknoo\States\Proxy\ProxyInterface;
 use Teknoo\Tests\Bundle\StatesBundle\Support;
-use Teknoo\Tests\States\Proxy\IntegratedTest;
-use Teknoo\Tests\Support\MockStartupFactory;
+use Teknoo\Tests\States\Proxy\StandardTest;
 
 /**
- * Class IntegratedEntityTest.
+ * Class StandardEntityTest.
  *
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
@@ -37,11 +36,10 @@ use Teknoo\Tests\Support\MockStartupFactory;
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  *
- * @covers Teknoo\Tests\Bundle\StatesBundle\Support\IntegratedEntity
- * @covers Teknoo\Bundle\StatesBundle\Entity\IntegratedEntity
- * @covers Teknoo\Bundle\StatesBundle\Entity\IntegratedTrait
+ * @covers \Teknoo\Bundle\StatesBundle\Entity\StandardEntity
+ * @covers \Teknoo\Bundle\StatesBundle\Entity\StandardTrait
  */
-class IntegratedEntityTest extends IntegratedTest
+class StandardEntityTest extends StandardTest
 {
     /**
      * Build a proxy object, into $this->_proxy to test it.
@@ -50,7 +48,7 @@ class IntegratedEntityTest extends IntegratedTest
      */
     protected function buildProxy()
     {
-        $this->proxy = new Support\IntegratedEntity();
+        $this->proxy = new Support\StandardEntity();
 
         return $this->proxy;
     }
@@ -60,33 +58,11 @@ class IntegratedEntityTest extends IntegratedTest
      */
     public function testPostLoadDoctrine()
     {
-        $proxyReflectionClass = new \ReflectionClass('\Teknoo\Tests\Bundle\StatesBundle\Support\IntegratedEntity');
+        $proxyReflectionClass = new \ReflectionClass('\Teknoo\Tests\Bundle\StatesBundle\Support\StandardEntity');
         $proxy = $proxyReflectionClass->newInstanceWithoutConstructor();
-        MockStartupFactory::$calledProxyObject = null;
-        $this->assertNull(MockStartupFactory::$calledProxyObject);
         $proxy->postLoadDoctrine();
         $this->assertSame(array(), $proxy->listAvailableStates());
-        $this->assertSame($proxy, MockStartupFactory::$calledProxyObject);
 
         return;
-    }
-
-    public function testInStateNotInitializedBundle()
-    {
-        $proxyReflectionClass = new \ReflectionClass('\Teknoo\Tests\Bundle\StatesBundle\Support\IntegratedEntity');
-        $proxy = $proxyReflectionClass->newInstanceWithoutConstructor();
-        $this->assertFalse($proxy->inState('foo'));
-    }
-
-    public function testInStateBundle()
-    {
-        $proxy = $this->getMockObjectGenerator()->getMock('\Teknoo\Tests\Bundle\StatesBundle\Support\IntegratedEntity', array('listEnabledStates'), array(), '', false);
-        $proxy->expects($this->any())
-            ->method('listEnabledStates')
-            ->withAnyParameters()
-            ->willReturn(array('Foo', 'Bar'));
-
-        $this->assertFalse($proxy->inState('hello'));
-        $this->assertTrue($proxy->inState('fOo'));
     }
 }

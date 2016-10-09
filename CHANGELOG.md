@@ -1,5 +1,19 @@
 #Teknoo Software - States Bundle - Change Log
 
+###[3.0.0-alpha1] - 2016-10-09
+###Updated
+- Require minimum States 3+ (alpha 1) and States Life Cyclable (alpha 1).
+
+###Removed
+- Bundle bootstrapping, useless with States 3+
+- Bootstrap service to initialize the States library, not needed with States 3+
+- Composer finder service, not needed with States 3+
+- Factory and Startup Factory, removed for States 3+
+- Removed Integrated proxies for Doctrine's entities and Doctrine's documents, Integrated proxies are removed 
+    for States 3+.
+- Doctrine Class Meta Listener, not needed with States 3+ to initialize stated class, not needed with States 3+.
+- Symfony options to customize the Bundle initialization: services removed. 
+
 ##[2.2.3] - 2016-08-23
 ###Fixed
 - Minimum version of teknoo/state, use ^ operator insteadof ~ to allow to use the version 2.1 of States.

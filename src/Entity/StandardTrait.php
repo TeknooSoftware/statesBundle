@@ -19,13 +19,14 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-namespace Teknoo\Tests\Bundle\StatesBundle;
+namespace Teknoo\Bundle\StatesBundle\Entity;
 
-use Teknoo\Bundle\StatesBundle\Factory;
-use Teknoo\States\Loader\FinderInterface;
+use Teknoo\States\Proxy\ProxyTrait;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Class IntegratedTest.
+ * Trait StandardTrait
+ * Trait adapt standard proxies to doctrine.
  *
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
@@ -34,24 +35,32 @@ use Teknoo\States\Loader\FinderInterface;
  *
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
- *
- * @covers Teknoo\Bundle\StatesBundle\Factory\Integrated
  */
-class IntegratedTest extends \Teknoo\Tests\States\Factory\IntegratedTest
+trait StandardTrait
 {
-    /**
-     * @param FinderInterface $finder
-     *
-     * @return Factory\Integrated
-     */
-    public function getFactoryObject(FinderInterface $finder)
-    {
-        $factory = new Factory\Integrated(
-            $finder->getStatedClassName(),
-            $finder,
-            $this->repository
-        );
+    use ProxyTrait;
 
-        return $factory;
+    /**
+     * Doctrine does not call the construction and create a new instance without it....
+     * This callback reinitialize proxy.
+     *
+     * @ORM\PostLoad()
+     */
+    public function postLoadDoctrine()
+    {
+        //Call the method of the trait to initialize local attributes of the proxy
+        $this->initializeProxy();
+        //Select good state
+        $this->updateState();
+    }
+
+    /**
+     * Callback to extends in your entity to apply states according to your entity's value.
+     *
+     * @return $this
+     */
+    public function updateState()
+    {
+        return $this;
     }
 }

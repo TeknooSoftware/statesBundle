@@ -37,13 +37,4 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
  */
 class TeknooStatesBundle extends Bundle
 {
-    /**
-     * Method to initialize the states loader before request.
-     */
-    public function boot()
-    {
-        parent::boot();
-        //Initialize the States loader
-        $this->container->get('teknoo.states.loader');
-    }
 }
