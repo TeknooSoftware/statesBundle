@@ -1,5 +1,11 @@
 #Teknoo Software - States Bundle - Change Log
 
+###[3.0.0-alpha2] - 2016-10-27
+###Updated
+- Require States 3.0.0-alpha3 at least.
+- Code style fix
+- Update doc
+
 ###[3.0.0-alpha1] - 2016-10-09
 ###Updated
 - Require minimum States 3+ (alpha 1) and States Life Cyclable (alpha 1).

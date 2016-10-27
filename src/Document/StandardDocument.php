@@ -11,7 +11,7 @@
  * obtain it through the world-wide-web, please send an email
  * to richarddeloge@gmail.com so we can send you a copy immediately.
  *
- * 
+ *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *
  * @link        http://teknoo.software/states Project website
@@ -28,7 +28,7 @@ use Teknoo\States\Proxy\ProxyInterface;
  * Class StandardDocument.
  * Default Stated class implementation with a doctrine document.
  *
- * 
+ *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
  *
  * @link        http://teknoo.software/states Project website
@@ -51,6 +51,9 @@ abstract class StandardDocument implements ProxyInterface
         $this->postLoadDoctrine();
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public static function statesListDeclaration(): array
     {
         return [];

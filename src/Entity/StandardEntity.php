@@ -21,8 +21,6 @@
  */
 namespace Teknoo\Bundle\StatesBundle\Entity;
 
-use Teknoo\States\Proxy\Exception\IllegalFactory;
-use Teknoo\States\Proxy\Exception\UnavailableFactory;
 use Doctrine\ORM\Mapping as ORM;
 use Teknoo\States\Proxy\ProxyInterface;
 
@@ -53,6 +51,9 @@ abstract class StandardEntity implements ProxyInterface
         $this->postLoadDoctrine();
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public static function statesListDeclaration(): array
     {
         return [];

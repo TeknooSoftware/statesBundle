@@ -41,7 +41,7 @@ trait StandardTrait
     use ProxyTrait;
 
     /**
-     * Doctrine does not call the construction and create a new instance without it....
+     * Doctrine does not call the construction and create a new instance without it.
      * This callback reinitialize proxy.
      *
      * @ORM\PostLoad()
@@ -55,9 +55,8 @@ trait StandardTrait
     }
 
     /**
-     * Callback to extends in your entity to apply states according to your entity's value.
-     *
-     * @return $this
+     * Method overloaded by States Lifecycle to update automatically states from
+     * configuration.
      */
     public function updateState()
     {
