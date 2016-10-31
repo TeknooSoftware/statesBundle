@@ -1,5 +1,14 @@
 #Teknoo Software - States Bundle - Change Log
 
+###[3.0.0-alpha3] - 2016-10-31
+###Updated
+- Require States 3.0.0-alpha4 at least.
+- Require States Lyfecycable 2.0.0-alpha4 at least.
+
+###Added
+- Event and EventDispatcherBridge to use symfony/event-dispatcher as event
+ system for States LifeCycable.
+
 ###[3.0.0-alpha2] - 2016-10-27
 ###Updated
 - Require States 3.0.0-alpha3 at least.
