@@ -6,11 +6,14 @@ parameters:
   #Manager for lifecyclable behavior
   teknoo.states.lifecyclable.manager.class: 'Teknoo\States\LifeCycle\Scenario\Manager'
 
+  #Event Dispatcher
+  teknoo.states.lifecyclable.event.class: 'Teknoo\Bundle\StatesBundle\Event\Event'
+  teknoo.states.lifecyclable.bridge.event_dispatcher.class: 'Teknoo\Bundle\StatesBundle\Event\EventDispatcherBridge'
+
   #Observer for lifecyclable behavior with factory
   teknoo.states.lifecyclable.observer.class: 'Teknoo\States\LifeCycle\Observing\Observer'
   teknoo.states.lifecyclable.observed.factory.class: 'Teknoo\States\LifeCycle\Observing\ObservedFactory'
   teknoo.states.lifecyclable.observed.class: 'Teknoo\States\LifeCycle\Observing\Observed'
-  teknoo.states.lifecyclable.event.class: 'Teknoo\States\LifeCycle\Event\Event'
   teknoo.states.lifecyclable.trace.class: 'Teknoo\States\LifeCycle\Trace\Trace'
   teknoo.states.lifecyclable.scenario.builder.class: 'Teknoo\States\LifeCycle\Scenario\ScenarioBuilder'
   teknoo.states.lifecyclable.scenario.builder.yaml.class: 'Teknoo\States\LifeCycle\Scenario\ScenarioYamlBuilder'
@@ -31,10 +34,16 @@ services:
     class: '%teknoo.states.lifecyclable.tokenizer.class%'
     public: false
 
+  teknoo.states.lifecyclable.bridge.event_dispatcher:
+    class: '%teknoo.states.lifecyclable.bridge.event_dispatcher.class%'
+    arguments:
+      - '@event_dispatcher'
+    public: false
+
   teknoo.states.lifecyclable.service.manager:
     class: '%teknoo.states.lifecyclable.manager.class%'
     arguments:
-      - '@event_dispatcher'
+      - '@teknoo.states.lifecyclable.bridge.event_dispatcher'
 
   teknoo.states.lifecyclable.service.observed.factory:
     class: '%teknoo.states.lifecyclable.observed.factory.class%'
@@ -49,7 +58,7 @@ services:
     arguments:
       - '@teknoo.states.lifecyclable.service.observed.factory'
     calls:
-      - [ 'addEventDispatcher', ['@event_dispatcher']]
+      - [ 'addEventDispatcher', ['@teknoo.states.lifecyclable.bridge.event_dispatcher']]
       - [ 'setTokenizer', ['@teknoo.states.lifecyclable.service.tokenizer']]
 
   teknoo.vendor.service.yaml.parser:
