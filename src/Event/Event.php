@@ -19,12 +19,17 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
+
 namespace Teknoo\Bundle\StatesBundle\Event;
 
 use Symfony\Component\EventDispatcher\Event as SymfonyEvent;
 use Teknoo\States\LifeCycle\Event\EventInterface;
 use Teknoo\States\LifeCycle\Event\EventTrait;
 
+/**
+ * Default Event class dedicated to States Lifecycable 2.0, used with symfony/event-dispatch
+ * Use directly the EventTrait available in States Lifecycable 2.0.
+ */
 class Event extends SymfonyEvent implements EventInterface
 {
     use EventTrait;

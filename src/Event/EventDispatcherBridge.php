@@ -19,12 +19,16 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
+
 namespace Teknoo\Bundle\StatesBundle\Event;
 
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Teknoo\States\LifeCycle\Event\EventDispatcherBridgeInterface;
 use Teknoo\States\LifeCycle\Event\EventInterface;
 
+/**
+ * Default EventDispatcherBridge, using Symfony/event-dispatcher.
+ */
 class EventDispatcherBridge implements EventDispatcherBridgeInterface
 {
     /**
@@ -34,6 +38,7 @@ class EventDispatcherBridge implements EventDispatcherBridgeInterface
 
     /**
      * EventDispatcherBridge constructor.
+     *
      * @param EventDispatcher $eventDispatcher
      */
     public function __construct(EventDispatcher $eventDispatcher)
