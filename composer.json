@@ -23,7 +23,9 @@
         "symfony/framework-bundle": "~2.8||~3.0",
         "symfony/console": "~2.7||~3.0",
         "symfony/validator": "~2.7||3.0",
-        "teknoo/states-life-cycle": "^2.0.0-alpha4"
+        "teknoo/states-life-cycle": "^2.0.0-alpha4",
+        "container-interop/definition-interop":"^0.2.0",
+        "mnapoli/assembly":"^0.2.0"
     },
     "minimum-stability": "stable",
     "autoload": {
