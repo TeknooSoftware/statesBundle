@@ -19,15 +19,14 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
+namespace Teknoo\Tests\UniversalPackage\States\Entity;
 
-namespace Teknoo\Bundle\StatesBundle\Entity;
-
-use Teknoo\States\Proxy\ProxyTrait;
-use Doctrine\ORM\Mapping as ORM;
+use Teknoo\States\Proxy\ProxyInterface;
+use Teknoo\Tests\UniversalPackage\States\Support;
+use Teknoo\Tests\States\Proxy\StandardTest;
 
 /**
- * Trait StandardTrait
- * Trait adapt standard proxies to doctrine.
+ * Class StandardEntityTest.
  *
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
@@ -36,31 +35,34 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
+ *
+ * @covers \Teknoo\UniversalPackage\States\Entity\AbstractStandardEntity
+ * @covers \Teknoo\UniversalPackage\States\Entity\StandardTrait
  */
-trait StandardTrait
+class StandardEntityTest extends StandardTest
 {
-    use ProxyTrait;
-
     /**
-     * Doctrine does not call the construction and create a new instance without it.
-     * This callback reinitialize proxy.
+     * Build a proxy object, into $this->_proxy to test it.
      *
-     * @ORM\PostLoad()
+     * @return ProxyInterface
      */
-    public function postLoadDoctrine()
+    protected function buildProxy()
     {
-        //Call the method of the trait to initialize local attributes of the proxy
-        $this->initializeProxy();
-        //Select good state
-        $this->updateState();
+        $this->proxy = new Support\StandardEntity();
+
+        return $this->proxy;
     }
 
     /**
-     * Method overloaded by States Lifecycle to update automatically states from
-     * configuration.
+     * Test if the class initialize its vars from the trait constructor.
      */
-    public function updateState()
+    public function testPostLoadDoctrine()
     {
-        return $this;
+        $proxyReflectionClass = new \ReflectionClass(Support\StandardEntity::class);
+        $proxy = $proxyReflectionClass->newInstanceWithoutConstructor();
+        $proxy->postLoadDoctrine();
+        $this->assertSame(array(), $proxy->listAvailableStates());
+
+        return;
     }
 }

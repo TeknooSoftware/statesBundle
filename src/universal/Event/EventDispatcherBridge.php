@@ -20,7 +20,7 @@
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
 
-namespace Teknoo\Bundle\StatesBundle\Event;
+namespace Teknoo\UniversalPackage\States\Event;
 
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Teknoo\States\LifeCycle\Event\EventDispatcherBridgeInterface;

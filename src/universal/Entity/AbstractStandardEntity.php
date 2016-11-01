@@ -19,14 +19,15 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-namespace Teknoo\Tests\Bundle\StatesBundle\Entity;
 
+namespace Teknoo\UniversalPackage\States\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
 use Teknoo\States\Proxy\ProxyInterface;
-use Teknoo\Tests\Bundle\StatesBundle\Support;
-use Teknoo\Tests\States\Proxy\StandardTest;
 
 /**
- * Class StandardEntityTest.
+ * Class StandardEntity.
+ * Default Stated class implementation with a doctrine entity class.
  *
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
@@ -36,33 +37,26 @@ use Teknoo\Tests\States\Proxy\StandardTest;
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  *
- * @covers \Teknoo\Bundle\StatesBundle\Entity\StandardEntity
- * @covers \Teknoo\Bundle\StatesBundle\Entity\StandardTrait
+ * @ORM\MappedSuperclass
+ * @ORM\HasLifecycleCallbacks
  */
-class StandardEntityTest extends StandardTest
+abstract class AbstractStandardEntity implements ProxyInterface
 {
-    /**
-     * Build a proxy object, into $this->_proxy to test it.
-     *
-     * @return ProxyInterface
-     */
-    protected function buildProxy()
-    {
-        $this->proxy = new Support\StandardEntity();
+    use StandardTrait;
 
-        return $this->proxy;
+    /**
+     * Default constructor used to initialize the stated object with its factory.
+     */
+    public function __construct()
+    {
+        $this->postLoadDoctrine();
     }
 
     /**
-     * Test if the class initialize its vars from the trait constructor.
+     * {@inheritdoc}
      */
-    public function testPostLoadDoctrine()
+    public static function statesListDeclaration(): array
     {
-        $proxyReflectionClass = new \ReflectionClass('\Teknoo\Tests\Bundle\StatesBundle\Support\StandardEntity');
-        $proxy = $proxyReflectionClass->newInstanceWithoutConstructor();
-        $proxy->postLoadDoctrine();
-        $this->assertSame(array(), $proxy->listAvailableStates());
-
-        return;
+        return [];
     }
 }

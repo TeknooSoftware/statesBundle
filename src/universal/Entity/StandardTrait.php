@@ -20,14 +20,14 @@
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
 
-namespace Teknoo\Bundle\StatesBundle\Document;
+namespace Teknoo\UniversalPackage\States\Entity;
 
-use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
-use Teknoo\States\Proxy\ProxyInterface;
+use Teknoo\States\Proxy\ProxyTrait;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Class StandardDocument.
- * Default Stated class implementation with a doctrine document.
+ * Trait StandardTrait
+ * Trait adapt standard proxies to doctrine.
  *
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
@@ -36,27 +36,31 @@ use Teknoo\States\Proxy\ProxyInterface;
  *
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
- *
- * @MongoDB\MappedSuperclass
- * @MongoDB\HasLifecycleCallbacks
  */
-abstract class StandardDocument implements ProxyInterface
+trait StandardTrait
 {
-    use StandardTrait;
+    use ProxyTrait;
 
     /**
-     * Default constructor used to initialize the stated object with its factory.
+     * Doctrine does not call the construction and create a new instance without it.
+     * This callback reinitialize proxy.
+     *
+     * @ORM\PostLoad()
      */
-    public function __construct()
+    public function postLoadDoctrine()
     {
-        $this->postLoadDoctrine();
+        //Call the method of the trait to initialize local attributes of the proxy
+        $this->initializeProxy();
+        //Select good state
+        $this->updateState();
     }
 
     /**
-     * {@inheritdoc}
+     * Method overloaded by States Lifecycle to update automatically states from
+     * configuration.
      */
-    public static function statesListDeclaration(): array
+    public function updateState()
     {
-        return [];
+        return $this;
     }
 }

@@ -19,9 +19,9 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-namespace Teknoo\Tests\Bundle\StatesBundle\Support;
+namespace Teknoo\Tests\UniversalPackage\States\Support;
 
-use Teknoo\Bundle\StatesBundle\Document\StandardDocument as AbstractStandardDocument;
+use Teknoo\UniversalPackage\States\Document\AbstractStandardDocument;
 use Teknoo\States\Proxy\ArrayAccessTrait;
 use Teknoo\States\Proxy\IteratorTrait;
 use Teknoo\States\Proxy\MagicCallTrait;

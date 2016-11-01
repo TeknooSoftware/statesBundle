@@ -28,12 +28,14 @@
     "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
-            "Teknoo\\Bundle\\StatesBundle\\": "src/"
+            "Teknoo\\Bundle\\StatesBundle\\": "src/symfony",
+            "Teknoo\\UniversalPackage\\States\\": "src/universal"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Teknoo\\Tests\\Bundle\\StatesBundle\\": "tests/"
+            "Teknoo\\Tests\\Bundle\\StatesBundle\\": "tests/symfony",
+            "Teknoo\\Tests\\UniversalPackage\\States\\": "tests/universal"
         }
     },
     "archive": {

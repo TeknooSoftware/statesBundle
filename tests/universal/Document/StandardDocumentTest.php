@@ -19,10 +19,10 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-namespace Teknoo\Tests\Bundle\StatesBundle\Document;
+namespace Teknoo\Tests\UniversalPackage\States\Document;
 
 use Teknoo\States\Proxy\ProxyInterface;
-use Teknoo\Tests\Bundle\StatesBundle\Support;
+use Teknoo\Tests\UniversalPackage\States\Support;
 use Teknoo\Tests\States\Proxy\StandardTest;
 
 /**
@@ -36,8 +36,8 @@ use Teknoo\Tests\States\Proxy\StandardTest;
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  *
- * @covers \Teknoo\Bundle\StatesBundle\Document\StandardDocument
- * @covers \Teknoo\Bundle\StatesBundle\Document\StandardTrait
+ * @covers \Teknoo\UniversalPackage\States\Document\AbstractStandardDocument
+ * @covers \Teknoo\UniversalPackage\States\Document\StandardTrait
  */
 class StandardDocumentTest extends StandardTest
 {
@@ -58,7 +58,7 @@ class StandardDocumentTest extends StandardTest
      */
     public function testPostLoadDoctrine()
     {
-        $proxyReflectionClass = new \ReflectionClass('\Teknoo\Tests\Bundle\StatesBundle\Support\StandardDocument');
+        $proxyReflectionClass = new \ReflectionClass(Support\StandardDocument::class);
         $proxy = $proxyReflectionClass->newInstanceWithoutConstructor();
         $proxy->postLoadDoctrine();
         $this->assertSame(array(), $proxy->listAvailableStates());

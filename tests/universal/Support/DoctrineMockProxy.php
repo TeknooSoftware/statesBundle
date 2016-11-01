@@ -19,13 +19,13 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-namespace Teknoo\Tests\Bundle\StatesBundle\Support;
+namespace Teknoo\Tests\UniversalPackage\States\Support;
 
 use Closure;
 use Teknoo\Tests\Support\MockProxy;
 
 /**
- * Class MongoMockProxy.
+ * Class DoctrineMockProxy.
  *
  *
  * @copyright   Copyright (c) 2009-2016 Richard Déloge (richarddeloge@gmail.com)
@@ -35,7 +35,7 @@ use Teknoo\Tests\Support\MockProxy;
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-class MongoMockProxy extends MockProxy implements \Doctrine\ODM\MongoDB\Proxy\Proxy
+class DoctrineMockProxy extends MockProxy implements \Doctrine\ORM\Proxy\Proxy
 {
     /**
      * Retrieves the callback to be used when cloning the proxy.

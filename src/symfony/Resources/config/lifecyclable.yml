@@ -7,8 +7,8 @@ parameters:
   teknoo.states.lifecyclable.manager.class: 'Teknoo\States\LifeCycle\Scenario\Manager'
 
   #Event Dispatcher
-  teknoo.states.lifecyclable.event.class: 'Teknoo\Bundle\StatesBundle\Event\Event'
-  teknoo.states.lifecyclable.bridge.event_dispatcher.class: 'Teknoo\Bundle\StatesBundle\Event\EventDispatcherBridge'
+  teknoo.states.lifecyclable.event.class: 'Teknoo\UniversalPackage\States\Event\Event'
+  teknoo.states.lifecyclable.bridge.event_dispatcher.class: 'Teknoo\UniversalPackage\States\Event\EventDispatcherBridge'
 
   #Observer for lifecyclable behavior with factory
   teknoo.states.lifecyclable.observer.class: 'Teknoo\States\LifeCycle\Observing\Observer'

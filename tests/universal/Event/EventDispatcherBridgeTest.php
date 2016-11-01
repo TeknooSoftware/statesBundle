@@ -19,17 +19,16 @@
  * @license     http://teknoo.software/license/mit         MIT License
  * @author      Richard Déloge <richarddeloge@gmail.com>
  */
-namespace Teknoo\Tests\Bundle\StatesBundle\Event;
+namespace Teknoo\Tests\UniversalPackage\States\Event;
 
 use Symfony\Component\EventDispatcher\EventDispatcher;
-use Teknoo\Bundle\StatesBundle\Event\Event;
-use Teknoo\Bundle\StatesBundle\Event\EventDispatcherBridge;
+use Teknoo\UniversalPackage\States\Event\Event;
+use Teknoo\UniversalPackage\States\Event\EventDispatcherBridge;
 use Teknoo\States\LifeCycle\Event\EventDispatcherBridgeInterface;
-use Teknoo\States\LifeCycle\Event\EventInterface;
 
 /**
  * Test EventDispatcherBridgeTest
- * @covers \Teknoo\Bundle\StatesBundle\Event\EventDispatcherBridge
+ * @covers \Teknoo\UniversalPackage\States\Event\EventDispatcherBridge
  */
 class EventDispatcherBridgeTest extends \PHPUnit_Framework_TestCase
 {
