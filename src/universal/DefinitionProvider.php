@@ -44,7 +44,7 @@ use Teknoo\UniversalPackage\States\Event\Event;
 use Teknoo\UniversalPackage\States\Event\EventDispatcherBridge;
 
 /**
- * Definition provider following PSR 11 Draft to build an universal bundle/package
+ * Definition provider following PSR 11 Draft to build an universal bundle/package.
  */
 class DefinitionProvider extends ArrayDefinitionProvider
 {
@@ -55,38 +55,31 @@ class DefinitionProvider extends ArrayDefinitionProvider
     {
         parent::__construct([
             //teknoo.states.lifecyclable.service.tokenizer
-            TokenizerInterface::class => (new ObjectDefinition(Tokenizer::class))
-            ,
+            TokenizerInterface::class => (new ObjectDefinition(Tokenizer::class)),
             //teknoo.states.lifecyclable.bridge.event_dispatcher
             EventDispatcherBridgeInterface::class => (new ObjectDefinition(EventDispatcherBridge::class))
-                ->addConstructorArgument(new Reference(EventDispatcher::class))
-            ,
+                ->addConstructorArgument(new Reference(EventDispatcher::class)),
             //teknoo.states.lifecyclable.service.manager
             ManagerInterface::class => (new ObjectDefinition(Manager::class))
-                ->addConstructorArgument(new Reference(EventDispatcherBridgeInterface::class))
-            ,
+                ->addConstructorArgument(new Reference(EventDispatcherBridgeInterface::class)),
             //teknoo.states.lifecyclable.service.observed.factory
             ObservedFactoryInterface::class => (new ObjectDefinition(ObservedFactory::class))
                 ->addConstructorArgument(Observed::class)
                 ->addConstructorArgument(Event::class)
-                ->addConstructorArgument(Trace::class)
-            ,
+                ->addConstructorArgument(Trace::class),
             //teknoo.states.lifecyclable.service.observer
             ObserverInterface::class => (new ObjectDefinition(Observer::class))
                 ->addConstructorArgument(new Reference(ObservedFactoryInterface::class))
                 ->addMethodCall('addEventDispatcher', new Reference(EventDispatcherBridgeInterface::class))
-                ->addMethodCall('setTokenizer', new Reference(TokenizerInterface::class))
-            ,
+                ->addMethodCall('setTokenizer', new Reference(TokenizerInterface::class)),
             //teknoo.vendor.service.yaml.parser
-            'teknoo.vendor.yaml.parser' => (new ObjectDefinition(Parser::class))
-            ,
+            'teknoo.vendor.yaml.parser' => (new ObjectDefinition(Parser::class)),
             //teknoo.vendor.service.gaufrette.adapter
             'teknoo.vendor.service.gaufrette.adapter' => (new ObjectDefinition(Local::class))
-                ->addConstructorArgument(new Reference("%kernel.root_dir%/../"))
-            ,
+                ->addConstructorArgument(new Reference('%kernel.root_dir%/../')),
             //teknoo.vendor.service.gaufrette.filesystem
             'teknoo.vendor.service.gaufrette.filesystem' => (new ObjectDefinition(Filesystem::class))
-                ->addConstructorArgument(new Reference('teknoo.vendor.service.gaufrette.adapter'))
+                ->addConstructorArgument(new Reference('teknoo.vendor.service.gaufrette.adapter')),
         ]);
     }
 }
