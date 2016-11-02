@@ -21,7 +21,7 @@
  */
 namespace Teknoo\Tests\UniversalPackage\States\Event;
 
-use Symfony\Component\EventDispatcher\EventDispatcher;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Teknoo\UniversalPackage\States\Event\Event;
 use Teknoo\UniversalPackage\States\Event\EventDispatcherBridge;
 use Teknoo\States\LifeCycle\Event\EventDispatcherBridgeInterface;
@@ -33,17 +33,17 @@ use Teknoo\States\LifeCycle\Event\EventDispatcherBridgeInterface;
 class EventDispatcherBridgeTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var EventDispatcher
+     * @var EventDispatcherInterface
      */
     private $eventDispatcher;
 
     /**
-     * @return \PHPUnit_Framework_MockObject_MockObject|EventDispatcher
+     * @return \PHPUnit_Framework_MockObject_MockObject|EventDispatcherInterface
      */
     public function getEventDispatcherMock()
     {
-        if (!$this->eventDispatcher instanceof EventDispatcher) {
-            $this->eventDispatcher = $this->createMock(EventDispatcher::class);
+        if (!$this->eventDispatcher instanceof EventDispatcherInterface) {
+            $this->eventDispatcher = $this->createMock(EventDispatcherInterface::class);
         }
 
         return $this->eventDispatcher;

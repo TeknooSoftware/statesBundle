@@ -22,7 +22,7 @@
 
 namespace Teknoo\UniversalPackage\States\Event;
 
-use Symfony\Component\EventDispatcher\EventDispatcher;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Teknoo\States\LifeCycle\Event\EventDispatcherBridgeInterface;
 use Teknoo\States\LifeCycle\Event\EventInterface;
 
@@ -32,16 +32,16 @@ use Teknoo\States\LifeCycle\Event\EventInterface;
 class EventDispatcherBridge implements EventDispatcherBridgeInterface
 {
     /**
-     * @var EventDispatcher
+     * @var EventDispatcherInterface
      */
     private $eventDispatcher;
 
     /**
      * EventDispatcherBridge constructor.
      *
-     * @param EventDispatcher $eventDispatcher
+     * @param EventDispatcherInterface $eventDispatcher
      */
-    public function __construct(EventDispatcher $eventDispatcher)
+    public function __construct(EventDispatcherInterface $eventDispatcher)
     {
         $this->eventDispatcher = $eventDispatcher;
     }
