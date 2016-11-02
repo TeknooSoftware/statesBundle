@@ -85,17 +85,11 @@ class StatesServiceProvider implements ServiceProvider
 
     /**
      * @param ContainerInterface $container
-     * @param callable|null $getPrevious
      * @return ManagerInterface
      */
     public static function createStatesManager(
-        ContainerInterface $container,
-        callable $getPrevious = null
+        ContainerInterface $container
     ): ManagerInterface {
-        if (is_callable($getPrevious)) {
-            return $getPrevious();
-        }
-
         $managerClass = $container->get(static::SERVICE_MANAGER_CLASS);
         return new $managerClass($container->get(EventDispatcherBridgeInterface::class));
     }
@@ -116,25 +110,18 @@ class StatesServiceProvider implements ServiceProvider
 
     /**
      * @param ContainerInterface $container
-     * @param callable|null $getPrevious
      * @return ObserverInterface
      */
     public static function createObserver(
-        ContainerInterface $container,
-        callable $getPrevious = null
+        ContainerInterface $container
     ): ObserverInterface {
-        $observer = null;
-        if (is_callable($getPrevious)) {
-            $observer = $getPrevious();
-        } else {
-            $observerClass = $container->get(static::SERVICE_OBSERVER_CLASS);
-            $observer = new $observerClass($container->get(ObservedFactoryInterface::class));
-        }
-
-        if ($observer instanceof ObserverInterface) {
-            $observer->addEventDispatcher($container->get(EventDispatcherBridgeInterface::class));
-            $observer->setTokenizer($container->get(TokenizerInterface::class));
-        }
+        $observerClass = $container->get(static::SERVICE_OBSERVER_CLASS);
+        /**
+         * @var Observer $observer
+         */
+        $observer = new $observerClass($container->get(ObservedFactoryInterface::class));
+        $observer->addEventDispatcher($container->get(EventDispatcherBridgeInterface::class));
+        $observer->setTokenizer($container->get(TokenizerInterface::class));
 
         return $observer;
     }
@@ -162,7 +149,7 @@ class StatesServiceProvider implements ServiceProvider
      */
     public static function createGaufretteFilesystem(ContainerInterface $container)
     {
-        return new Filesystem($container->get('teknoo.vendor.service.gaufrette.adapter'));
+        return new Filesystem($container->get(static::VENDOR_GAUFRETTE_ADAPTER));
     }
 
     /**

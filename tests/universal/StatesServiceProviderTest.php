@@ -21,11 +21,22 @@
  */
 namespace Teknoo\Tests\UniversalPackage\States;
 
+use Gaufrette\Adapter\Local;
+use Gaufrette\Filesystem;
+use Interop\Container\ContainerInterface;
+use Symfony\Component\EventDispatcher\EventDispatcher;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Symfony\Component\Yaml\Parser;
 use Teknoo\States\LifeCycle\Event\EventDispatcherBridgeInterface;
+use Teknoo\States\LifeCycle\Observing\ObservedFactory;
 use Teknoo\States\LifeCycle\Observing\ObservedFactoryInterface;
+use Teknoo\States\LifeCycle\Observing\Observer;
 use Teknoo\States\LifeCycle\Observing\ObserverInterface;
+use Teknoo\States\LifeCycle\Scenario\Manager;
 use Teknoo\States\LifeCycle\Scenario\ManagerInterface;
+use Teknoo\States\LifeCycle\Tokenization\Tokenizer;
 use Teknoo\States\LifeCycle\Tokenization\TokenizerInterface;
+use Teknoo\UniversalPackage\States\Event\EventDispatcherBridge;
 use Teknoo\UniversalPackage\States\StatesServiceProvider;
 
 /**
@@ -63,5 +74,121 @@ class StatesServiceProviderTest extends \PHPUnit_Framework_TestCase
         self::assertTrue(isset($definitions['teknoo.vendor.yaml.parser']));
         self::assertTrue(isset($definitions['teknoo.vendor.service.gaufrette.adapter']));
         self::assertTrue(isset($definitions['teknoo.vendor.service.gaufrette.filesystem']));
+    }
+
+    public function testCreateStatesTokenizer()
+    {
+        $container = $this->createMock(ContainerInterface::class);
+        $container->expects(self::any())
+            ->method('get')
+            ->with(StatesServiceProvider::SERVICE_TOKENIZER_CLASS)
+            ->willReturn(Tokenizer::class);
+
+        self::assertInstanceOf(
+            Tokenizer::class,
+            StatesServiceProvider::createStatesTokenizer($container)
+        );
+    }
+
+    public function testCreateEventDispatcherBridge()
+    {
+        $container = $this->createMock(ContainerInterface::class);
+        $container->expects(self::any())
+            ->method('get')
+            ->withConsecutive([StatesServiceProvider::SERVICE_EVENT_DISPATCHER_BRIDGE_CLASS], ['event_dispatcher'])
+            ->willReturnOnConsecutiveCalls(EventDispatcherBridge::class, $this->createMock(EventDispatcherInterface::class));
+
+        self::assertInstanceOf(
+            EventDispatcherBridge::class,
+            StatesServiceProvider::createEventDispatcherBridge($container)
+        );
+    }
+
+    public function testCreateStatesManager()
+    {
+        $container = $this->createMock(ContainerInterface::class);
+        $container->expects(self::any())
+            ->method('get')
+            ->withConsecutive([StatesServiceProvider::SERVICE_MANAGER_CLASS], [EventDispatcherBridgeInterface::class])
+            ->willReturnOnConsecutiveCalls(Manager::class, $this->createMock(EventDispatcherBridgeInterface::class));
+
+        self::assertInstanceOf(
+            Manager::class,
+            StatesServiceProvider::createStatesManager($container)
+        );
+    }
+
+    public function testCreateObservedFactory()
+    {
+        $container = $this->createMock(ContainerInterface::class);
+        $container->expects(self::any())
+            ->method('get')
+            ->withConsecutive([StatesServiceProvider::SERVICE_OBSERVED_FACTORY_CLASS])
+            ->willReturnOnConsecutiveCalls(ObservedFactory::class);
+
+        self::assertInstanceOf(
+            ObservedFactory::class,
+            StatesServiceProvider::createObservedFactory($container)
+        );
+    }
+
+    public function testCreateObserver()
+    {
+        $container = $this->createMock(ContainerInterface::class);
+        $container->expects(self::any())
+            ->method('get')
+            ->withConsecutive(
+                [StatesServiceProvider::SERVICE_OBSERVER_CLASS],
+                [ObservedFactoryInterface::class],
+                [EventDispatcherBridgeInterface::class],
+                [TokenizerInterface::class]
+            )
+            ->willReturnOnConsecutiveCalls(
+                Observer::class,
+                $this->createMock(ObservedFactoryInterface::class),
+                $this->createMock(EventDispatcherBridgeInterface::class),
+                $this->createMock(TokenizerInterface::class)
+            );
+
+        self::assertInstanceOf(
+            Observer::class,
+            StatesServiceProvider::createObserver($container)
+        );
+    }
+
+    public function testCreateYamlParser()
+    {
+        self::assertInstanceOf(
+            Parser::class,
+            StatesServiceProvider::createYamlParser()
+        );
+    }
+
+    public function testCreateGaufretteAdapter()
+    {
+        $container = $this->createMock(ContainerInterface::class);
+        $container->expects(self::any())
+            ->method('get')
+            ->with('teknoo.vendor.service.gaufrette.root_dir')
+            ->willReturn(__DIR__);
+
+        self::assertInstanceOf(
+            Local::class,
+            StatesServiceProvider::createGaufretteAdapter($container)
+        );
+    }
+
+    public function testCreateGaufretteFilesystem()
+    {
+        $container = $this->createMock(ContainerInterface::class);
+        $container->expects(self::any())
+            ->method('get')
+            ->with(StatesServiceProvider::VENDOR_GAUFRETTE_ADAPTER)
+            ->willReturn($this->createMock(Local::class));
+
+        self::assertInstanceOf(
+            Filesystem::class,
+            StatesServiceProvider::createGaufretteFilesystem($container)
+        );
     }
 }
