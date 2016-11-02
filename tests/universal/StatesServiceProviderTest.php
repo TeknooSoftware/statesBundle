@@ -26,25 +26,25 @@ use Teknoo\States\LifeCycle\Observing\ObservedFactoryInterface;
 use Teknoo\States\LifeCycle\Observing\ObserverInterface;
 use Teknoo\States\LifeCycle\Scenario\ManagerInterface;
 use Teknoo\States\LifeCycle\Tokenization\TokenizerInterface;
-use Teknoo\UniversalPackage\States\DefinitionProvider;
+use Teknoo\UniversalPackage\States\StatesServiceProvider;
 
 /**
  * Class DefinitionProviderTest
- * @covers \Teknoo\UniversalPackage\States\DefinitionProvider
+ * @covers \Teknoo\UniversalPackage\States\StatesServiceProvider
  */
-class DefinitionProviderTest extends \PHPUnit_Framework_TestCase
+class StatesServiceProviderTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @return DefinitionProvider
+     * @return StatesServiceProvider
      */
-    public function buildProvider(): DefinitionProvider
+    public function buildProvider(): StatesServiceProvider
     {
-        return new DefinitionProvider();
+        return new StatesServiceProvider();
     }
 
     public function testGetDefinitions()
     {
-        $definitions = $this->buildProvider()->getDefinitions();
+        $definitions = $this->buildProvider()->getServices();
         self::assertTrue(isset($definitions[TokenizerInterface::class]));
         self::assertTrue(isset($definitions['teknoo.states.lifecyclable.service.tokenizer.class']));
         self::assertTrue(isset($definitions['teknoo.states.lifecyclable.service.tokenizer']));
