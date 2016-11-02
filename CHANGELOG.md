@@ -1,6 +1,6 @@
 #Teknoo Software - States Bundle - Change Log
 
-###[3.0.0-alpha4] - 2016-11-02
+###[3.0.0-alpha4] - 2016-11-03
 ###Fixed
 - Event Dispatcher Bridge use EventDispatcherInterface instead of EventDispatcher
 - Convert this bundle into an universal package, respecting the PSR11 draft and container-interop/service-provider 
