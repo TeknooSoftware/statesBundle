@@ -46,10 +46,20 @@ class DefinitionProviderTest extends \PHPUnit_Framework_TestCase
     {
         $definitions = $this->buildProvider()->getDefinitions();
         self::assertTrue(isset($definitions[TokenizerInterface::class]));
+        self::assertTrue(isset($definitions['teknoo.states.lifecyclable.service.tokenizer.class']));
+        self::assertTrue(isset($definitions['teknoo.states.lifecyclable.service.tokenizer']));
         self::assertTrue(isset($definitions[EventDispatcherBridgeInterface::class]));
+        self::assertTrue(isset($definitions['teknoo.states.lifecyclable.bridge.event_dispatcher.class']));
+        self::assertTrue(isset($definitions['teknoo.states.lifecyclable.bridge.event_dispatcher']));
         self::assertTrue(isset($definitions[ManagerInterface::class]));
+        self::assertTrue(isset($definitions['teknoo.states.lifecyclable.service.manager.class']));
+        self::assertTrue(isset($definitions['teknoo.states.lifecyclable.service.manager']));
         self::assertTrue(isset($definitions[ObservedFactoryInterface::class]));
+        self::assertTrue(isset($definitions['teknoo.states.lifecyclable.service.observed.factory.class']));
+        self::assertTrue(isset($definitions['teknoo.states.lifecyclable.service.observed.factory']));
         self::assertTrue(isset($definitions[ObserverInterface::class]));
+        self::assertTrue(isset($definitions['teknoo.states.lifecyclable.service.observer.class']));
+        self::assertTrue(isset($definitions['teknoo.states.lifecyclable.service.observer']));
         self::assertTrue(isset($definitions['teknoo.vendor.yaml.parser']));
         self::assertTrue(isset($definitions['teknoo.vendor.service.gaufrette.adapter']));
         self::assertTrue(isset($definitions['teknoo.vendor.service.gaufrette.filesystem']));

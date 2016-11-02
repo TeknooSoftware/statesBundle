@@ -24,6 +24,7 @@ namespace Teknoo\UniversalPackage\States;
 
 use Assembly\ArrayDefinitionProvider;
 use Assembly\ObjectDefinition;
+use Assembly\ParameterDefinition;
 use Assembly\Reference;
 use Gaufrette\Adapter\Local;
 use Gaufrette\Filesystem;
@@ -56,22 +57,37 @@ class DefinitionProvider extends ArrayDefinitionProvider
         parent::__construct([
             //teknoo.states.lifecyclable.service.tokenizer
             TokenizerInterface::class => (new ObjectDefinition(Tokenizer::class)),
+            'teknoo.states.lifecyclable.service.tokenizer.class' => new ParameterDefinition(Tokenizer::class),
+            'teknoo.states.lifecyclable.service.tokenizer' => new Reference(TokenizerInterface::class),
+
             //teknoo.states.lifecyclable.bridge.event_dispatcher
             EventDispatcherBridgeInterface::class => (new ObjectDefinition(EventDispatcherBridge::class))
                 ->addConstructorArgument(new Reference(EventDispatcher::class)),
+            'teknoo.states.lifecyclable.bridge.event_dispatcher.class' => new ParameterDefinition(ObjectDefinition::class),
+            'teknoo.states.lifecyclable.bridge.event_dispatcher' => new Reference(EventDispatcherBridgeInterface::class),
+
             //teknoo.states.lifecyclable.service.manager
             ManagerInterface::class => (new ObjectDefinition(Manager::class))
                 ->addConstructorArgument(new Reference(EventDispatcherBridgeInterface::class)),
+            'teknoo.states.lifecyclable.service.manager.class' => new ParameterDefinition(ObjectDefinition::class),
+            'teknoo.states.lifecyclable.service.manager' => new Reference(ManagerInterface::class),
+
             //teknoo.states.lifecyclable.service.observed.factory
             ObservedFactoryInterface::class => (new ObjectDefinition(ObservedFactory::class))
                 ->addConstructorArgument(Observed::class)
                 ->addConstructorArgument(Event::class)
                 ->addConstructorArgument(Trace::class),
+            'teknoo.states.lifecyclable.service.observed.factory.class' => new ParameterDefinition(ObjectDefinition::class),
+            'teknoo.states.lifecyclable.service.observed.factory' => new Reference(ObservedFactoryInterface::class),
+
             //teknoo.states.lifecyclable.service.observer
             ObserverInterface::class => (new ObjectDefinition(Observer::class))
                 ->addConstructorArgument(new Reference(ObservedFactoryInterface::class))
                 ->addMethodCall('addEventDispatcher', new Reference(EventDispatcherBridgeInterface::class))
                 ->addMethodCall('setTokenizer', new Reference(TokenizerInterface::class)),
+            'teknoo.states.lifecyclable.service.observer.class' => new ParameterDefinition(Observer::class),
+            'teknoo.states.lifecyclable.service.observer' => new Reference(ObserverInterface::class),
+
             //teknoo.vendor.service.yaml.parser
             'teknoo.vendor.yaml.parser' => (new ObjectDefinition(Parser::class)),
             //teknoo.vendor.service.gaufrette.adapter
