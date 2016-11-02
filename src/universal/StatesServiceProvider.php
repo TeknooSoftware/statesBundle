@@ -47,7 +47,7 @@ use Teknoo\UniversalPackage\States\Event\EventDispatcherBridge;
 class StatesServiceProvider implements ServiceProvider
 {
     /**
-     * Constants to define services' keys in container
+     * Constants to define services' keys in container.
      */
     const SERVICE_TOKENIZER_CLASS = 'teknoo.states.lifecyclable.service.tokenizer.class';
     const SERVICE_TOKENIZER = 'teknoo.states.lifecyclable.service.tokenizer';
@@ -65,42 +65,50 @@ class StatesServiceProvider implements ServiceProvider
 
     /**
      * @param ContainerInterface $container
+     *
      * @return TokenizerInterface
      */
     public static function createStatesTokenizer(ContainerInterface $container): TokenizerInterface
     {
         $tokenizeClass = $container->get(static::SERVICE_TOKENIZER_CLASS);
+
         return new $tokenizeClass();
     }
 
     /**
      * @param ContainerInterface $container
+     *
      * @return EventDispatcherBridgeInterface
      */
     public static function createEventDispatcherBridge(ContainerInterface $container): EventDispatcherBridgeInterface
     {
         $eventDispatcherClass = $container->get(static::SERVICE_EVENT_DISPATCHER_BRIDGE_CLASS);
+
         return new $eventDispatcherClass($container->get('event_dispatcher'));
     }
 
     /**
      * @param ContainerInterface $container
+     *
      * @return ManagerInterface
      */
     public static function createStatesManager(
         ContainerInterface $container
     ): ManagerInterface {
         $managerClass = $container->get(static::SERVICE_MANAGER_CLASS);
+
         return new $managerClass($container->get(EventDispatcherBridgeInterface::class));
     }
 
     /**
      * @param ContainerInterface $container
+     *
      * @return ObservedFactoryInterface
      */
     public static function createObservedFactory(ContainerInterface $container): ObservedFactoryInterface
     {
         $factoryClass = $container->get(static::SERVICE_OBSERVED_FACTORY_CLASS);
+
         return new $factoryClass(
             Observed::class,
             Event::class,
@@ -110,6 +118,7 @@ class StatesServiceProvider implements ServiceProvider
 
     /**
      * @param ContainerInterface $container
+     *
      * @return ObserverInterface
      */
     public static function createObserver(
@@ -117,7 +126,7 @@ class StatesServiceProvider implements ServiceProvider
     ): ObserverInterface {
         $observerClass = $container->get(static::SERVICE_OBSERVER_CLASS);
         /**
-         * @var Observer $observer
+         * @var Observer
          */
         $observer = new $observerClass($container->get(ObservedFactoryInterface::class));
         $observer->addEventDispatcher($container->get(EventDispatcherBridgeInterface::class));
@@ -136,6 +145,7 @@ class StatesServiceProvider implements ServiceProvider
 
     /**
      * @param ContainerInterface $container
+     *
      * @return Local
      */
     public static function createGaufretteAdapter(ContainerInterface $container)
@@ -145,6 +155,7 @@ class StatesServiceProvider implements ServiceProvider
 
     /**
      * @param ContainerInterface $container
+     *
      * @return Filesystem
      */
     public static function createGaufretteFilesystem(ContainerInterface $container)
