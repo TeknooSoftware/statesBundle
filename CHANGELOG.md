@@ -1,5 +1,9 @@
 #Teknoo Software - States Bundle - Change Log
 
+###[3.0.0-alpha6] - 2016-11-12
+###Removed
+- Parameters removed into StatesServiceProvider
+
 ###[3.0.0-alpha5] - 2016-11-11
 ###Updated
 - Use interfaces full qualified name as service tag instead of symfony nomenclature.

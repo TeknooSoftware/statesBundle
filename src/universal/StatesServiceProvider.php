@@ -49,30 +49,22 @@ class StatesServiceProvider implements ServiceProvider
     /**
      * Constants to define services' keys in container.
      */
-    const SERVICE_TOKENIZER_CLASS = 'teknoo.states.lifecyclable.service.tokenizer.class';
     const SERVICE_TOKENIZER = 'teknoo.states.lifecyclable.service.tokenizer';
-    const SERVICE_EVENT_DISPATCHER_BRIDGE_CLASS = 'teknoo.states.lifecyclable.bridge.event_dispatcher.class';
     const SERVICE_EVENT_DISPATCHER_BRIDGE = 'teknoo.states.lifecyclable.bridge.event_dispatcher';
     const SERVICE_MANAGER_CLASS = 'teknoo.states.lifecyclable.service.manager.class';
     const SERVICE_MANAGER = 'teknoo.states.lifecyclable.service.manager';
-    const SERVICE_OBSERVED_FACTORY_CLASS = 'teknoo.states.lifecyclable.service.observed.factory.class';
     const SERVICE_OBSERVED_FACTORY = 'teknoo.states.lifecyclable.service.observed.factory';
-    const SERVICE_OBSERVER_CLASS = 'teknoo.states.lifecyclable.service.observer.class';
     const SERVICE_OBSERVER = 'teknoo.states.lifecyclable.service.observer';
     const VENDOR_YAML_PARSER = 'teknoo.vendor.yaml.parser';
     const VENDOR_GAUFRETTE_ADAPTER = 'teknoo.vendor.service.gaufrette.adapter';
     const VENDOR_GAUFRETTE_FILESYSTEM = 'teknoo.vendor.service.gaufrette.filesystem';
 
     /**
-     * @param ContainerInterface $container
-     *
      * @return TokenizerInterface
      */
-    public static function createStatesTokenizer(ContainerInterface $container): TokenizerInterface
+    public static function createStatesTokenizer(): TokenizerInterface
     {
-        $tokenizeClass = $container->get(static::SERVICE_TOKENIZER_CLASS);
-
-        return new $tokenizeClass();
+        return new Tokenizer();
     }
 
     /**
@@ -82,9 +74,7 @@ class StatesServiceProvider implements ServiceProvider
      */
     public static function createEventDispatcherBridge(ContainerInterface $container): EventDispatcherBridgeInterface
     {
-        $eventDispatcherClass = $container->get(static::SERVICE_EVENT_DISPATCHER_BRIDGE_CLASS);
-
-        return new $eventDispatcherClass($container->get('event_dispatcher'));
+        return new EventDispatcherBridge($container->get('event_dispatcher'));
     }
 
     /**
@@ -95,21 +85,15 @@ class StatesServiceProvider implements ServiceProvider
     public static function createStatesManager(
         ContainerInterface $container
     ): ManagerInterface {
-        $managerClass = $container->get(static::SERVICE_MANAGER_CLASS);
-
-        return new $managerClass($container->get(EventDispatcherBridgeInterface::class));
+        return new Manager($container->get(EventDispatcherBridgeInterface::class));
     }
 
     /**
-     * @param ContainerInterface $container
-     *
      * @return ObservedFactoryInterface
      */
-    public static function createObservedFactory(ContainerInterface $container): ObservedFactoryInterface
+    public static function createObservedFactory(): ObservedFactoryInterface
     {
-        $factoryClass = $container->get(static::SERVICE_OBSERVED_FACTORY_CLASS);
-
-        return new $factoryClass(
+        return new ObservedFactory(
             Observed::class,
             Event::class,
             Trace::class
@@ -124,11 +108,10 @@ class StatesServiceProvider implements ServiceProvider
     public static function createObserver(
         ContainerInterface $container
     ): ObserverInterface {
-        $observerClass = $container->get(static::SERVICE_OBSERVER_CLASS);
         /**
          * @var Observer
          */
-        $observer = new $observerClass($container->get(ObservedFactoryInterface::class));
+        $observer = new Observer($container->get(ObservedFactoryInterface::class));
         $observer->addEventDispatcher($container->get(EventDispatcherBridgeInterface::class));
         $observer->setTokenizer($container->get(TokenizerInterface::class));
 
@@ -170,27 +153,22 @@ class StatesServiceProvider implements ServiceProvider
     {
         return [
             //teknoo.states.lifecyclable.service.tokenizer
-            static::SERVICE_TOKENIZER_CLASS => Tokenizer::class,
             TokenizerInterface::class => [static::class, 'createStatesTokenizer'],
             static::SERVICE_TOKENIZER => [static::class, 'createStatesLCTokenizer'],
 
             //teknoo.states.lifecyclable.bridge.event_dispatcher
-            static::SERVICE_EVENT_DISPATCHER_BRIDGE_CLASS => EventDispatcherBridge::class,
             EventDispatcherBridgeInterface::class => [static::class, 'createEventDispatcherBridge'],
             static::SERVICE_EVENT_DISPATCHER_BRIDGE => [static::class, 'createEventDispatcherBridge'],
 
             //teknoo.states.lifecyclable.service.manager
-            static::SERVICE_MANAGER_CLASS => Manager::class,
             ManagerInterface::class => [static::class, 'createStatesManager'],
             static::SERVICE_MANAGER => [static::class, 'createStatesManager'],
 
             //teknoo.states.lifecyclable.service.observed.factory
-            static::SERVICE_OBSERVED_FACTORY_CLASS => ObservedFactory::class,
             ObservedFactoryInterface::class => [static::class, 'createObservedFactory'],
             static::SERVICE_OBSERVED_FACTORY => [static::class, 'createObservedFactory'],
 
             //teknoo.states.lifecyclable.service.observer
-            static::SERVICE_OBSERVER_CLASS => Observer::class,
             ObserverInterface::class => [static::class, 'createObserver'],
             static::SERVICE_OBSERVER => [static::class, 'createObserver'],
 

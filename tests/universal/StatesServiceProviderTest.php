@@ -57,19 +57,14 @@ class StatesServiceProviderTest extends \PHPUnit_Framework_TestCase
     {
         $definitions = $this->buildProvider()->getServices();
         self::assertTrue(isset($definitions[TokenizerInterface::class]));
-        self::assertTrue(isset($definitions['teknoo.states.lifecyclable.service.tokenizer.class']));
         self::assertTrue(isset($definitions['teknoo.states.lifecyclable.service.tokenizer']));
         self::assertTrue(isset($definitions[EventDispatcherBridgeInterface::class]));
-        self::assertTrue(isset($definitions['teknoo.states.lifecyclable.bridge.event_dispatcher.class']));
         self::assertTrue(isset($definitions['teknoo.states.lifecyclable.bridge.event_dispatcher']));
         self::assertTrue(isset($definitions[ManagerInterface::class]));
-        self::assertTrue(isset($definitions['teknoo.states.lifecyclable.service.manager.class']));
         self::assertTrue(isset($definitions['teknoo.states.lifecyclable.service.manager']));
         self::assertTrue(isset($definitions[ObservedFactoryInterface::class]));
-        self::assertTrue(isset($definitions['teknoo.states.lifecyclable.service.observed.factory.class']));
         self::assertTrue(isset($definitions['teknoo.states.lifecyclable.service.observed.factory']));
         self::assertTrue(isset($definitions[ObserverInterface::class]));
-        self::assertTrue(isset($definitions['teknoo.states.lifecyclable.service.observer.class']));
         self::assertTrue(isset($definitions['teknoo.states.lifecyclable.service.observer']));
         self::assertTrue(isset($definitions['teknoo.vendor.yaml.parser']));
         self::assertTrue(isset($definitions['teknoo.vendor.service.gaufrette.adapter']));
@@ -78,15 +73,9 @@ class StatesServiceProviderTest extends \PHPUnit_Framework_TestCase
 
     public function testCreateStatesTokenizer()
     {
-        $container = $this->createMock(ContainerInterface::class);
-        $container->expects(self::any())
-            ->method('get')
-            ->with(StatesServiceProvider::SERVICE_TOKENIZER_CLASS)
-            ->willReturn(Tokenizer::class);
-
         self::assertInstanceOf(
             Tokenizer::class,
-            StatesServiceProvider::createStatesTokenizer($container)
+            StatesServiceProvider::createStatesTokenizer()
         );
     }
 
@@ -95,8 +84,8 @@ class StatesServiceProviderTest extends \PHPUnit_Framework_TestCase
         $container = $this->createMock(ContainerInterface::class);
         $container->expects(self::any())
             ->method('get')
-            ->withConsecutive([StatesServiceProvider::SERVICE_EVENT_DISPATCHER_BRIDGE_CLASS], ['event_dispatcher'])
-            ->willReturnOnConsecutiveCalls(EventDispatcherBridge::class, $this->createMock(EventDispatcherInterface::class));
+            ->withConsecutive(['event_dispatcher'])
+            ->willReturnOnConsecutiveCalls($this->createMock(EventDispatcherInterface::class));
 
         self::assertInstanceOf(
             EventDispatcherBridge::class,
@@ -109,8 +98,8 @@ class StatesServiceProviderTest extends \PHPUnit_Framework_TestCase
         $container = $this->createMock(ContainerInterface::class);
         $container->expects(self::any())
             ->method('get')
-            ->withConsecutive([StatesServiceProvider::SERVICE_MANAGER_CLASS], [EventDispatcherBridgeInterface::class])
-            ->willReturnOnConsecutiveCalls(Manager::class, $this->createMock(EventDispatcherBridgeInterface::class));
+            ->withConsecutive([EventDispatcherBridgeInterface::class])
+            ->willReturnOnConsecutiveCalls($this->createMock(EventDispatcherBridgeInterface::class));
 
         self::assertInstanceOf(
             Manager::class,
@@ -120,15 +109,9 @@ class StatesServiceProviderTest extends \PHPUnit_Framework_TestCase
 
     public function testCreateObservedFactory()
     {
-        $container = $this->createMock(ContainerInterface::class);
-        $container->expects(self::any())
-            ->method('get')
-            ->withConsecutive([StatesServiceProvider::SERVICE_OBSERVED_FACTORY_CLASS])
-            ->willReturnOnConsecutiveCalls(ObservedFactory::class);
-
         self::assertInstanceOf(
             ObservedFactory::class,
-            StatesServiceProvider::createObservedFactory($container)
+            StatesServiceProvider::createObservedFactory()
         );
     }
 
@@ -138,13 +121,11 @@ class StatesServiceProviderTest extends \PHPUnit_Framework_TestCase
         $container->expects(self::any())
             ->method('get')
             ->withConsecutive(
-                [StatesServiceProvider::SERVICE_OBSERVER_CLASS],
                 [ObservedFactoryInterface::class],
                 [EventDispatcherBridgeInterface::class],
                 [TokenizerInterface::class]
             )
             ->willReturnOnConsecutiveCalls(
-                Observer::class,
                 $this->createMock(ObservedFactoryInterface::class),
                 $this->createMock(EventDispatcherBridgeInterface::class),
                 $this->createMock(TokenizerInterface::class)
