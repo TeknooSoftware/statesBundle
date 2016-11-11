@@ -30,30 +30,46 @@ parameters:
   teknoo.states.lifecyclable.trace.class.name: '%teknoo.states.lifecyclable.trace.class%'
 
 services:
-  teknoo.states.lifecyclable.service.tokenizer:
+  #Service Teknoo\States\LifeCycle\Tokenization\TokenizerInterface
+  Teknoo\States\LifeCycle\Tokenization\TokenizerInterface:
     class: '%teknoo.states.lifecyclable.tokenizer.class%'
     public: false
 
-  teknoo.states.lifecyclable.bridge.event_dispatcher:
+  teknoo.states.lifecyclable.service.tokenizer:
+    alias: 'Teknoo\States\LifeCycle\Tokenization\TokenizerInterface'
+
+  #Service Teknoo\States\LifeCycle\Event\EventDispatcherBridgeInterface
+  Teknoo\States\LifeCycle\Event\EventDispatcherBridgeInterface:
     class: '%teknoo.states.lifecyclable.bridge.event_dispatcher.class%'
     arguments:
       - '@event_dispatcher'
     public: false
 
-  teknoo.states.lifecyclable.service.manager:
+  teknoo.states.lifecyclable.bridge.event_dispatcher:
+    alias: 'Teknoo\States\LifeCycle\Event\EventDispatcherBridgeInterface'
+
+  #Service Teknoo\States\LifeCycle\Scenario\ManagerInterface
+  Teknoo\States\LifeCycle\Scenario\ManagerInterface:
     class: '%teknoo.states.lifecyclable.manager.class%'
     arguments:
       - '@teknoo.states.lifecyclable.bridge.event_dispatcher'
 
-  teknoo.states.lifecyclable.service.observed.factory:
+  teknoo.states.lifecyclable.service.manager:
+    alias: 'Teknoo\States\LifeCycle\Scenario\ManagerInterface'
+
+  #Service Teknoo\States\LifeCycle\Observing\ObservedFactoryInterface
+  Teknoo\States\LifeCycle\Observing\ObservedFactoryInterface:
     class: '%teknoo.states.lifecyclable.observed.factory.class%'
-    public: false
     arguments:
       - '%teknoo.states.lifecyclable.observed.class.name%'
       - '%teknoo.states.lifecyclable.event.class.name%'
       - '%teknoo.states.lifecyclable.trace.class.name%'
 
-  teknoo.states.lifecyclable.service.observer:
+  teknoo.states.lifecyclable.service.observed.factory:
+    alias: 'Teknoo\States\LifeCycle\Observing\ObservedFactoryInterface'
+
+  #Service Teknoo\States\LifeCycle\Observing\ObserverInterface
+  Teknoo\States\LifeCycle\Observing\ObserverInterface:
     class: '%teknoo.states.lifecyclable.observer.class%'
     arguments:
       - '@teknoo.states.lifecyclable.service.observed.factory'
@@ -61,6 +77,10 @@ services:
       - [ 'addEventDispatcher', ['@teknoo.states.lifecyclable.bridge.event_dispatcher']]
       - [ 'setTokenizer', ['@teknoo.states.lifecyclable.service.tokenizer']]
 
+  teknoo.states.lifecyclable.service.observer:
+    alias: 'Teknoo\States\LifeCycle\Observing\ObserverInterface'
+
+  #Vendor
   teknoo.vendor.service.yaml.parser:
     class: '%teknoo.vendor.yaml.parser.class%'
     public: false
@@ -77,6 +97,7 @@ services:
     arguments:
       - '@teknoo.vendor.service.gaufrette.adapter'
 
+  #Prototype
   teknoo.states.lifecyclable.prototype.scenario_builder:
     class: '%teknoo.states.lifecyclable.scenario.builder.class%'
     shared: false

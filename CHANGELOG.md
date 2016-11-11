@@ -1,5 +1,19 @@
 #Teknoo Software - States Bundle - Change Log
 
+###[3.0.0-alpha5] - 2016-11-11
+###Updated
+- Use interfaces full qualified name as service tag instead of symfony nomenclature.
+- Service name Teknoo\States\LifeCycle\Tokenization\TokenizerInterface  
+    instead of teknoo.states.lifecyclable.service.tokenizer
+- Service name Teknoo\States\LifeCycle\Event\EventDispatcherBridgeInterface  
+    instead of teknoo.states.lifecyclable.bridge.event_dispatcher
+- Service name Teknoo\States\LifeCycle\Scenario\ManagerInterface  
+    instead of teknoo.states.lifecyclable.service.manager
+- Service name Teknoo\States\LifeCycle\Observing\ObservedFactoryInterface
+    instead of teknoo.states.lifecyclable.service.observed.factory
+- Service name Teknoo\States\LifeCycle\Observing\ObserverInterface
+    instead of teknoo.states.lifecyclable.service.observer
+        
 ###[3.0.0-alpha4] - 2016-11-03
 ###Fixed
 - Event Dispatcher Bridge use EventDispatcherInterface instead of EventDispatcher
