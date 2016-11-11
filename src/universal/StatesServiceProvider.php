@@ -154,7 +154,7 @@ class StatesServiceProvider implements ServiceProvider
         return [
             //teknoo.states.lifecyclable.service.tokenizer
             TokenizerInterface::class => [static::class, 'createStatesTokenizer'],
-            static::SERVICE_TOKENIZER => [static::class, 'createStatesLCTokenizer'],
+            static::SERVICE_TOKENIZER => [static::class, 'createStatesTokenizer'],
 
             //teknoo.states.lifecyclable.bridge.event_dispatcher
             EventDispatcherBridgeInterface::class => [static::class, 'createEventDispatcherBridge'],
