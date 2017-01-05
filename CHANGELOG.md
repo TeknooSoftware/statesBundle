@@ -1,5 +1,9 @@
 #Teknoo Software - States Bundle - Change Log
 
+###[3.0.0] - 2017-01-06
+###Release
+- First release
+
 ###[3.0.0-beta1] - 2016-12-21
 ###Release
 - First beta
