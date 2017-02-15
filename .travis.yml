@@ -8,7 +8,10 @@ php:
 
 install:
   - composer self-update
-  - composer update --prefer-source --no-interaction --ignore-platform-reqs
+
+before_script:
+  - make
 
 script:
-  - php vendor/bin/phpunit
+    - make qa
+    - make test
