@@ -26,7 +26,7 @@
         "phploc/phploc": "~3.0",
         "doctrine/orm": "~2.2",
         "doctrine/mongodb-odm": "^1.0.0",
-        "symfony/framework-bundle": "~2.8||~3.0",
+        "symfony/framework-bundle": "~2.8||~3.0,<3.4",
         "teknoo/states-life-cycle": "^2.0.0"
     },
     "minimum-stability": "stable",
