@@ -1,6 +1,10 @@
 #Teknoo Software - States Bundle - Change Log
 
-###[3.0.1] - 2017-02-15
+##[3.0.2] - 2017-12-10
+###Fix
+- Fix dependencies required, not supporting Symfony 3.4+ This bundle is deprecated.
+
+##[3.0.1] - 2017-02-15
 ###Fix
 - Code style fix
 - License file follow Github specs
